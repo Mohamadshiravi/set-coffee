@@ -31,4 +31,4 @@ pnpm start
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Live on [https://set-coffee.app](https://set-coffee.app)
+Live on [https://set-coffee-eight.vercel.app/](https://set-coffee-eight.vercel.app/)
