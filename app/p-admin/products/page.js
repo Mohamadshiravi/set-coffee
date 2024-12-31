@@ -5,7 +5,7 @@ import ConnectTODb from "@/utils/connecttodb";
 import { SlBag } from "react-icons/sl";
 
 export default async function ProductsAdminPage() {
-  ConnectTODb();
+  await ConnectTODb();
   const allProduct = await productModel.find({}, "-__v", { sort: "-_id" });
 
   return (

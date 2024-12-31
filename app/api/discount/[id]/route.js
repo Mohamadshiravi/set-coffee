@@ -11,7 +11,7 @@ export async function POST(req, { params }) {
     );
   }
 
-  ConnectTODb();
+  await ConnectTODb();
 
   try {
     await discountModel.findOneAndDelete({ _id: params.id });

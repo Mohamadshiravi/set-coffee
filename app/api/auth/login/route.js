@@ -6,7 +6,7 @@ import ConnectTODb from "@/utils/connecttodb";
 import { cookies } from "next/headers";
 
 export async function POST(req) {
-  ConnectTODb();
+  await ConnectTODb();
 
   const { identifier, password } = await req.json();
 

@@ -4,7 +4,7 @@ import ConnectTODb from "@/utils/connecttodb";
 import { FiMail } from "react-icons/fi";
 
 export default async function TiketsPage() {
-  ConnectTODb();
+  await ConnectTODb();
   const allTiket = await tiketModel
     .find({})
     .sort("-_id")

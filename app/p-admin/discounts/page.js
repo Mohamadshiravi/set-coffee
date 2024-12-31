@@ -4,7 +4,7 @@ import discountModel from "@/models/discount";
 import ConnectTODb from "@/utils/connecttodb";
 
 export default async function DiscountPage() {
-  ConnectTODb();
+  await ConnectTODb();
   const allDiscount = await discountModel.find({});
   return (
     <section className="px-6 text-zinc-700">

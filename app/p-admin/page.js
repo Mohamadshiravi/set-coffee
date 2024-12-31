@@ -14,7 +14,7 @@ import PAdminMessage from "@/components/template/p-admin/p-admin-message";
 import ConnectTODb from "@/utils/connecttodb";
 
 export default async function AdminDashboard() {
-  ConnectTODb();
+  await ConnectTODb();
 
   const allComment = await commentModel.find({}, "_id");
   const allUser = await userModel.find({}, "_id");

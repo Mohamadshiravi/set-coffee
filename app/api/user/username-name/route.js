@@ -3,7 +3,7 @@ import IsUserAdmin from "@/utils/auth-utill/is-user-admin";
 import ConnectTODb from "@/utils/connecttodb";
 
 export async function POST(req) {
-  ConnectTODb();
+  await ConnectTODb();
 
   const isUser = await IsUserAdmin();
   if (!isUser) {

@@ -5,7 +5,7 @@ import { JenerateAccessToken } from "@/utils/auth-utill/tokencontrol";
 import ConnectTODb from "@/utils/connecttodb";
 
 export async function PUT(req) {
-  ConnectTODb();
+  await ConnectTODb();
 
   const { name, username, email, password } = await req.json();
 

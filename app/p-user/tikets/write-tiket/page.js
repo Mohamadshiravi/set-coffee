@@ -3,7 +3,7 @@ import departmentModel from "@/models/department";
 import ConnectTODb from "@/utils/connecttodb";
 
 export default async function WriteTicketForm() {
-  ConnectTODb();
+  await ConnectTODb();
   const departments = await departmentModel.find({});
   return (
     <main>

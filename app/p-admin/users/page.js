@@ -7,7 +7,7 @@ import Image from "next/image";
 import { FiUser } from "react-icons/fi";
 
 export default async function UsersPage() {
-  ConnectTODb();
+  await ConnectTODb();
   const allUser = await userModel.find({});
 
   const banUser = await BanUserModel.find({}, "-__v");

@@ -13,7 +13,7 @@ export async function POST(req) {
 
   const { code, precent, maxUse } = await req.json();
 
-  ConnectTODb();
+  await ConnectTODb();
 
   try {
     await discountModel.create({

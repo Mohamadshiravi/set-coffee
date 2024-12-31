@@ -10,7 +10,7 @@ export async function DELETE(req, { params }) {
       { status: 403 }
     );
   }
-  ConnectTODb();
+  await ConnectTODb();
 
   try {
     await messageModel.findOneAndDelete({ _id: params.id });

@@ -5,7 +5,7 @@ import ConnectTODb from "@/utils/connecttodb";
 import UploadImage from "@/utils/upload-image";
 
 export async function POST(req) {
-  ConnectTODb();
+  await ConnectTODb();
 
   const theUser = await isUserLogedIn();
   if (!isUserLogedIn) {

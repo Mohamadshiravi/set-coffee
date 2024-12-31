@@ -15,7 +15,7 @@ export async function PUT(req, { params }) {
     );
   }
 
-  ConnectTODb();
+  await ConnectTODb();
 
   const formData = await req.formData();
 
@@ -93,7 +93,7 @@ export async function DELETE(req, { params }) {
     );
   }
 
-  ConnectTODb();
+  await ConnectTODb();
 
   const currentProduct = await productModel.findOne({
     _id: params.id,

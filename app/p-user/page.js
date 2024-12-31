@@ -11,7 +11,7 @@ import Link from "next/link";
 import ConnectTODb from "@/utils/connecttodb";
 
 export default async function Dashboard() {
-  ConnectTODb();
+  await ConnectTODb();
   const theUser = await isUserLogedIn();
 
   const userComment = await commentModel.find({ email: theUser.email }, "_id");

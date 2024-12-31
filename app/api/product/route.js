@@ -12,7 +12,7 @@ export async function POST(req) {
     );
   }
 
-  ConnectTODb();
+  await ConnectTODb();
 
   const formData = await req.formData();
 
@@ -66,7 +66,7 @@ export async function POST(req) {
   }
 }
 export async function GET() {
-  ConnectTODb();
+  await ConnectTODb();
 
   try {
     const allProduct = await productModel.find({}, null, { sort: "-_id" });

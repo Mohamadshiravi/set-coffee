@@ -4,7 +4,7 @@ import ConnectTODb from "@/utils/connecttodb";
 import { FiMail } from "react-icons/fi";
 
 export default async function CommentsPage() {
-  ConnectTODb();
+  await ConnectTODb();
   const allComments = await commentModel
     .find({}, "-__V")
     .populate("product", "title");

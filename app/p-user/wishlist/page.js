@@ -6,7 +6,7 @@ import Link from "next/link";
 import { FaRegHeart } from "react-icons/fa";
 
 export default async function WishlistPage() {
-  ConnectTODb();
+  await ConnectTODb();
 
   const theUser = await isUserLogedIn();
   const userWish = await wishlistModel

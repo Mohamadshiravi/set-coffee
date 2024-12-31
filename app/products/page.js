@@ -7,7 +7,7 @@ import ShopeSection from "@/components/template/shop-section";
 import ConnectTODb from "@/utils/connecttodb";
 
 export default async function AllProducts() {
-  ConnectTODb();
+  await ConnectTODb();
 
   const allProduct = await productModel.find({}, "title score price images", {
     sort: "-_id",

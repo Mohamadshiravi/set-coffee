@@ -6,7 +6,7 @@ import ConnectTODb from "@/utils/connecttodb";
 export default async function UserCommentpage() {
   const theUser = await isUserLogedIn();
 
-  ConnectTODb();
+  await ConnectTODb();
   const userComments = await commentModel
     .find({ email: theUser.email }, "-__v")
     .populate("product", "title");

@@ -10,7 +10,7 @@ import ConnectTODb from "@/utils/connecttodb";
 export default async function TiketsPage() {
   const theUser = await isUserLogedIn();
 
-  ConnectTODb();
+  await ConnectTODb();
   const userTiket = await tiketModel
     .find(
       { user: theUser._id, isAnswer: false },

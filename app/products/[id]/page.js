@@ -20,7 +20,7 @@ import productModel from "@/models/product";
 import AddToWishBtn from "@/components/template/product-details/addtowishbtn";
 
 export default async function ProductDetails({ params }) {
-  ConnectTODb();
+  await ConnectTODb();
 
   const product = await productModel
     .findOne({ _id: params.id }, "-__v")

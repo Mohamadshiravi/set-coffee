@@ -9,7 +9,7 @@ export async function GET(req) {
   if (userToken) {
     const IsTokenValid = await ValidateToken(userToken.value);
     if (IsTokenValid) {
-      ConnectTODb();
+      await ConnectTODb();
       const theUser = await userModel.findOne(
         { email: IsTokenValid.email },
         "-__v"

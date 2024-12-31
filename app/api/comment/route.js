@@ -4,7 +4,7 @@ import isUserLogedIn from "@/utils/auth-utill/is-user-login";
 import ConnectTODb from "@/utils/connecttodb";
 
 export async function POST(req) {
-  ConnectTODb();
+  await ConnectTODb();
 
   const { body, score, product } = await req.json();
 

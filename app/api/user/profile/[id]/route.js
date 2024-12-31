@@ -5,7 +5,7 @@ import fs from "fs";
 import path from "path";
 
 export async function DELETE(req, { params }) {
-  ConnectTODb();
+  await ConnectTODb();
 
   const theUser = await isUserLogedIn();
   if (!isUserLogedIn) {
