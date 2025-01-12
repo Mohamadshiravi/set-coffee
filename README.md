@@ -3,7 +3,7 @@
   <a href="https://github.com/Mohamadshiravi/set-coffee.git"><img src="public/md/setcoffee-home.png" alt="set-coffee"></a>
 </h1>
 
-<h4 align="center">A full-Stack Website for selling coffee (panel user & panel admin)</h4>
+<h4 align="center">A full-Stack Website for selling coffee (user panel & admin panel)</h4>
 
 <p align="center">
 
