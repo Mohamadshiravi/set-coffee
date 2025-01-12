@@ -34,10 +34,9 @@
 </h1>
 
 Live on [https://set-coffee-eight.vercel.app/](https://set-coffee-eight.vercel.app/)
+admin panel [https://set-coffee-eight.vercel.app/p-admin](https://set-coffee-eight.vercel.app/p-admin)
 
 ### Admin Panel (login with this email and password):
-
-admin panel [https://set-coffee-eight.vercel.app/p-admin](https://set-coffee-eight.vercel.app/p-admin)
 
 ```bash
 email : mohamadshiravi85@gmail.com
