@@ -13,7 +13,42 @@
 
 </p>
 
-!!! You need MongoDB for Run Project
+<br/>
+
+### Features:
+
+- **Add-remove-Edit Product**
+- **user Authentication with no external pakage**
+- **send tiket to admin panel**
+- **send message to admin panel**
+- **Add comments and rating for Products**
+- **Add discount to product**
+- **Add Product To Favorite**
+- **filter product by price,star,newest,oldest,price-range**
+- **Cart!**
+- **Full Admin Panel**
+- **Full User Panel**
+
+<h1 align="center">
+  <a href="https://github.com/Mohamadshiravi/set-coffee.git"><img src="public/md/setcoffee-features.png" alt="set-coffee"></a>
+</h1>
+
+Live on [https://set-coffee-eight.vercel.app/](https://set-coffee-eight.vercel.app/)
+
+### Admin Panel (login with this email and password):
+
+admin panel [https://set-coffee-eight.vercel.app/p-admin](https://set-coffee-eight.vercel.app/p-admin)
+
+```bash
+email : mohamadshiravi85@gmail.com
+password : 12345678
+```
+
+## Run Project on local
+
+**Note:**
+
+> !!! You need MongoDB for Run Project
 
 add This environment variables to run project :
 
@@ -42,6 +77,4 @@ yarn start
 pnpm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-Live on [https://set-coffee-eight.vercel.app/](https://set-coffee-eight.vercel.app/)
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the project
