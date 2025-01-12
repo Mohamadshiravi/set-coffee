@@ -9,6 +9,7 @@
 
   <a href="http://nextjs.org">
     <img src="https://img.shields.io/badge/next%20js-v14-black">
+    <img src="https://img.shields.io/badge/tailwind-v3-indigo">
   </a>
 
 </p>
