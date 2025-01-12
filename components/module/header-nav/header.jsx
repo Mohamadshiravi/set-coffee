@@ -72,6 +72,8 @@ export default function Header({ children }) {
             ? "sm:h-[70px] h-[65px] sm:w-[98%] w-full fixed sm:rounded-xl bg-white/80 sm:top-2 top-0 sm:left-[1%] left-0"
             : " sm:py-4 absolute py-3 bg-white w-full top-0 left-0"
         } ${isNavTop ? "lg:px-20" : "lg:px-18"} sm:px-8 px-3 ${
+          pathName === "/p-user" ||
+          pathName === "/p-admin" ||
           UserUrlRegex.test(pathName) ||
           AdminUrlRegex.test(pathName) ||
           AuthUrlRegex.test(pathName)
