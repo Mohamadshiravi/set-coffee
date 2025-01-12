@@ -1,9 +1,9 @@
 <h1 align="center">
   <br>
-  <a href="https://github.com/Mohamadshiravi/set-coffee.git"><img src=".public/md/setcoffee-home.png" alt="set-coffee"></a>
+  <a href="https://github.com/Mohamadshiravi/set-coffee.git"><img src="public/md/setcoffee-home.png" alt="set-coffee"></a>
 </h1>
 
-<h4 align="center">A utility for identifying web page inputs and conducting XSS scanning.</h4>
+<h4 align="center">A full-Stack Website for selling coffee (panel user & panel admin)</h4>
 
 <p align="center">
 
