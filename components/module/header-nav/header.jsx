@@ -15,11 +15,12 @@ import { createContext } from "react";
 export const HeaderContext = createContext({});
 
 export default function Header({ children }) {
-  const UrlRegex = /\/p-user\/[^ ]+/g;
-  const AdminUrlRegex = /\/p-admin\/[^ ]+/g;
+  const UserUrlRegex = /\/p-user\/.*/g;
+  const AdminUrlRegex = /\/p-admin\/.*/g;
   const AuthUrlRegex = /\/auth\/[^ ]+/g;
 
   const pathName = usePathname();
+
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isNavTop, setIsNavTop] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -71,10 +72,9 @@ export default function Header({ children }) {
             ? "sm:h-[70px] h-[65px] sm:w-[98%] w-full fixed sm:rounded-xl bg-white/80 sm:top-2 top-0 sm:left-[1%] left-0"
             : " sm:py-4 absolute py-3 bg-white w-full top-0 left-0"
         } ${isNavTop ? "lg:px-20" : "lg:px-18"} sm:px-8 px-3 ${
-          pathName.match(UrlRegex) ||
-          pathName === "/p-user" ||
-          pathName.match(AdminUrlRegex) ||
-          pathName.match(AuthUrlRegex)
+          UserUrlRegex.test(pathName) ||
+          AdminUrlRegex.test(pathName) ||
+          AuthUrlRegex.test(pathName)
             ? "hidden"
             : "flex"
         } border-zinc-200 items-center border justify-center backdrop-blur-xl z-40 transition-all transition`}
