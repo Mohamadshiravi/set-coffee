@@ -5,7 +5,7 @@ import { IoMdAdd } from "react-icons/io";
 import { IoCloseOutline } from "react-icons/io5";
 import { useContext, useEffect, useState } from "react";
 import { newToast } from "@/utils/helper-function";
-import { HeaderContext } from "../module/header-nav/header";
+import { UserContext } from "@/context/context";
 
 export default function CartItem({
   title,
@@ -31,7 +31,7 @@ export default function CartItem({
   useEffect(() => {
     setProductCount(count);
   }, []);
-  const { FetchUserData } = useContext(HeaderContext);
+  const { FetchUserData } = useContext(UserContext);
   return (
     <div className="flex relative lg:flex-row flex-col lg:gap-0 gap-4 items-center xl:justify-start justify-center mt-4 border-b lg:pb-0 pb-4 border-gray-100">
       <button

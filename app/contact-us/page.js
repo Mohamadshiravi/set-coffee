@@ -25,6 +25,7 @@ export default async function ContactUsPage() {
   );
   return (
     <>
+      <Header />
       <BreadCrumb path={"تماس با ما"} />
       <main className="lg:w-10/12 w-full sm:px-8 px-4 m-auto text-zinc-500 text-sm shabnam">
         <section className="grid md:grid-cols-[6fr_6fr] grid-cols-[1fr] md:gap-6 gap-28 mt-10 md:h-[500px] h-[800px]">

@@ -54,15 +54,8 @@ export default function StarredProduct() {
           Array.from({ length: 2 }).map((e, i) => (
             <div
               key={i}
-              className="border flex gap-2 flex-col itemsc-enter animate-pulse w-full sm:h-[400px] h-[350px] rounded-md"
-            >
-              <div className="flex flex-col itemsc-enter animate-pulse w-full rounded-t-md w-full h-full bg-gray-300"></div>
-              <div className="flex flex-col items-center justify-between gap-2 px-2 pb-2 h-[200px]">
-                <div className="flex flex-col itemsc-enter animate-pulse w-full rounded-md w-full  h-full bg-gray-300"></div>
-                <div className="flex flex-col itemsc-enter animate-pulse w-full rounded-md w-full  h-full bg-gray-300"></div>
-                <div className="flex flex-col itemsc-enter animate-pulse w-full rounded-md w-8/12  h-full bg-gray-300"></div>
-              </div>
-            </div>
+              className="border flex gap-2 flex-col itemsc-enter animate-pulse w-full sm:h-[400px] h-[350px] bg-gray-200 rounded-md"
+            ></div>
           ))}
       </div>
       {products.length === 0 && !loading && (

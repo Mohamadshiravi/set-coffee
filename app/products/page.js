@@ -14,6 +14,7 @@ export default async function AllProducts() {
   });
   return (
     <>
+      <Header />
       <BreadCrumb path={"فروشگاه"} />
       <ShopeSection products={JSON.parse(JSON.stringify(allProduct))} />
       <Footer />

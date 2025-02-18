@@ -88,12 +88,6 @@ export default function Footer() {
                 فروشگاه
               </Link>
               <Link
-                href="/"
-                className="text-zinc-300 hover:text-white transition cursor-pointer"
-              >
-                وبلاگ
-              </Link>
-              <Link
                 href="/contact-us"
                 className="text-zinc-300 hover:text-white transition cursor-pointer"
               >

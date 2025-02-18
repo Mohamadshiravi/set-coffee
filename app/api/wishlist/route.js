@@ -30,3 +30,18 @@ export async function POST(req) {
     return Response.json({ message: "addedd" }, { status: 201 });
   }
 }
+
+export async function GET(req) {
+  try {
+    await ConnectTODb();
+
+    const theUser = await isUserLogedIn();
+    const userWish = await wishlistModel
+      .find({ user: theUser._id })
+      .populate("product", "title price score images");
+
+    return Response.json({ message: "addedd", data: userWish });
+  } catch (error) {
+    return Response.json({ message: "server error" }, { status: 500 });
+  }
+}

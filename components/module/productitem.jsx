@@ -10,7 +10,7 @@ import { newErrorToast, newToast } from "@/utils/helper-function";
 import { MdOutlineClose } from "react-icons/md";
 import Image from "next/image";
 import { useContext } from "react";
-import { HeaderContext } from "./header-nav/header";
+import { UserContext } from "@/context/context";
 
 export default function ProductItem({
   title,
@@ -20,8 +20,9 @@ export default function ProductItem({
   isWished,
   wishID,
   image,
+  reRenderWish,
 }) {
-  const { FetchUserData } = useContext(HeaderContext);
+  const { FetchUserData } = useContext(UserContext);
   return (
     <>
       <div data-aos="zoom-in-up">
@@ -120,9 +121,9 @@ export default function ProductItem({
       const res = await axios.delete(`/api/wishlist/${wishID}`);
       if (res.status === 200) {
         newToast("با موفقیت از لیست علاقه مندی ها حذف شد");
-        setInterval(() => {
-          location.reload();
-        }, 1000);
+        if (reRenderWish) {
+          reRenderWish();
+        }
       }
     } catch (error) {
       newToast("Error");
@@ -170,13 +171,14 @@ export default function ProductItem({
     } else {
       const isProductInCart = cartArray.some((e) => e.id === id);
       if (!isProductInCart) {
+        newToast("محصول به سبد خرید شما اضافه شد !!!");
         cartArray.push(cartItem);
       } else {
+        newToast("محصول در سبد خرید شما موجود میباشد");
         cartArray.map((e) => e.id === id && (e.count = e.count + 1));
       }
     }
     localStorage.setItem("cart", JSON.stringify(cartArray));
-    newToast("محصول به سبد خرید شما اضافه شد !!!");
     FetchUserData();
   }
 }

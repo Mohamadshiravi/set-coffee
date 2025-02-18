@@ -34,6 +34,7 @@ export default async function ProductDetails({ params }) {
 
   return (
     <>
+      <Header />
       <main className="mt-[150px] lg:px-20 md:px-10 sm:px-4 px-2 text-zinc-700">
         <section className="w-full overflow-hidden flex xl:flex-row pb-2 flex-col gap-3">
           <div

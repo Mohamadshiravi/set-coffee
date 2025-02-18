@@ -10,12 +10,7 @@ import { GrUserAdmin } from "react-icons/gr";
 import { useState } from "react";
 import axios from "axios";
 import { ShowSwal } from "@/utils/helper-function";
-import {
-  FaInfoCircle,
-  FaNewspaper,
-  FaRegNewspaper,
-  FaShoppingBasket,
-} from "react-icons/fa";
+import { FaInfoCircle, FaNewspaper, FaShoppingBasket } from "react-icons/fa";
 import { SiNextdotjs } from "react-icons/si";
 
 export default function MobileMenu({
@@ -187,18 +182,6 @@ export default function MobileMenu({
           >
             <FaShoppingBasket />
             فروشگاه
-          </Link>
-          <Link
-            onClick={CloseMenu}
-            href={"/blog"}
-            className={`cursor-pointer border border-zinc-200 flex items-center gap-2 py-2 px-3 hover:bg-mybrown2 hover:text-white transition rounded-md ${
-              pathName === "/blog"
-                ? "bg-mybrown2 text-white"
-                : "bg-white text-zinc-800"
-            }`}
-          >
-            <FaNewspaper />
-            وبلاگ
           </Link>
           <Link
             onClick={CloseMenu}

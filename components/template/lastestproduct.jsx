@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import ProductItem from "../module/productitem";
-import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowBack, IoIosStarOutline } from "react-icons/io";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -20,8 +20,8 @@ export default function LastestProduct() {
     FetchProduct();
   }, []);
   return (
-    <section className=" md:w-10/12 w-full m-auto">
-      <div className="p-4 flex sm:flex-row flex-col gap-2 items-center justify-between">
+    <section className="md:w-10/12 w-full m-auto">
+      <div className="sm:mt-10 sm:p-4 pt-4 flex sm:flex-row flex-col gap-0 items-center justify-between">
         <div className="flex flex-col items-center gap-1">
           <h2 className="sm:text-4xl text-2xl moraba-bold text-headcolor py-2">
             انواع قهوه
@@ -50,15 +50,8 @@ export default function LastestProduct() {
           Array.from({ length: 5 }).map((e, i) => (
             <div
               key={i}
-              className="border flex gap-2 flex-col itemsc-enter animate-pulse w-full sm:h-[400px] h-[350px] rounded-md"
-            >
-              <div className="flex flex-col itemsc-enter animate-pulse w-full rounded-t-md w-full h-full bg-gray-300"></div>
-              <div className="flex flex-col items-center justify-between gap-2 px-2 pb-2 h-[200px]">
-                <div className="flex flex-col itemsc-enter animate-pulse w-full rounded-md w-full  h-full bg-gray-300"></div>
-                <div className="flex flex-col itemsc-enter animate-pulse w-full rounded-md w-full  h-full bg-gray-300"></div>
-                <div className="flex flex-col itemsc-enter animate-pulse w-full rounded-md w-8/12  h-full bg-gray-300"></div>
-              </div>
-            </div>
+              className="border flex gap-2 flex-col itemsc-enter animate-pulse w-full sm:h-[400px] h-[350px] bg-gray-200 rounded-md"
+            ></div>
           ))}
       </div>
       {products.length === 0 && !loading && (

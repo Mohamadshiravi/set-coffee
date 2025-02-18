@@ -29,17 +29,7 @@ export default function LoginPage() {
             className="w-full border-2 outline-none py-3 px-4 text-sm rounded-sm border-zinc-300 focus:border-mybrown transition-all"
             placeholder="رمز عبور"
           />
-          <label htmlFor="remembermeInp" className="relative flex items-center">
-            <input
-              id="remembermeInp"
-              type="checkbox"
-              className="peer w-0 h-0"
-            />
-            <span className="w-[20px] aspect-square peer-checked:bg-zinc-300 block absolute right-0 top-0 border-2 border-zinc-300 transition-all cursor-pointer rounded-sm p-1"></span>
-            <span className="mr-8 text-xs text-zinc-500 py-1">
-              مرا به یاد داشته باش
-            </span>
-          </label>
+
           {isLoading ? (
             <div className="w-full flex items-center justify-center">
               <img src="/img/loading/Walk.gif" className="w-[40px]"></img>
@@ -52,12 +42,6 @@ export default function LoginPage() {
               ورود
             </button>
           )}
-          <Link
-            href={"forget-pass"}
-            className="text-xs text-center w-full text-zinc-700 cursor-pointer"
-          >
-            رمز عبور را فراموش کرده اید؟
-          </Link>
         </form>
         <div className="mt-20">
           <h3 className="text-sm text-zinc-700 shabnam">

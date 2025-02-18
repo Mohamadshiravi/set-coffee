@@ -7,6 +7,7 @@ import Footer from "@/components/module/footer";
 export default async function AboutSite() {
   return (
     <>
+      <Header />
       <BreadCrumb path={"درباره سایت"} />
       <main className="w-11/12 m-auto">
         <section className="mt-10">

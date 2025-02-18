@@ -5,6 +5,7 @@ import BreadCrumb from "@/components/module/breadcrumb";
 export default async function AboutUS() {
   return (
     <>
+      <Header />
       <BreadCrumb path={"درباره ما"} />
       <div className="text-zinc-800 w-full shabnam">
         <section className="flex lg:flex-row flex-col items-center justify-center gap-20 bg-zinc-200 lg:h-[400px]">
