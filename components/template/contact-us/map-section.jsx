@@ -2,14 +2,15 @@
 
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+
 import Link from "next/link";
 
-import markerIconPng from "leaflet/dist/images/marker-icon.png";
-import markerShadowPng from "leaflet/dist/images/marker-shadow.png";
+import markerIconPng from "@/public/img/leaflet/marker-icon.png";
+import markerShadowPng from "@/public/img/leaflet/marker-shadow.png";
 
 const customIcon = new L.icon({
-  iconUrl: markerIconPng,
-  shadowUrl: markerShadowPng,
+  iconUrl: "/img/leaflet/marker-icon.png",
+  shadowUrl: "/img/leaflet/marker-shadow.png",
   iconSize: [25, 41],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],

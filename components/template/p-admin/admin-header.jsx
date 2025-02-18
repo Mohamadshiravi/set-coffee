@@ -21,9 +21,6 @@ export default function AdminHeader({ theUser }) {
             >
               <TiThMenu className="text-3xl text-zinc-700" />
             </span>
-            <span className="bg-gray-100 w-[50px] h-[50px] rounded-lg hover:bg-gray-200 cursor-pointer transition block flex items-center justify-center">
-              <CiSearch className="text-3xl text-zinc-700" />
-            </span>
           </div>
           <div className="flex items-center gap-3 justify-end">
             <div className="w-full">
