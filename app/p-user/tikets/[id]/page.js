@@ -2,7 +2,8 @@ import tiketModel from "@/models/tiket";
 import ConnectTODb from "@/utils/connecttodb";
 import Image from "next/image";
 
-export default async function TiketDetails({ params }) {
+export default async function TiketDetails(props) {
+  const params = await props.params;
   await ConnectTODb();
   const userTiket = await tiketModel
     .findOne({ _id: params.id }, "title isClosed body createdAt department")

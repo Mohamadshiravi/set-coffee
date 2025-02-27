@@ -5,7 +5,7 @@ import ConnectTODb from "@/utils/connecttodb";
 import { cookies } from "next/headers";
 
 export async function GET(req) {
-  const userToken = cookies().get("token");
+  const userToken = (await cookies()).get("token");
   if (userToken) {
     const IsTokenValid = await ValidateToken(userToken.value);
     if (IsTokenValid) {

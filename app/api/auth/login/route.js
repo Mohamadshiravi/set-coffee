@@ -28,7 +28,7 @@ export async function POST(req) {
   }
 
   const userToken = await JenerateAccessToken({ email: isUserExist.email });
-  cookies().set({
+  (await cookies()).set({
     name: "token",
     value: userToken,
     path: "/",

@@ -19,7 +19,8 @@ import ConnectTODb from "@/utils/connecttodb";
 import productModel from "@/models/product";
 import AddToWishBtn from "@/components/template/product-details/addtowishbtn";
 
-export default async function ProductDetails({ params }) {
+export default async function ProductDetails(props) {
+  const params = await props.params;
   await ConnectTODb();
 
   const product = await productModel
@@ -158,7 +159,8 @@ export default async function ProductDetails({ params }) {
   }
 }
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata(props) {
+  const params = await props.params;
   const product = await productModel.findOne(
     { _id: params.id },
     "title shortDes -_id"

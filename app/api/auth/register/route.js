@@ -46,7 +46,7 @@ export async function POST(req) {
       role: isAdmin ? "USER" : "ADMIN",
     });
 
-    cookies().set({
+    (await cookies()).set({
       name: "token",
       value: userToken,
       path: "/",

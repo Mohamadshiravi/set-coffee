@@ -2,7 +2,8 @@ import tiketModel from "@/models/tiket";
 import IsUserAdmin from "@/utils/auth-utill/is-user-admin";
 import ConnectTODb from "@/utils/connecttodb";
 
-export async function DELETE(req, { params }) {
+export async function DELETE(req, props) {
+  const params = await props.params;
   await ConnectTODb();
 
   const isUser = await IsUserAdmin();

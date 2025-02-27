@@ -1,7 +1,8 @@
 import wishlistModel from "@/models/wishlist";
 import ConnectTODb from "@/utils/connecttodb";
 
-export async function DELETE(req, { params }) {
+export async function DELETE(req, props) {
+  const params = await props.params;
   await ConnectTODb();
 
   const deletedWish = await wishlistModel.findOneAndDelete({ _id: params.id });

@@ -4,7 +4,7 @@ import userModel from "@/models/user";
 import ConnectTODb from "../connecttodb";
 
 export default async function isUserLogedIn() {
-  const userToken = cookies().get("token");
+  const userToken = (await cookies()).get("token");
   if (userToken) {
     const IsTokenValid = await ValidateToken(userToken.value);
     if (IsTokenValid) {

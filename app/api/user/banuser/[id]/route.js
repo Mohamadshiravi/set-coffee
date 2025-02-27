@@ -1,7 +1,8 @@
 import BanUserModel from "@/models/banuser";
 import IsUserAdmin from "@/utils/auth-utill/is-user-admin";
 
-export async function DELETE(req, { params }) {
+export async function DELETE(req, props) {
+  const params = await props.params;
   const isUser = await IsUserAdmin();
   if (!isUser) {
     return Response.json({ message: "You have not access" }, { status: 403 });

@@ -6,7 +6,8 @@ import ConnectTODb from "@/utils/connecttodb";
 import DeletePhoto from "@/utils/delete-photo";
 import UploadImage from "@/utils/upload-image";
 
-export async function PUT(req, { params }) {
+export async function PUT(req, props) {
+  const params = await props.params;
   const isUserAdmin = await IsUserAdmin();
   if (!isUserAdmin) {
     return Response.json(
@@ -84,7 +85,8 @@ export async function PUT(req, { params }) {
     );
   }
 }
-export async function DELETE(req, { params }) {
+export async function DELETE(req, props) {
+  const params = await props.params;
   const isUserAdmin = await IsUserAdmin();
   if (!isUserAdmin) {
     return Response.json(
