@@ -5,9 +5,9 @@ const page = () => {
   return (
     <div className="w-full h-screen flex flex-col items-center justify-center">
       <div className="flex gap-4 text-7xl translate-y-10 font-mono font-black">
-        <span className="text-mybrown2">4</span>
+        <span className="text-brown-500">4</span>
         <span>0</span>
-        <span className="text-mybrown2">4</span>
+        <span className="text-brown-500">4</span>
       </div>
       <Image
         src={"/img/bg-photo/not-found.webp"}
@@ -18,12 +18,12 @@ const page = () => {
         alt="not-Found"
       />
       <div>
-        <p className="shabnam text-mybrown sm:text-3xl text-xl text-center">
+        <p className="shabnam text-brown-700 sm:text-3xl text-xl text-center">
           صفحه مورد نظر یافت نشد :((
         </p>
         <Link
           href="/"
-          className="bg-mybrown2 text-white rounded-lg py-4 font-bold mt-4 block text-center shabnam shadow-xl shadow-mybrown2"
+          className="bg-brown-500 text-white rounded-lg py-4 font-bold mt-4 block text-center shabnam shadow-xl shadow-brown-500"
         >
           برگشت به صفحه اصلی
         </Link>

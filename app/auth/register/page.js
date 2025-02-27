@@ -22,32 +22,32 @@ export default function RegisterPage() {
           <input
             ref={nameInpRef}
             type="text"
-            className="w-full border-2 outline-hidden py-3 px-4 text-sm rounded-xs border-zinc-300 focus:border-mybrown transition-all"
+            className="w-full border-2 outline-hidden py-3 px-4 text-sm rounded-xs border-zinc-300 focus:border-brown-700 transition-all"
             placeholder="نام"
           />
           <input
             ref={usernameInpRef}
             type="text"
-            className="w-full border-2 outline-hidden py-3 px-4 text-sm rounded-xs border-zinc-300 focus:border-mybrown transition-all"
+            className="w-full border-2 outline-hidden py-3 px-4 text-sm rounded-xs border-zinc-300 focus:border-brown-700 transition-all"
             placeholder="نام کاربری"
           />
           <input
             ref={emailInpRef}
             type="email"
-            className="w-full border-2 outline-hidden py-3 px-4 text-sm rounded-xs border-zinc-300 focus:border-mybrown transition-all"
+            className="w-full border-2 outline-hidden py-3 px-4 text-sm rounded-xs border-zinc-300 focus:border-brown-700 transition-all"
             placeholder="ایمیل"
           />
           <hr className="border w-full my-4 border-zinc-200" />
           <input
             ref={passInpRef}
             type="password"
-            className="w-full border-2 outline-hidden py-3 px-4 text-sm rounded-xs border-zinc-300 focus:border-mybrown transition-all"
+            className="w-full border-2 outline-hidden py-3 px-4 text-sm rounded-xs border-zinc-300 focus:border-brown-700 transition-all"
             placeholder="رمز عبور"
           />
           <input
             ref={rePassInpRef}
             type="password"
-            className="w-full border-2 outline-hidden py-3 px-4 text-sm rounded-xs border-zinc-300 focus:border-mybrown transition-all"
+            className="w-full border-2 outline-hidden py-3 px-4 text-sm rounded-xs border-zinc-300 focus:border-brown-700 transition-all"
             placeholder="تکرار رمز عبور"
           />
           {isLoading ? (
@@ -57,7 +57,7 @@ export default function RegisterPage() {
           ) : (
             <button
               onClick={RegisterHandler}
-              className="moraba-bold w-full bg-mybrown hover:bg-headcolor transition-all text-white py-3 rounded-xs"
+              className="moraba-bold w-full bg-brown-700 hover:bg-headcolor transition-all text-white py-3 rounded-xs"
             >
               ثبتنام
             </button>

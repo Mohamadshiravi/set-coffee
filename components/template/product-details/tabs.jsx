@@ -16,7 +16,7 @@ export default function Tabs({
   const [tab, setTab] = useState("description");
   return (
     <section className="select-none mt-20">
-      <div className="flex items-center justify-center md:gap-20 sm:gap-6 gap-2 moraba-bold w-full sm:h-[70px] h-[50px] bg-mybrown2 rounded-t-lg">
+      <div className="flex items-center justify-center md:gap-20 sm:gap-6 gap-2 moraba-bold w-full sm:h-[70px] h-[50px] bg-brown-500 rounded-t-lg">
         <label
           htmlFor="description"
           className={`bg-gray-50 sm:px-10 px-6 sm:text-base text-xs rounded-lg sm:py-2 py-2 cursor-pointer ${

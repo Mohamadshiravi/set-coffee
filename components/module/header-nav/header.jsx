@@ -65,9 +65,9 @@ export default function Header({ children }) {
           <div className="moraba-bold text-zinc-600 text-sm lg:flex gap-8 hidden">
             <Link
               href={"/"}
-              className={`after:content-[''] hover:after:bg-mybrown2 after:absolute hover:after:h-[3px] hover:after:w-full hover:after:left-0 after:rounded-xl cursor-pointer after:transition-all after:-bottom-3 relative ${
+              className={`after:content-[''] hover:after:bg-brown-500 after:absolute hover:after:h-[3px] hover:after:w-full hover:after:left-0 after:rounded-xl cursor-pointer after:transition-all after:-bottom-3 relative ${
                 pathName === "/"
-                  ? "after:bg-mybrown2 after:h-[3px] after:left-0 after:w-full"
+                  ? "after:bg-brown-500 after:h-[3px] after:left-0 after:w-full"
                   : "after:bg-gray-200 after:h-[5px] after:left-[50%] after:w-[5px]"
               }`}
             >
@@ -75,9 +75,9 @@ export default function Header({ children }) {
             </Link>
             <Link
               href={"/products"}
-              className={`after:content-[''] hover:after:bg-mybrown2 after:absolute hover:after:h-[3px] hover:after:w-full hover:after:left-0 after:rounded-xl cursor-pointer after:transition-all after:-bottom-3 relative ${
+              className={`after:content-[''] hover:after:bg-brown-500 after:absolute hover:after:h-[3px] hover:after:w-full hover:after:left-0 after:rounded-xl cursor-pointer after:transition-all after:-bottom-3 relative ${
                 pathName === "/products"
-                  ? "after:bg-mybrown2 after:h-[3px] after:left-0 after:w-full"
+                  ? "after:bg-brown-500 after:h-[3px] after:left-0 after:w-full"
                   : "after:bg-gray-200 after:h-[5px] after:left-[50%] after:w-[5px]"
               }`}
             >
@@ -85,9 +85,9 @@ export default function Header({ children }) {
             </Link>
             <Link
               href={"/contact-us"}
-              className={`after:content-[''] hover:after:bg-mybrown2 after:absolute hover:after:h-[3px] hover:after:w-full hover:after:left-0 after:rounded-xl cursor-pointer after:transition-all after:-bottom-3 relative ${
+              className={`after:content-[''] hover:after:bg-brown-500 after:absolute hover:after:h-[3px] hover:after:w-full hover:after:left-0 after:rounded-xl cursor-pointer after:transition-all after:-bottom-3 relative ${
                 pathName === "/contact-us"
-                  ? "after:bg-mybrown2 after:h-[3px] after:left-0 after:w-full"
+                  ? "after:bg-brown-500 after:h-[3px] after:left-0 after:w-full"
                   : "after:bg-gray-200 after:h-[5px] after:left-[50%] after:w-[5px]"
               }`}
             >
@@ -95,9 +95,9 @@ export default function Header({ children }) {
             </Link>
             <Link
               href={"/about-us"}
-              className={`after:content-[''] hover:after:bg-mybrown2 after:absolute hover:after:h-[3px] hover:after:w-full hover:after:left-0 after:rounded-xl cursor-pointer after:transition-all after:-bottom-3 relative ${
+              className={`after:content-[''] hover:after:bg-brown-500 after:absolute hover:after:h-[3px] hover:after:w-full hover:after:left-0 after:rounded-xl cursor-pointer after:transition-all after:-bottom-3 relative ${
                 pathName === "/about-us"
-                  ? "after:bg-mybrown2 after:h-[3px] after:left-0 after:w-full"
+                  ? "after:bg-brown-500 after:h-[3px] after:left-0 after:w-full"
                   : "after:bg-gray-200 after:h-[5px] after:left-[50%] after:w-[5px]"
               }`}
             >
@@ -105,9 +105,9 @@ export default function Header({ children }) {
             </Link>
             <Link
               href={"/about-site"}
-              className={`after:content-[''] hover:after:bg-mybrown2 after:absolute hover:after:h-[3px] hover:after:w-full hover:after:left-0 after:rounded-xl cursor-pointer after:transition-all after:-bottom-3 relative ${
+              className={`after:content-[''] hover:after:bg-brown-500 after:absolute hover:after:h-[3px] hover:after:w-full hover:after:left-0 after:rounded-xl cursor-pointer after:transition-all after:-bottom-3 relative ${
                 pathName === "/about-site"
-                  ? "after:bg-mybrown2 after:h-[3px] after:left-0 after:w-full"
+                  ? "after:bg-brown-500 after:h-[3px] after:left-0 after:w-full"
                   : "after:bg-gray-200 after:h-[5px] after:left-[50%] after:w-[5px]"
               }`}
             >
@@ -128,7 +128,7 @@ export default function Header({ children }) {
                   className="bg-gray-100 relative text-zinc-800 moraba-bold rounded-lg aspect-square items-center justify-center h-full sm:flex hidden hover:bg-zinc-200 transition"
                 >
                   <CiHeart className="text-3xl" />
-                  <span className="bg-mybrown2 rounded-full text-sm text-white w-[25px] block aspect-square moraba-bold flex items-center justify-center absolute -top-2 -right-2">
+                  <span className="bg-brown-500 rounded-full text-sm text-white w-[25px] block aspect-square moraba-bold flex items-center justify-center absolute -top-2 -right-2">
                     {wishLength}
                   </span>
                 </Link>
@@ -138,7 +138,7 @@ export default function Header({ children }) {
                 className="bg-zinc-100 aspect-square flex items-center justify-center relative text-zinc-800 moraba-bold rounded-lg h-full hover:bg-zinc-200 transition"
               >
                 <PiShoppingCartSimpleLight className="sm:text-3xl text-2xl" />
-                <span className="bg-mybrown2 rounded-full sm:text-sm text-xs text-white sm:w-[25px] w-[20px] block aspect-square moraba-bold flex items-center justify-center absolute -top-2 -right-2">
+                <span className="bg-brown-500 rounded-full sm:text-sm text-xs text-white sm:w-[25px] w-[20px] block aspect-square moraba-bold flex items-center justify-center absolute -top-2 -right-2">
                   {userCart?.length}
                 </span>
               </Link>

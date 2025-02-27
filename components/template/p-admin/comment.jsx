@@ -73,7 +73,7 @@ export default function PAdminComment({
           <span>برای محصول :</span>
           <Link
             href={`/products/${productID}`}
-            className="block sm:w-[200px] w-[140px] truncate underline underline-offset-8 text-mybrown2"
+            className="block sm:w-[200px] w-[140px] truncate underline underline-offset-8 text-brown-500"
           >
             {productTitle}
           </Link>

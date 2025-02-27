@@ -162,9 +162,9 @@ export default function MobileMenu({
           <Link
             onClick={CloseMenu}
             href={"/"}
-            className={`cursor-pointer border border-zinc-200 flex items-center gap-2 py-2 px-3 hover:bg-mybrown2 hover:text-white transition rounded-md ${
+            className={`cursor-pointer border border-zinc-200 flex items-center gap-2 py-2 px-3 hover:bg-brown-500 hover:text-white transition rounded-md ${
               pathName === "/"
-                ? "bg-mybrown2 text-white"
+                ? "bg-brown-500 text-white"
                 : "bg-white text-zinc-800"
             }`}
           >
@@ -174,9 +174,9 @@ export default function MobileMenu({
           <Link
             onClick={CloseMenu}
             href={"/products"}
-            className={`cursor-pointer border border-zinc-200 flex items-center gap-2 py-2 px-3 hover:bg-mybrown2 hover:text-white transition rounded-md ${
+            className={`cursor-pointer border border-zinc-200 flex items-center gap-2 py-2 px-3 hover:bg-brown-500 hover:text-white transition rounded-md ${
               pathName === "/products"
-                ? "bg-mybrown2 text-white"
+                ? "bg-brown-500 text-white"
                 : "bg-white text-zinc-800"
             }`}
           >
@@ -186,9 +186,9 @@ export default function MobileMenu({
           <Link
             onClick={CloseMenu}
             href={"/contact-us"}
-            className={`cursor-pointer border border-zinc-200 flex items-center gap-2 py-2 px-3 hover:bg-mybrown2 hover:text-white transition rounded-md ${
+            className={`cursor-pointer border border-zinc-200 flex items-center gap-2 py-2 px-3 hover:bg-brown-500 hover:text-white transition rounded-md ${
               pathName === "/contact-us"
-                ? "bg-mybrown2 text-white"
+                ? "bg-brown-500 text-white"
                 : "bg-white text-zinc-800"
             }`}
           >
@@ -198,9 +198,9 @@ export default function MobileMenu({
           <Link
             onClick={CloseMenu}
             href={"/about-us"}
-            className={`cursor-pointer border border-zinc-200 flex items-center gap-2 py-2 px-3 hover:bg-mybrown2 hover:text-white transition rounded-md ${
+            className={`cursor-pointer border border-zinc-200 flex items-center gap-2 py-2 px-3 hover:bg-brown-500 hover:text-white transition rounded-md ${
               pathName === "/about-us"
-                ? "bg-mybrown2 text-white"
+                ? "bg-brown-500 text-white"
                 : "bg-white text-zinc-800"
             }`}
           >
@@ -210,9 +210,9 @@ export default function MobileMenu({
           <Link
             onClick={CloseMenu}
             href={"about-site"}
-            className={`cursor-pointer border border-zinc-200 flex items-center gap-2 py-2 px-3 hover:bg-mybrown2 hover:text-white transition rounded-md ${
+            className={`cursor-pointer border border-zinc-200 flex items-center gap-2 py-2 px-3 hover:bg-brown-500 hover:text-white transition rounded-md ${
               pathName === "/about-site"
-                ? "bg-mybrown2 text-white"
+                ? "bg-brown-500 text-white"
                 : "bg-white text-zinc-800"
             }`}
           >

@@ -55,8 +55,8 @@ export default async function Dashboard() {
         </div>
       </div>
       <section className="grid lg:grid-cols-[6fr_6fr] grid-cols-[1fr] gap-3 px-6 py-6">
-        <div className="bg-mybrown2 rounded-lg text-white px-3">
-          <h2 className="moraba-bold text-center py-2 border-b-2 border-mybrown">
+        <div className="bg-brown-500 rounded-lg text-white px-3">
+          <h2 className="moraba-bold text-center py-2 border-b-2 border-brown-700">
             اخرین تیکت ها
           </h2>
           <div className="flex flex-col gap-3 my-3">
@@ -90,8 +90,8 @@ export default async function Dashboard() {
             )}
           </div>
         </div>
-        <div className="bg-mybrown2 rounded-lg text-white px-3">
-          <h2 className="moraba-bold text-center py-2 border-b-2 border-mybrown">
+        <div className="bg-brown-500 rounded-lg text-white px-3">
+          <h2 className="moraba-bold text-center py-2 border-b-2 border-brown-700">
             اخرین سفارش ها
           </h2>
           <h3 className="text-center moraba-regular my-6">سفارشی موجود نیست</h3>

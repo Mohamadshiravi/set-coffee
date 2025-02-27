@@ -80,7 +80,7 @@ export default function AdSectionOne() {
               <div className="sm:mt-6 sm:mr-10 m-auto flex gap-2">
                 <Link
                   href={"/about-us"}
-                  className="bg-[#711D1C] border-2 hover:border-mybrown border-[#711D1C] hover:bg-mybrown transition px-8 py-2 moraba-bold text-white"
+                  className="bg-[#711D1C] border-2 hover:border-brown-700 border-[#711D1C] hover:bg-brown-700 transition px-8 py-2 moraba-bold text-white"
                 >
                   بیشتر بخوانید
                 </Link>

@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^6.4.6",
     "@tailwindcss/postcss": "^4.0.9",
-    "aos": "^2.3.4",
     "axios": "^1.7.3",
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^9.0.2",

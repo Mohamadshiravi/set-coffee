@@ -114,7 +114,7 @@ export default function SendMessageForm() {
       ></textarea>
       <button
         onClick={SendMessageHndler}
-        className="w-full bg-mybrown text-white moraba-bold py-3 rounded-md text-lg hover:bg-headcolor transition"
+        className="w-full bg-brown-700 text-white moraba-bold py-3 rounded-md text-lg hover:bg-headcolor transition"
       >
         ارسال
       </button>

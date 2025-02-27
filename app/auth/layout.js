@@ -5,7 +5,7 @@ import { FaHome } from "react-icons/fa";
 export default function AuthPageLayout({ children }) {
   return (
     <section className="grid md:grid-cols-[6fr_6fr] grid-cols-[1fr] w-full h-screen">
-      <div className="bg-mybrown w-full h-full md:block hidden">
+      <div className="bg-brown-700 w-full h-full md:block hidden">
         <Image
           width={4000}
           height={4000}

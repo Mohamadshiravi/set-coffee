@@ -31,7 +31,7 @@ export default function ProductItem({
             {!isWished ? (
               <button
                 onClick={AddToWishHandler}
-                className="bg-red-800 text-white hover:bg-red-900 transition cursor-pointer lg:hidden block absolute shadow-3xl p-2 rounded-full text-xl top-3 left-3"
+                className="transition text-zinc-700 hover:bg-zinc-100 cursor-pointer lg:hidden block absolute p-2 rounded-full text-2xl top-1 left-1"
               >
                 <FaRegHeart />
               </button>
@@ -43,7 +43,7 @@ export default function ProductItem({
                 <MdOutlineClose />
               </button>
             )}
-            <div className="w-full lg:flex hidden group rounded-lg oveflow-hidden opacity-0 z-2 hover:opacity-100 transition-all duration-500 h-full bg-black/40 absolute top-0 left-0 items-center justify-center">
+            <div className="w-full lg:flex hidden group rounded-sm oveflow-hidden opacity-0 z-2 hover:opacity-100 transition-all duration-500 h-full bg-black/40 absolute top-0 left-0 items-center justify-center">
               {!isWished ? (
                 <button
                   onClick={AddToWishHandler}
@@ -83,7 +83,7 @@ export default function ProductItem({
           <div className="px-2 lg:hidden block">
             <button
               onClick={AddToCartHandler}
-              className="group/items3 hover:bg-green-800 transition-all bg-red-800 rounded-xs relative w-full sm:h-[40px] h-[30px] moraba-bold overflow-hidden"
+              className="group/items3 hover:bg-green-800 transition-all bg-brown-500 rounded-xs relative w-full sm:h-[40px] h-[30px] moraba-bold overflow-hidden"
             >
               <span className="text-white sm:text-base text-sm block group-hover/items3:translate-y-[-150%] transition-all">
                 افزودن به سبد خرید
@@ -92,7 +92,7 @@ export default function ProductItem({
             </button>
           </div>
           <Link href={`/products/${id}`}>
-            <h3 className="text-center sm:py-2 py-4 px-3 sm:text-sm text-xs shabnam truncate-2 text-zinc-700 h-[48px]">
+            <h3 className="text-center py-4 px-3 sm:text-base text-sm moraba-bold truncate-2 text-zinc-700 h-[48px]">
               {title}
             </h3>
             <div className="flex items-center justify-center text-lg p-2">

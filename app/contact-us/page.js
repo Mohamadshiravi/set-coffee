@@ -1,3 +1,5 @@
+"use client";
+
 import BreadCrumb from "@/components/module/breadcrumb";
 import Header from "@/components/module/header-nav/header";
 
@@ -9,24 +11,31 @@ import { IoIosMail } from "react-icons/io";
 import { FaTelegramPlane } from "react-icons/fa";
 import Footer from "@/components/module/footer";
 import SendMessageForm from "@/components/template/contact-us/send-mssage-form";
-import { useMemo } from "react";
 import dynamic from "next/dynamic";
+import { Skeleton } from "@mui/material";
 
-export default async function ContactUsPage() {
-  const MapSection = useMemo(
-    () =>
-      dynamic(() => import("@/components/template/contact-us/map-section"), {
-        loading: () => (
-          <div className="w-full rounded-lg bg-gray-300 animate-pulse"></div>
-        ),
-        ssr: false,
-      }),
-    []
+export default function ContactUsPage() {
+  const MapSection = dynamic(
+    () => import("@/components/template/contact-us/map-section"),
+    {
+      ssr: false,
+      loading: () => (
+        <Skeleton
+          sx={{ bgcolor: "grey.200" }}
+          variant="rectangular"
+          width={"100%"}
+          height={"100%"}
+          animation="wave"
+        />
+      ),
+    }
   );
+
   return (
     <>
       <Header />
       <BreadCrumb path={"تماس با ما"} />
+
       <main className="lg:w-10/12 w-full sm:px-8 px-4 m-auto text-zinc-500 text-sm shabnam">
         <section className="grid md:grid-cols-[6fr_6fr] grid-cols-[1fr] md:gap-6 gap-28 mt-10 md:h-[500px] h-[800px]">
           <MapSection

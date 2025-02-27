@@ -115,7 +115,7 @@ export default function CommentSection({ comments, productID }) {
             onChange={(e) => {
               setBody(e.target.value);
             }}
-            className="w-full border-2 border-zinc-400 sm:min-h-[300px] min-h-[150px] max-h-[500px] rounded-md mt-1 outline-hidden p-4 focus:border-2 focus:border-mybrown2 transition-all"
+            className="w-full border-2 border-zinc-400 sm:min-h-[300px] min-h-[150px] max-h-[500px] rounded-md mt-1 outline-hidden p-4 focus:border-2 focus:border-brown-500 transition-all"
           ></textarea>
           <span className="block text-sm mt-2 text-zinc-600">
             ایمیل و نام کاربری از توکن شما استخراخ خواهد شد .
