@@ -12,7 +12,7 @@ export default async function HomePage() {
       <HomeSlider />
       <LastestProduct />
       <StarredProduct />
-      {/* <AdSectionOne /> */}
+      <AdSectionOne />
       <Footer />
     </>
   );

@@ -4,10 +4,7 @@ import { FaRegCommentAlt } from "react-icons/fa";
 
 export default function ArticleItem() {
   return (
-    <div
-      data-aos="fade-up"
-      className="select-none relative rounded-md overflow-hidden cursor-pointer group"
-    >
+    <div className="select-none relative rounded-md overflow-hidden cursor-pointer group">
       <Image
         src={"/img/article-photo/cold-berw-coffee.png"}
         width={800}

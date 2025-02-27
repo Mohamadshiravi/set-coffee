@@ -38,13 +38,10 @@ export default async function ProductDetails(props) {
       <Header />
       <main className="mt-[150px] lg:px-20 md:px-10 sm:px-4 px-2 text-zinc-700">
         <section className="w-full overflow-hidden flex xl:flex-row pb-2 flex-col gap-3">
-          <div
-            data-aos="fade-left"
-            className="xl:w-[500px] w-full select-none bg-gray-100"
-          >
+          <div className="xl:w-[500px] w-full select-none bg-gray-100">
             <ProductSlider images={product.images} alt={product.title} />
           </div>
-          <div data-aos="fade-right" className="flex flex-col gap-2 w-full p-4">
+          <div className="flex flex-col gap-2 w-full p-4">
             <div className="flex gap-3 shabnam text-zinc-700 text-sm">
               <Link
                 href={"/"}

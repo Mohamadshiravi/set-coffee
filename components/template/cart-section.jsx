@@ -120,10 +120,7 @@ export default function CartSection() {
                   تغییر ادرس
                 </button>
                 {isAddressOpen && (
-                  <div
-                    data-aos={"fade-up"}
-                    className="flex  flex-col gap-5 mt-4"
-                  >
+                  <div className="flex  flex-col gap-5 mt-4">
                     <Select
                       onChange={setCountry}
                       options={stateOptions}

@@ -1,4 +1,3 @@
-import AOSInit from "@/components/template/AOSinit";
 import ScrollToTopBtn from "@/components/module/scrolltotop";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -18,7 +17,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body dir="rtl" className="bg-zinc-100 select-none overflow-x-hidden">
         <ScrollToTopBtn />
-        <AOSInit />
         <UserProvider>{children}</UserProvider>
         <ToastContainer stacked />
       </body>

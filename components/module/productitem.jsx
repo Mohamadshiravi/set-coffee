@@ -25,7 +25,7 @@ export default function ProductItem({
   const { FetchUserData } = useContext(UserContext);
   return (
     <>
-      <div data-aos="zoom-in-up">
+      <div>
         <div className="w-full bg-white rounded-md overflow-hidden shadow-xs">
           <div className="relative group">
             {!isWished ? (

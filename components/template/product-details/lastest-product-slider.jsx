@@ -9,7 +9,7 @@ import ProductItem from "@/components/module/productitem";
 export default function LastestProductSlider({ lastestProduct }) {
   return (
     <section className="w-full mt-20">
-      <div data-aos="fade-left" className="w-full">
+      <div className="w-full">
         <h2 className="moraba-bold text-center sm:text-4xl text-3xl text-headcolor">
           محصولات مرتبط
         </h2>

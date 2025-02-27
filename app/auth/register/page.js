@@ -17,10 +17,7 @@ export default function RegisterPage() {
 
   return (
     <>
-      <div
-        data-aos="flip-left"
-        className="sm:w-[350px] w-[300px] bg-white shadow-lg rounded-md p-6 select-none"
-      >
+      <div className="sm:w-[350px] w-[300px] bg-white shadow-lg rounded-md p-6 select-none">
         <form className="shabnam flex flex-col items-start gap-4">
           <input
             ref={nameInpRef}

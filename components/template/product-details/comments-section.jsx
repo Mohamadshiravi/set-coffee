@@ -15,7 +15,7 @@ export default function CommentSection({ comments, productID }) {
   const [loading, setLoading] = useState(false);
   return (
     <>
-      <section data-aos="fade" data-aos-duration="300">
+      <section>
         <h2 className="moraba-bold text-xl text-zinc-600">
           {comments.filter((e) => e.queued === false).length} دیدگاه برای پودر
           قهوه ترک بسته 2 عددی
