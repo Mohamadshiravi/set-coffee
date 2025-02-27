@@ -91,7 +91,7 @@ export default async function ProductDetails(props) {
               </p>
             </div>
             <div className="moraba-regular mt-14 border-b pb-10 flex flex-col items-center gap-4">
-              <div className="flex sm:flex-row flex-col sm:gap-0 gap-3 items-center justify-between w-full sm:w-[550px] w-full">
+              <div className="flex sm:flex-row flex-col sm:gap-0 gap-3 items-center justify-between sm:w-[550px] w-full">
                 <span className="border border-green-700 px-8 py-2 rounded-lg text-green-700 w-[200px] text-center bg-green-100 select-none">
                   موجود در انبار
                 </span>

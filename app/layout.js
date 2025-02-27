@@ -1,10 +1,9 @@
-import "@/style/globals.css";
 import AOSInit from "@/components/template/AOSinit";
 import ScrollToTopBtn from "@/components/module/scrolltotop";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Header from "@/components/module/header-nav/header";
 import { UserProvider } from "@/context/context";
+import "@/style/globals.css";
 
 export const metadata = {
   title: "SET Coffee | فروشگاه اینترنتی قهوه ست",
