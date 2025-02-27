@@ -17,7 +17,7 @@ export default function DiscountForm() {
             value={code}
             onChange={(e) => setCode(e.target.value)}
             type="text"
-            className="w-full border-2 py-3 px-4 outline-none border-zinc-400 rounded-lg focus:border-zinc-800 transition"
+            className="w-full border-2 py-3 px-4 outline-hidden border-zinc-400 rounded-lg focus:border-zinc-800 transition"
           ></input>
         </div>
         <div className="flex flex-col gap-2">
@@ -26,7 +26,7 @@ export default function DiscountForm() {
             value={precent}
             onChange={(e) => setPrecent(e.target.value)}
             type="text"
-            className="w-full border-2 py-3 px-4 outline-none border-zinc-400 rounded-lg focus:border-zinc-800 transition"
+            className="w-full border-2 py-3 px-4 outline-hidden border-zinc-400 rounded-lg focus:border-zinc-800 transition"
           ></input>
         </div>
         <div className="flex flex-col gap-2">
@@ -35,14 +35,14 @@ export default function DiscountForm() {
             value={maxUse}
             onChange={(e) => setMaxUse(e.target.value)}
             type="text"
-            className="w-full border-2 py-3 px-4 outline-none border-zinc-400 rounded-lg focus:border-zinc-800 transition"
+            className="w-full border-2 py-3 px-4 outline-hidden border-zinc-400 rounded-lg focus:border-zinc-800 transition"
           ></input>
         </div>
         <div className="flex flex-col gap-2">
           <label className="text-xl text-zinc-600">محصول</label>
           <input
             type="text"
-            className="w-full border-2 py-3 px-4 outline-none border-zinc-400 rounded-lg focus:border-zinc-800 transition"
+            className="w-full border-2 py-3 px-4 outline-hidden border-zinc-400 rounded-lg focus:border-zinc-800 transition"
           ></input>
         </div>
       </div>

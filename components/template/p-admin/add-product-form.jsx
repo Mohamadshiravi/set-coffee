@@ -29,7 +29,7 @@ export default function AddProductForm() {
             value={titleInp}
             onChange={(e) => setTitleInp(e.target.value)}
             type="text"
-            className="outline-none border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
+            className="outline-hidden border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -39,7 +39,7 @@ export default function AddProductForm() {
             onChange={(e) => setPriceInp(e.target.value)}
             dir="ltr"
             type="number"
-            className="outline-none border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
+            className="outline-hidden border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -47,7 +47,7 @@ export default function AddProductForm() {
           <textarea
             value={shortDesInp}
             onChange={(e) => setShortDesInp(e.target.value)}
-            className="outline-none h-[300px] border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
+            className="outline-hidden h-[300px] border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -55,7 +55,7 @@ export default function AddProductForm() {
           <textarea
             value={longDesInp}
             onChange={(e) => setLongDesInp(e.target.value)}
-            className="outline-none h-[300px] border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
+            className="outline-hidden h-[300px] border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -65,7 +65,7 @@ export default function AddProductForm() {
             onChange={(e) => setWeightInp(e.target.value)}
             dir="ltr"
             type="number"
-            className="outline-none border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
+            className="outline-hidden border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -74,7 +74,7 @@ export default function AddProductForm() {
             value={suitableForInp}
             onChange={(e) => setSuitableForInp(e.target.value)}
             type="text"
-            className="outline-none border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
+            className="outline-hidden border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -82,7 +82,7 @@ export default function AddProductForm() {
           <select
             value={smellInp}
             onChange={(e) => setSmellInp(e.target.value)}
-            className="outline-none border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
+            className="outline-hidden border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
           >
             <option value={"انتخاب نشده"}>انتخاب کنید</option>
             <option value={"متوسط به بالا ( FULL CITY )"}>
@@ -99,7 +99,7 @@ export default function AddProductForm() {
             onKeyUp={AddTagsHandler}
             value={tagInp}
             type="text"
-            className="outline-none border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
+            className="outline-hidden border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
           />
           <div className="w-full flex items-center flex-wrap gap-3">
             {tags.map((e, i) => (

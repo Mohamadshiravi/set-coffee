@@ -32,7 +32,7 @@ export default function EditAdminProduct({ product, CloseModal }) {
   }, []);
 
   return (
-    <section className="fixed z-50 top-0 left-0 w-full h-screen bg-black/50 backdrop-blur-sm overflow-y-scroll sm:px-10 px-3 sm:py-20 py-6">
+    <section className="fixed z-50 top-0 left-0 w-full h-screen bg-black/50 backdrop-blur-xs overflow-y-scroll sm:px-10 px-3 sm:py-20 py-6">
       <div className="text-zinc-700 bg-gray-50 p-4 rounded-lg sahdow-lg moraba-regular">
         <span
           onClick={CloseModal}
@@ -47,7 +47,7 @@ export default function EditAdminProduct({ product, CloseModal }) {
               value={titleInp}
               onChange={(e) => setTitleInp(e.target.value)}
               type="text"
-              className="outline-none border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
+              className="outline-hidden border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -57,7 +57,7 @@ export default function EditAdminProduct({ product, CloseModal }) {
               onChange={(e) => setPriceInp(e.target.value)}
               dir="ltr"
               type="number"
-              className="outline-none border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
+              className="outline-hidden border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -65,7 +65,7 @@ export default function EditAdminProduct({ product, CloseModal }) {
             <textarea
               value={shortDesInp}
               onChange={(e) => setShortDesInp(e.target.value)}
-              className="outline-none h-[300px] border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
+              className="outline-hidden h-[300px] border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -73,7 +73,7 @@ export default function EditAdminProduct({ product, CloseModal }) {
             <textarea
               value={longDesInp}
               onChange={(e) => setLongDesInp(e.target.value)}
-              className="outline-none h-[300px] border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
+              className="outline-hidden h-[300px] border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -83,7 +83,7 @@ export default function EditAdminProduct({ product, CloseModal }) {
               onChange={(e) => setWeightInp(e.target.value)}
               dir="ltr"
               type="number"
-              className="outline-none border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
+              className="outline-hidden border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -92,7 +92,7 @@ export default function EditAdminProduct({ product, CloseModal }) {
               value={suitableForInp}
               onChange={(e) => setSuitableForInp(e.target.value)}
               type="text"
-              className="outline-none border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
+              className="outline-hidden border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -100,7 +100,7 @@ export default function EditAdminProduct({ product, CloseModal }) {
             <select
               value={smellInp}
               onChange={(e) => setSmellInp(e.target.value)}
-              className="outline-none border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
+              className="outline-hidden border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
             >
               <option value={"انتخاب نشده"}>انتخاب کنید</option>
               <option value={"متوسط به بالا ( FULL CITY )"}>
@@ -117,7 +117,7 @@ export default function EditAdminProduct({ product, CloseModal }) {
               onKeyUp={AddTagsHandler}
               value={tagInp}
               type="text"
-              className="outline-none border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
+              className="outline-hidden border border-zinc-300 py-3 px-4 rounded-md focus:border-zinc-600 transition focus:ring-2 ring-zinc-300"
             />
             <div className="w-full flex items-center flex-wrap gap-3">
               {tags.map((e, i) => (

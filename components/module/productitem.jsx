@@ -26,7 +26,7 @@ export default function ProductItem({
   return (
     <>
       <div data-aos="zoom-in-up">
-        <div className="w-full bg-white rounded-md overflow-hidden shadow-sm">
+        <div className="w-full bg-white rounded-md overflow-hidden shadow-xs">
           <div className="relative group">
             {!isWished ? (
               <button
@@ -43,7 +43,7 @@ export default function ProductItem({
                 <MdOutlineClose />
               </button>
             )}
-            <div className="w-full lg:flex hidden group rounded-lg oveflow-hidden opacity-0 z-[2] hover:opacity-100 transition-all duration-500 h-full bg-black/40 absolute top-0 left-0 items-center justify-center">
+            <div className="w-full lg:flex hidden group rounded-lg oveflow-hidden opacity-0 z-2 hover:opacity-100 transition-all duration-500 h-full bg-black/40 absolute top-0 left-0 items-center justify-center">
               {!isWished ? (
                 <button
                   onClick={AddToWishHandler}
@@ -73,7 +73,7 @@ export default function ProductItem({
               </button>
             </div>
             <Image
-              className="lg:group-hover:scale-[110%] transition-all duration-700 w-[300] sm:h-[300px] h-[200px] object-contain m-auto"
+              className="lg:group-hover:scale-[110%] transition-all duration-700 w-300 sm:h-[300px] h-[200px] object-contain m-auto"
               src={image || "/img/product-photo/product-1.png"}
               alt={title}
               width={800}
@@ -83,7 +83,7 @@ export default function ProductItem({
           <div className="px-2 lg:hidden block">
             <button
               onClick={AddToCartHandler}
-              className="group/items3 hover:bg-green-800 transition-all bg-red-800 rounded-sm relative w-full sm:h-[40px] h-[30px] moraba-bold overflow-hidden"
+              className="group/items3 hover:bg-green-800 transition-all bg-red-800 rounded-xs relative w-full sm:h-[40px] h-[30px] moraba-bold overflow-hidden"
             >
               <span className="text-white sm:text-base text-sm block group-hover/items3:translate-y-[-150%] transition-all">
                 افزودن به سبد خرید

@@ -10,7 +10,7 @@ export default function AdminHeader({ theUser }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <>
-      <header className="bg-white z-[40] w-full sticky top-0 left-0 py-3 shadow-lg">
+      <header className="bg-white z-40 w-full sticky top-0 left-0 py-3 shadow-lg">
         <div className="flex justify-between items-center w-full sm:px-6 px-3">
           <div className="flex items-center gap-3">
             <span

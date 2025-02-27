@@ -25,13 +25,13 @@ export default function MobileMenu({
       <div
         className={`${
           isNavOpen ? "block" : "hidden"
-        } w-full h-screen fixed top-0 left-0 z-[51] backdrop-blur-sm`}
+        } w-full h-screen fixed top-0 left-0 z-51 backdrop-blur-xs`}
         onClick={CloseMenu}
       ></div>
       <div
         className={`${
           isNavOpen ? "  translate-x-0" : " translate-x-[100%]"
-        }      h-screen fixed top-0 w-[300px] duration-300 right-0 shadow-lg bg-gray-100 z-[52] overflow-x-hidden overflow-y-scroll transition-all`}
+        }      h-screen fixed top-0 w-[300px] duration-300 right-0 shadow-lg bg-gray-100 z-52 overflow-x-hidden overflow-y-scroll transition-all`}
       >
         {!theUser ? (
           <div className="p-2 mt-2">

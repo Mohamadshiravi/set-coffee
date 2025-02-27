@@ -23,7 +23,7 @@ export default function DashboardMenu({ theUser }) {
       <div
         className={`${
           isMenuOpen ? "block" : "hidden"
-        } w-full h-screen fixed top-0 left-0 z-[41] backdrop-blur-sm`}
+        } w-full h-screen fixed top-0 left-0 z-41 backdrop-blur-xs`}
         onClick={() => {
           setIsMenuOpen(false);
         }}

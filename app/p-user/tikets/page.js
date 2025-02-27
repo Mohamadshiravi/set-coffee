@@ -35,21 +35,21 @@ export default async function TiketsPage() {
         </h2>
         <section className="p-6">
           <div className="flex w-full flex-wrap gap-6">
-            <div className="sm:w-[200px] w-[150px] flex-grow flex flex-col trasnition duration-300 cursor-pointer items-center text-zinc-600 font-bold moraba-bold hover:bg-zinc-100 shadow-4xl gap-3 rounded-md sm:py-10 py-4 group sm:text-base text-sm">
+            <div className="sm:w-[200px] w-[150px] grow flex flex-col trasnition duration-300 cursor-pointer items-center text-zinc-600 font-bold moraba-bold hover:bg-zinc-100 shadow-4xl gap-3 rounded-md sm:py-10 py-4 group sm:text-base text-sm">
               <IoMailOutline className="text-5xl text-gray-400 group-hover:text-zinc-600 trasnition duration-300" />
               <span>پاسخ داده شده</span>
               <span className="font-bold sm:text-2xl text-xl">
                 {closedTiket.length}
               </span>
             </div>
-            <div className="sm:w-[200px] w-[150px] flex-grow flex flex-col trasnition duration-300 cursor-pointer items-center text-zinc-600 font-bold moraba-bold hover:bg-zinc-100 shadow-4xl gap-3 rounded-md sm:py-10 py-4 group sm:text-base text-sm">
+            <div className="sm:w-[200px] w-[150px] grow flex flex-col trasnition duration-300 cursor-pointer items-center text-zinc-600 font-bold moraba-bold hover:bg-zinc-100 shadow-4xl gap-3 rounded-md sm:py-10 py-4 group sm:text-base text-sm">
               <IoMailOpenOutline className="text-5xl text-gray-400 group-hover:text-zinc-600 trasnition duration-300" />
               <span>پاسخ داده نشده</span>
               <span className="font-bold sm:text-2xl text-xl">
                 {openedTiket.length}
               </span>
             </div>
-            <div className="sm:w-[200px] w-[150px] flex-grow flex flex-col trasnition duration-300 cursor-pointer items-center text-zinc-600 font-bold moraba-bold hover:bg-zinc-100 shadow-4xl gap-3 rounded-md sm:py-10 py-4 group sm:text-base text-sm">
+            <div className="sm:w-[200px] w-[150px] grow flex flex-col trasnition duration-300 cursor-pointer items-center text-zinc-600 font-bold moraba-bold hover:bg-zinc-100 shadow-4xl gap-3 rounded-md sm:py-10 py-4 group sm:text-base text-sm">
               <LuMails className="text-5xl text-gray-400 group-hover:text-zinc-600 trasnition duration-300" />
               <span> مجموع تیکت ها</span>
               <span className="font-bold sm:text-2xl text-xl">
@@ -58,7 +58,7 @@ export default async function TiketsPage() {
             </div>
             <Link
               href={"/p-user/tikets/write-tiket"}
-              className="sm:w-[200px] w-[150px] flex-grow flex flex-col trasnition duration-300 bg-zinc-200 border-2 border-zinc-400 cursor-pointer items-center justify-center text-zinc-600 font-bold moraba-bold hover:bg-zinc-400 shadow-4xl gap-3 rounded-md py-10 group text-lg"
+              className="sm:w-[200px] w-[150px] grow flex flex-col trasnition duration-300 bg-zinc-200 border-2 border-zinc-400 cursor-pointer items-center justify-center text-zinc-600 font-bold moraba-bold hover:bg-zinc-400 shadow-4xl gap-3 rounded-md py-10 group text-lg"
             >
               <FaPlus className="text-5xl text-gray-600" />
               <span>تیکت جدید</span>
@@ -88,11 +88,11 @@ export default async function TiketsPage() {
                   </span>
                   <span className="text-xs">
                     {e.isClosed ? (
-                      <i className="bg-green-500 px-2 py-1 rounded-sm text-white">
+                      <i className="bg-green-500 px-2 py-1 rounded-xs text-white">
                         پاسخ داده شده
                       </i>
                     ) : (
-                      <i className="bg-red-500 px-2 py-1 rounded-sm text-white">
+                      <i className="bg-red-500 px-2 py-1 rounded-xs text-white">
                         پاسخ داده نشده
                       </i>
                     )}

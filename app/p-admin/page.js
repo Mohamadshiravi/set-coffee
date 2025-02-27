@@ -25,7 +25,7 @@ export default async function AdminDashboard() {
   return (
     <div className="sm:px-8 px-4">
       <section className="mt-10 flex gap-8 flex-wrap">
-        <div className="bg-white px-6 py-10 flex-grow rounded-lg flex gap-8 items-center justify-center moraba-regular text-zinc-700">
+        <div className="bg-white px-6 py-10 grow rounded-lg flex gap-8 items-center justify-center moraba-regular text-zinc-700">
           <div className="flex flex-col items-center gap-2 text-lg">
             <span>مجموع محصولات سایت</span>
             <span className="font-mono font-bold text-3xl text-blue-500">
@@ -34,7 +34,7 @@ export default async function AdminDashboard() {
           </div>
           <SlBag className="text-7xl" />
         </div>
-        <div className="bg-white px-6 py-10 flex-grow rounded-lg flex gap-8 items-center justify-center moraba-regular text-zinc-700">
+        <div className="bg-white px-6 py-10 grow rounded-lg flex gap-8 items-center justify-center moraba-regular text-zinc-700">
           <div className="flex flex-col items-center gap-2 text-lg">
             <span>مجموع تیکت های دریافتی</span>
             <span className="font-mono font-bold text-3xl text-blue-500">
@@ -43,7 +43,7 @@ export default async function AdminDashboard() {
           </div>
           <FiMail className="text-7xl" />
         </div>
-        <div className="bg-white px-6 py-10 flex-grow rounded-lg flex gap-8 items-center justify-center moraba-regular text-zinc-700">
+        <div className="bg-white px-6 py-10 grow rounded-lg flex gap-8 items-center justify-center moraba-regular text-zinc-700">
           <div className="flex flex-col items-center gap-2 text-lg">
             <span>مجموع سفارشات</span>
             <span className="font-mono font-bold text-3xl text-blue-500">
@@ -52,7 +52,7 @@ export default async function AdminDashboard() {
           </div>
           <LuDollarSign className="text-7xl" />
         </div>
-        <div className="bg-white px-6 py-10 flex-grow rounded-lg flex gap-8 items-center justify-center moraba-regular text-zinc-700">
+        <div className="bg-white px-6 py-10 grow rounded-lg flex gap-8 items-center justify-center moraba-regular text-zinc-700">
           <div className="flex flex-col items-center gap-2 text-lg">
             <span>مجموع کاربر های سایت</span>
             <span className="font-mono font-bold text-3xl text-blue-500">
@@ -61,7 +61,7 @@ export default async function AdminDashboard() {
           </div>
           <FiUser className="text-7xl" />
         </div>
-        <div className="bg-white px-6 py-10 flex-grow rounded-lg flex gap-8 items-center justify-center moraba-regular text-zinc-700">
+        <div className="bg-white px-6 py-10 grow rounded-lg flex gap-8 items-center justify-center moraba-regular text-zinc-700">
           <div className="flex flex-col items-center gap-2 text-lg">
             <span>مجموع کامنت های سایت</span>
             <span className="font-mono font-bold text-3xl text-blue-500">

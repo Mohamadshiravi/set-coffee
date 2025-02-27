@@ -20,12 +20,12 @@ export default function ChangeUserDetails({
     setUserNameInput(username);
   }, []);
   return (
-    <section className="w-full h-screen z-[50] flex items-center fixed top-0 left-0 justify-center bg-black/30 backdrop-blur-sm">
+    <section className="w-full h-screen z-50 flex items-center fixed top-0 left-0 justify-center bg-black/30 backdrop-blur-xs">
       <div
         onClick={CloseModal}
-        className="w-full h-full fixed top-0 left-0 z-[51]"
+        className="w-full h-full fixed top-0 left-0 z-51"
       ></div>
-      <div className="bg-white z-[52] p-4 shadow-lg moraba-regular rounded-lg flex flex-col items-center gap-4">
+      <div className="bg-white z-52 p-4 shadow-lg moraba-regular rounded-lg flex flex-col items-center gap-4">
         <div className="flex lg:flex-row flex-col items-center gap-6">
           <Image
             alt={username}
@@ -45,7 +45,7 @@ export default function ChangeUserDetails({
               onChange={(e) => {
                 setNameInput(e.target.value);
               }}
-              className="text-lg outline-none border w-full border-zinc-500 rounded-md px-3 py-1"
+              className="text-lg outline-hidden border w-full border-zinc-500 rounded-md px-3 py-1"
             />
             <input
               type="text"
@@ -53,7 +53,7 @@ export default function ChangeUserDetails({
               onChange={(e) => {
                 setUserNameInput(e.target.value);
               }}
-              className="text-base text-zinc-600 font-mono outline-none border w-full border-zinc-500 rounded-md px-3 py-1"
+              className="text-base text-zinc-600 font-mono outline-hidden border w-full border-zinc-500 rounded-md px-3 py-1"
             />
           </div>
           <div className="lg:border-l-2 lg:border-b-0 border-b-2 lg:pl-8 pb-4 lg:mb-0 mb-4 text-zinc-800">

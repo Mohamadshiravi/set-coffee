@@ -77,7 +77,7 @@ export default async function Dashboard() {
                     ({new Date(e.createdAt).toLocaleTimeString("fa-IR")})
                     <i>{new Date(e.createdAt).toLocaleDateString("fa-IR")}</i>
                   </span>
-                  <span className="text-xs bg-gray-200 px-2 py-1 rounded-sm">
+                  <span className="text-xs bg-gray-200 px-2 py-1 rounded-xs">
                     {e.isClosed ? "پاسخ داده شده" : "پاسخ داده نشده"}
                   </span>
                 </div>

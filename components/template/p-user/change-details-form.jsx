@@ -34,7 +34,7 @@ export default function ChangeUserDetailsForm({ theUser }) {
             onChange={(e) => {
               setName(e.target.value);
             }}
-            className="outline-none border-2 font-mono border-mybrown2 px-4 py-3 w-full rounded-lg focus:border-mybrown transition-all"
+            className="outline-hidden border-2 font-mono border-mybrown2 px-4 py-3 w-full rounded-lg focus:border-mybrown transition-all"
           ></input>
         </div>
         <div className="w-full flex flex-col gap-3 moraba-regular text-lg">
@@ -45,7 +45,7 @@ export default function ChangeUserDetailsForm({ theUser }) {
             onChange={(e) => {
               setUserName(e.target.value);
             }}
-            className="outline-none border-2 font-mono border-mybrown2 px-4 py-3 w-full rounded-lg focus:border-mybrown transition-all"
+            className="outline-hidden border-2 font-mono border-mybrown2 px-4 py-3 w-full rounded-lg focus:border-mybrown transition-all"
           ></input>
         </div>
         <div className="w-full flex flex-col gap-3 moraba-regular text-lg">
@@ -56,7 +56,7 @@ export default function ChangeUserDetailsForm({ theUser }) {
             onChange={(e) => {
               setEmail(e.target.value);
             }}
-            className="outline-none border-2 font-mono border-mybrown2 px-4 py-3 w-full rounded-lg focus:border-mybrown transition-all"
+            className="outline-hidden border-2 font-mono border-mybrown2 px-4 py-3 w-full rounded-lg focus:border-mybrown transition-all"
           ></input>
         </div>
         <div className="w-full flex flex-col gap-3 moraba-regular text-lg">
@@ -67,7 +67,7 @@ export default function ChangeUserDetailsForm({ theUser }) {
               setPass(e.target.value);
             }}
             type="password"
-            className="outline-none border-2 font-mono border-mybrown2 px-4 py-3 w-full rounded-lg focus:border-mybrown transition-all"
+            className="outline-hidden border-2 font-mono border-mybrown2 px-4 py-3 w-full rounded-lg focus:border-mybrown transition-all"
           ></input>
           <span className="text-base text-gray-500">
             برای تغییر مشخصات اکانت باید گذرواژه خود را وارد کنید

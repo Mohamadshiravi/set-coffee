@@ -18,7 +18,7 @@ export default function AdminMenu({ isMenuOpen, CloseMenu }) {
         id="adminMenuBack"
         className={`${
           isMenuOpen ? "block" : "hidden"
-        } z-[40] w-full h-screen fixed top-0 left-0 bg-black/60 backdrop-blur-sm`}
+        } z-40 w-full h-screen fixed top-0 left-0 bg-black/60 backdrop-blur-xs`}
         onClick={CloseMenu}
       ></div>
       <nav
@@ -26,7 +26,7 @@ export default function AdminMenu({ isMenuOpen, CloseMenu }) {
           isMenuOpen
             ? "opacity-100 translate-x-0"
             : "opacity-0 sm:translate-x-[350px] translate-x-[300px]"
-        } bg-white z-[41] sm:w-[350px] w-[300px] h-screen fixed top-0 right-0 transition-all duration-500`}
+        } bg-white z-41 sm:w-[350px] w-[300px] h-screen fixed top-0 right-0 transition-all duration-500`}
       >
         <div className="w-full flex flex-col mt-2 text-zinc-700 px-6">
           <h2 className="text-zinc-900 text-center text-5xl mt-4">

@@ -25,32 +25,32 @@ export default function RegisterPage() {
           <input
             ref={nameInpRef}
             type="text"
-            className="w-full border-2 outline-none py-3 px-4 text-sm rounded-sm border-zinc-300 focus:border-mybrown transition-all"
+            className="w-full border-2 outline-hidden py-3 px-4 text-sm rounded-xs border-zinc-300 focus:border-mybrown transition-all"
             placeholder="نام"
           />
           <input
             ref={usernameInpRef}
             type="text"
-            className="w-full border-2 outline-none py-3 px-4 text-sm rounded-sm border-zinc-300 focus:border-mybrown transition-all"
+            className="w-full border-2 outline-hidden py-3 px-4 text-sm rounded-xs border-zinc-300 focus:border-mybrown transition-all"
             placeholder="نام کاربری"
           />
           <input
             ref={emailInpRef}
             type="email"
-            className="w-full border-2 outline-none py-3 px-4 text-sm rounded-sm border-zinc-300 focus:border-mybrown transition-all"
+            className="w-full border-2 outline-hidden py-3 px-4 text-sm rounded-xs border-zinc-300 focus:border-mybrown transition-all"
             placeholder="ایمیل"
           />
           <hr className="border w-full my-4 border-zinc-200" />
           <input
             ref={passInpRef}
             type="password"
-            className="w-full border-2 outline-none py-3 px-4 text-sm rounded-sm border-zinc-300 focus:border-mybrown transition-all"
+            className="w-full border-2 outline-hidden py-3 px-4 text-sm rounded-xs border-zinc-300 focus:border-mybrown transition-all"
             placeholder="رمز عبور"
           />
           <input
             ref={rePassInpRef}
             type="password"
-            className="w-full border-2 outline-none py-3 px-4 text-sm rounded-sm border-zinc-300 focus:border-mybrown transition-all"
+            className="w-full border-2 outline-hidden py-3 px-4 text-sm rounded-xs border-zinc-300 focus:border-mybrown transition-all"
             placeholder="تکرار رمز عبور"
           />
           {isLoading ? (
@@ -60,7 +60,7 @@ export default function RegisterPage() {
           ) : (
             <button
               onClick={RegisterHandler}
-              className="moraba-bold w-full bg-mybrown hover:bg-headcolor transition-all text-white py-3 rounded-sm"
+              className="moraba-bold w-full bg-mybrown hover:bg-headcolor transition-all text-white py-3 rounded-xs"
             >
               ثبتنام
             </button>
@@ -72,7 +72,7 @@ export default function RegisterPage() {
         <div className="mt-20">
           <Link
             href={"/auth/login"}
-            className="moraba-bold mt-4 w-full block text-center hover:bg-zinc-300 transition bg-zinc-200 border-zinc-500 border text-zinc-800 py-3 rounded-sm"
+            className="moraba-bold mt-4 w-full block text-center hover:bg-zinc-300 transition bg-zinc-200 border-zinc-500 border text-zinc-800 py-3 rounded-xs"
           >
             بازگشت به ورود
           </Link>

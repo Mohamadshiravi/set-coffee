@@ -41,7 +41,7 @@ export default function SendMessageForm() {
             }}
             id="name-lastname"
             type="text"
-            className="text-base mt-1 p-2 outline-none border border-zinc-600 focus:border-2 rounded-md w-full"
+            className="text-base mt-1 p-2 outline-hidden border border-zinc-600 focus:border-2 rounded-md w-full"
           ></input>
         </div>
         <div className="w-full">
@@ -58,7 +58,7 @@ export default function SendMessageForm() {
             }}
             id="email-input"
             type="email"
-            className="text-base mt-1 p-2 outline-none border border-zinc-600 focus:border-2 rounded-md w-full"
+            className="text-base mt-1 p-2 outline-hidden border border-zinc-600 focus:border-2 rounded-md w-full"
           ></input>
         </div>
       </div>
@@ -77,7 +77,7 @@ export default function SendMessageForm() {
             }}
             id="phone-number"
             type="text"
-            className="text-base mt-1 p-2 outline-none border border-zinc-600 focus:border-2 rounded-md w-full"
+            className="text-base mt-1 p-2 outline-hidden border border-zinc-600 focus:border-2 rounded-md w-full"
           ></input>
         </div>
         <div className="w-full">
@@ -94,7 +94,7 @@ export default function SendMessageForm() {
             }}
             id="company-name"
             type="text"
-            className="text-base mt-1 p-2 outline-none border border-zinc-600 focus:border-2 rounded-md w-full"
+            className="text-base mt-1 p-2 outline-hidden border border-zinc-600 focus:border-2 rounded-md w-full"
           ></input>
         </div>
       </div>
@@ -110,7 +110,7 @@ export default function SendMessageForm() {
         onChange={(e) => {
           setBody(e.target.value);
         }}
-        className="w-full mt-1 rounded-md border border-zinc-600 outline-none focus:border-2 text-base p-2 h-[200px] max-h-[500px] min-h-[100px]"
+        className="w-full mt-1 rounded-md border border-zinc-600 outline-hidden focus:border-2 text-base p-2 h-[200px] max-h-[500px] min-h-[100px]"
       ></textarea>
       <button
         onClick={SendMessageHndler}

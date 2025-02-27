@@ -20,13 +20,13 @@ export default function LoginPage() {
           <input
             ref={identifierInpRef}
             type="text"
-            className="w-full border-2 outline-none py-3 px-4 text-sm rounded-sm border-zinc-300 focus:border-mybrown transition-all"
+            className="w-full border-2 outline-hidden py-3 px-4 text-sm rounded-xs border-zinc-300 focus:border-mybrown transition-all"
             placeholder="ایمیل  | نام کاربری"
           />
           <input
             ref={passInpRef}
             type="password"
-            className="w-full border-2 outline-none py-3 px-4 text-sm rounded-sm border-zinc-300 focus:border-mybrown transition-all"
+            className="w-full border-2 outline-hidden py-3 px-4 text-sm rounded-xs border-zinc-300 focus:border-mybrown transition-all"
             placeholder="رمز عبور"
           />
 
@@ -37,7 +37,7 @@ export default function LoginPage() {
           ) : (
             <button
               onClick={LoginHandler}
-              className="moraba-bold w-full bg-mybrown hover:bg-headcolor transition-all text-white py-3 rounded-sm"
+              className="moraba-bold w-full bg-mybrown hover:bg-headcolor transition-all text-white py-3 rounded-xs"
             >
               ورود
             </button>
@@ -49,7 +49,7 @@ export default function LoginPage() {
           </h3>
           <Link
             href={"/auth/register"}
-            className="moraba-bold mt-4 w-full block text-center hover:bg-zinc-300 transition bg-zinc-200 border-zinc-500 border text-zinc-800 py-3 rounded-sm"
+            className="moraba-bold mt-4 w-full block text-center hover:bg-zinc-300 transition bg-zinc-200 border-zinc-500 border text-zinc-800 py-3 rounded-xs"
           >
             ثبتنام
           </Link>

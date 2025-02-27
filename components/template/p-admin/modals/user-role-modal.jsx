@@ -7,12 +7,12 @@ import { useState } from "react";
 export default function ChangeUserRole({ name, role, CloseModal, id }) {
   const [userRole, setUserRole] = useState(role);
   return (
-    <section className="w-full h-screen z-[50] flex items-center fixed top-0 left-0 justify-center bg-black/30 backdrop-blur-sm">
+    <section className="w-full h-screen z-50 flex items-center fixed top-0 left-0 justify-center bg-black/30 backdrop-blur-xs">
       <div
         onClick={CloseModal}
-        className="w-full h-full fixed top-0 left-0 z-[51]"
+        className="w-full h-full fixed top-0 left-0 z-51"
       ></div>
-      <div className="bg-white z-[52] p-4 shadow-lg moraba-regular rounded-lg flex flex-col items-center gap-10 w-[300px]">
+      <div className="bg-white z-52 p-4 shadow-lg moraba-regular rounded-lg flex flex-col items-center gap-10 w-[300px]">
         <h4 className="text-center">
           تغییر نقش کاربر ({name}) از {role} به {userRole}
         </h4>

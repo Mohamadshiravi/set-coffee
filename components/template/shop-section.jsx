@@ -114,7 +114,7 @@ export default function ShopeSection({ products }) {
           />
           <button
             onClick={PriceFilterHandler}
-            className="w-full bg-zinc-300 border-zinc-800 text-zinc-800 border py-2 rounded-sm hover:bg-zinc-400 transition"
+            className="w-full bg-zinc-300 border-zinc-800 text-zinc-800 border py-2 rounded-xs hover:bg-zinc-400 transition"
           >
             اعمال فیلتر
           </button>
@@ -126,8 +126,8 @@ export default function ShopeSection({ products }) {
               ScoreFilterHandler(0);
             }}
             className={`${
-              scoreFilter === 0 ? "translate-y-1 shadow-sm" : "shadow-lg"
-            } flex items-center hover:translate-y-1 transition duration-500 hover:shadow-sm justify-center text-xl bg-white bg-zinc-50 shadow-black/10 py-2 px-2 rounded-lg`}
+              scoreFilter === 0 ? "translate-y-1 shadow-xs" : "shadow-lg"
+            } flex items-center hover:translate-y-1 transition duration-500 hover:shadow-xs justify-center text-xl bg-white bg-zinc-50 shadow-black/10 py-2 px-2 rounded-lg`}
           >
             {Array.from({ length: 5 }).map((e, i) => (
               <IoStarOutline key={i} className="text-zinc-500" />
@@ -140,8 +140,8 @@ export default function ShopeSection({ products }) {
                 ScoreFilterHandler(i + 1);
               }}
               className={`${
-                scoreFilter === i + 1 ? "translate-y-1 shadow-sm" : "shadow-lg"
-              } flex items-center hover:translate-y-1 transition duration-500 hover:shadow-sm justify-center text-xl bg-white bg-zinc-50 shadow-black/10 py-2 px-2 rounded-lg`}
+                scoreFilter === i + 1 ? "translate-y-1 shadow-xs" : "shadow-lg"
+              } flex items-center hover:translate-y-1 transition duration-500 hover:shadow-xs justify-center text-xl bg-white bg-zinc-50 shadow-black/10 py-2 px-2 rounded-lg`}
             >
               {Array.from({ length: i + 1 }).map((e, i) => (
                 <IoStar key={i} className="text-yellow-500" />
@@ -194,7 +194,7 @@ export default function ShopeSection({ products }) {
               onChange={(e) => {
                 setProductSort(e.target.value);
               }}
-              className="sm:pl-24 pl-2 border-b-2 border-zinc-800 py-1 outline-none rounded-sm cursor-pointer"
+              className="sm:pl-24 pl-2 border-b-2 border-zinc-800 py-1 outline-hidden rounded-xs cursor-pointer"
             >
               <option value={"newest"}>بر اساس جدیدترین</option>
               <option value={"oldest"}>بر اساس قدیمی ترین</option>

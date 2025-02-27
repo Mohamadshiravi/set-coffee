@@ -138,7 +138,7 @@ export default function CartSection() {
                       onChange={(e) => {
                         setCity(e.target.value);
                       }}
-                      className="border border-gray-300 text-zinc-500 py-2 rounded-[4px] px-2 outline-none focus:ring-2 ring-blue-500 transition"
+                      className="border border-gray-300 text-zinc-500 py-2 rounded-[4px] px-2 outline-hidden focus:ring-2 ring-blue-500 transition"
                     >
                       <option value={null}>شهر را انتخاب کنید</option>
                       {country.value?.map((e, i) => (
@@ -150,7 +150,7 @@ export default function CartSection() {
                     <input
                       placeholder="کد پستی"
                       type="text"
-                      className="border border-gray-300 outline-none text-zinc-500 py-2 rounded-[4px] px-2 w-[280px] py-2 focus:ring-2 ring-blue-500 transition"
+                      className="border border-gray-300 outline-hidden text-zinc-500 py-2 rounded-[4px] px-2 w-[280px] py-2 focus:ring-2 ring-blue-500 transition"
                     />
                     <button
                       onClick={() => {

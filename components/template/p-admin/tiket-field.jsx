@@ -30,32 +30,32 @@ export default function TiketField({
         <div className="flex sm:flex-row flex-col items-center gap-4">
           <div>
             {priority === 3 && (
-              <i className="bg-red-400 text-white moraba-regular text-sm px-2 py-1 rounded-sm">
+              <i className="bg-red-400 text-white moraba-regular text-sm px-2 py-1 rounded-xs">
                 مهم
               </i>
             )}
             {priority === 2 && (
-              <i className="bg-yellow-400 text-white moraba-regular text-sm px-2 py-1 rounded-sm">
+              <i className="bg-yellow-400 text-white moraba-regular text-sm px-2 py-1 rounded-xs">
                 اهمیت متوسط
               </i>
             )}
             {priority === 1 && (
-              <i className="bg-green-400 text-white moraba-regular text-sm px-2 py-1 rounded-sm">
+              <i className="bg-green-400 text-white moraba-regular text-sm px-2 py-1 rounded-xs">
                 کم اهمیت
               </i>
             )}
           </div>
-          <span className="sm:text-sm text-xs bg-white px-2 py-1 rounded-sm flex gap-5">
+          <span className="sm:text-sm text-xs bg-white px-2 py-1 rounded-xs flex gap-5">
             ({new Date(createdAt).toLocaleTimeString("fa-IR")})
             <i>{new Date(createdAt).toLocaleDateString("fa-IR")}</i>
           </span>
           <span className="text-xs">
             {isClosed ? (
-              <i className="bg-green-500 px-2 py-1 rounded-sm text-white">
+              <i className="bg-green-500 px-2 py-1 rounded-xs text-white">
                 پاسخ داده شده
               </i>
             ) : (
-              <i className="bg-red-500 px-2 py-1 rounded-sm text-white">
+              <i className="bg-red-500 px-2 py-1 rounded-xs text-white">
                 پاسخ داده نشده
               </i>
             )}

@@ -23,7 +23,7 @@ export default function SendTiketForm({ departments }) {
               setTitle(e.target.value);
             }}
             type="text"
-            className="px-4 sm:py-4 py-2 rounded-lg outline-none focus:border"
+            className="px-4 sm:py-4 py-2 rounded-lg outline-hidden focus:border"
           />
         </div>
         <div className="flex flex-col w-full gap-3 text-sm">
@@ -71,7 +71,7 @@ export default function SendTiketForm({ departments }) {
             setBody(e.target.value);
           }}
           type="text"
-          className="px-4 py-2 rounded-lg outline-none focus:border min-h-[200px] max-h-[500px]"
+          className="px-4 py-2 rounded-lg outline-hidden focus:border min-h-[200px] max-h-[500px]"
         ></textarea>
       </div>
       <div className="bg-gray-200 moraba-bold flex flex-col items-center gap-2 rounded-lg py-6 text-zinc-700">

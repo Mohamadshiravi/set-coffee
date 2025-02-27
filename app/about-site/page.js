@@ -86,43 +86,43 @@ export default async function AboutSite() {
             <span className="text-green-800 mx-3">dependencie</span> های پروژه :
           </h2>
           <div className="flex flex-wrap items-center text-white gap-3 mt-6">
-            <span className="bg-gray-400 flex-grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
+            <span className="bg-gray-400 grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
               Aos
             </span>
-            <span className="bg-gray-400 flex-grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
+            <span className="bg-gray-400 grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
               axios
             </span>
-            <span className="bg-gray-400 flex-grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
+            <span className="bg-gray-400 grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
               bcryptjs
             </span>
-            <span className="bg-gray-400 flex-grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
+            <span className="bg-gray-400 grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
               jsonwebtoken
             </span>
-            <span className="bg-gray-400 flex-grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
+            <span className="bg-gray-400 grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
               leaflet
             </span>
-            <span className="bg-gray-400 flex-grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
+            <span className="bg-gray-400 grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
               mongoose
             </span>
-            <span className="bg-gray-400 flex-grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
+            <span className="bg-gray-400 grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
               react-icons
             </span>
-            <span className="bg-gray-400 flex-grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
+            <span className="bg-gray-400 grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
               react-leaflet
             </span>
-            <span className="bg-gray-400 flex-grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
+            <span className="bg-gray-400 grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
               react-select
             </span>
-            <span className="bg-gray-400 flex-grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
+            <span className="bg-gray-400 grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
               react-toastify
             </span>
-            <span className="bg-gray-400 flex-grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
+            <span className="bg-gray-400 grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
               sweetalert
             </span>
-            <span className="bg-gray-400 flex-grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
+            <span className="bg-gray-400 grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
               swiper
             </span>
-            <span className="bg-gray-400 flex-grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
+            <span className="bg-gray-400 grow text-center rounded-lg px-8 py-2 md:text-3xl text-xl shadow-lg font-black font-mono">
               yup
             </span>
           </div>
