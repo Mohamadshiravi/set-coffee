@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import ProductItem from "../module/productitem";
-import { IoIosArrowBack, IoIosStarOutline } from "react-icons/io";
+import { IoIosArrowBack } from "react-icons/io";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Skeleton } from "@mui/material";
@@ -18,11 +18,12 @@ export default function LastestProduct() {
   async function FetchProduct() {
     setLoading(true);
     const product = await axios.get("/api/product");
+
     setProducts(product.data.data);
     setLoading(false);
   }
   return (
-    <section className="md:w-11/12 w-[95%] m-auto bg-[#ac9f99] rounded-md shadow-md sm:mt-16 mt-10">
+    <section className="md:w-11/12 w-[95%] m-auto bg-[#ac9f99] rounded-md shadow-md sm:mt-16 mt-4">
       <div className="sm:px-12 px-4 sm:py-8 py-6 flex sm:flex-row flex-col gap-0 items-center justify-between">
         <div className="flex flex-col items-center gap-1">
           <h2 className="text-4xl moraba-bold text-white py-2">انواع قهوه</h2>
@@ -60,10 +61,9 @@ export default function LastestProduct() {
               height={"400px"}
             />
           ))}
-        {/* <div className="border flex gap-2 flex-col itemsc-enter animate-pulse w-full sm:h-[400px] h-[350px] bg-gray-200 rounded-md"></div> */}
       </div>
       {products.length === 0 && !loading && (
-        <h3 className="moraba-regular sm:text-4xl text-xl w-full sm:mt-16 mt-4 text-center text-zinc-600">
+        <h3 className="moraba-regular text-xl w-full py-10 text-center text-zinc-200">
           هنوز محصولی موجود نمیباشد
         </h3>
       )}

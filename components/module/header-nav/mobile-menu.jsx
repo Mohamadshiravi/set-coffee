@@ -1,3 +1,5 @@
+"use client";
+
 import { CgProfile } from "react-icons/cg";
 import { IoCall, IoHeartCircleSharp, IoHomeSharp } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
@@ -7,18 +9,12 @@ import { GoUnread } from "react-icons/go";
 import { TbLayoutDashboard } from "react-icons/tb";
 import Link from "next/link";
 import { GrUserAdmin } from "react-icons/gr";
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { ShowSwal } from "@/utils/helper-function";
-import { FaInfoCircle, FaNewspaper, FaShoppingBasket } from "react-icons/fa";
-import { SiNextdotjs } from "react-icons/si";
+import { FaInfoCircle, FaShoppingBasket } from "react-icons/fa";
 
-export default function MobileMenu({
-  isNavOpen,
-  CloseMenu,
-  pathName,
-  theUser,
-}) {
+const MobileMenu = React.memo(({ isNavOpen, CloseMenu, pathName, theUser }) => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   return (
     <>
@@ -207,18 +203,6 @@ export default function MobileMenu({
             <FaInfoCircle />
             درباره ما
           </Link>
-          <Link
-            onClick={CloseMenu}
-            href={"about-site"}
-            className={`cursor-pointer border border-zinc-200 flex items-center gap-2 py-2 px-3 hover:bg-brown-500 hover:text-white transition rounded-md ${
-              pathName === "/about-site"
-                ? "bg-brown-500 text-white"
-                : "bg-white text-zinc-800"
-            }`}
-          >
-            <SiNextdotjs />
-            درباره سایت
-          </Link>
         </div>
         <div className="p-2 flex flex-col gap-2">
           {theUser && (
@@ -248,4 +232,5 @@ export default function MobileMenu({
       }
     }
   }
-}
+});
+export default MobileMenu;

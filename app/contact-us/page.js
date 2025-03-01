@@ -36,7 +36,7 @@ export default function ContactUsPage() {
       <Header />
       <BreadCrumb path={"تماس با ما"} />
 
-      <main className="lg:w-10/12 w-full sm:px-8 px-4 m-auto text-zinc-500 text-sm shabnam">
+      <main className="lg:w-10/12 w-full sm:px-8 px-4 m-auto text-zinc-500 text-sm shabnam sm:mb-20 mb-4">
         <section className="grid md:grid-cols-[6fr_6fr] grid-cols-[1fr] md:gap-6 gap-28 mt-10 md:h-[500px] h-[800px]">
           <MapSection
             title={"آدرس فروشگاه حضوری قهوه ست (شعبه انقلاب)"}
@@ -55,7 +55,7 @@ export default function ContactUsPage() {
             position={[35.72021225108499, 51.42222691580869]}
           />
         </section>
-        <section className="grid lg:grid-cols-[6fr_6fr] md:gap-2 gap-20 sm:py-10 py-4 mt-28">
+        <section className="grid lg:grid-cols-[6fr_6fr] md:gap-2 gap-20 mt-28 rounded-md bg-white sm:p-10 p-4">
           <div className="w-full">
             <div className="lg:h-[150px] h-[100px]">
               <h4 className="sm:text-base text-sm text-zinc-500">تماس با ما</h4>

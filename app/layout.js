@@ -3,6 +3,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { UserProvider } from "@/context/context";
 import "@/style/globals.css";
+import Navbar from "@/components/module/header-nav/navbar";
 
 export const metadata = {
   title: "SET Coffee | فروشگاه اینترنتی قهوه ست",
@@ -17,7 +18,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body dir="rtl" className="bg-zinc-100 select-none overflow-x-hidden">
         <ScrollToTopBtn />
-        <UserProvider>{children}</UserProvider>
+        <UserProvider>
+          {children}
+          <Navbar />
+        </UserProvider>
         <ToastContainer stacked />
       </body>
     </html>

@@ -11,6 +11,7 @@ export default function BreadCrumb(prop) {
         height={1000}
         quality={100}
         alt="bg-photo"
+        priority
       />
       <div className="w-full text-white h-full absolute gap-8 top-0 left-0 flex flex-col items-center justify-center">
         <h2 className="sm:text-6xl text-5xl text-center shabnam font-bold">

@@ -13,8 +13,9 @@ import { IoStar } from "react-icons/io5";
 import axios from "axios";
 import { TbShoppingCartOff } from "react-icons/tb";
 import Link from "next/link";
+import { Skeleton } from "@mui/material";
 
-export default function ShopeSection({ products }) {
+export default function ShopeSection() {
   const [maxValue, setMaxValue] = useState();
   const [minValue, setMinValue] = useState();
 
@@ -36,10 +37,30 @@ export default function ShopeSection({ products }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
-    setAllProduct(products);
-    setLoading(false);
+    FirstRender();
   }, []);
+
+  async function FirstRender() {
+    await FetchProduct();
+    SetMinAndMax();
+  }
+
+  async function FetchProduct() {
+    setLoading(true);
+    const product = await axios.get("/api/product");
+
+    setAllProduct(product.data.data);
+    setLoading(false);
+  }
+
+  async function SetMinAndMax() {
+    if (allProduct.length !== 0) {
+      let sortedProduct = products.sort((a, b) => a.price - b.price);
+
+      setFirstMin(sortedProduct[0].price);
+      setFirstMax(sortedProduct[sortedProduct.length - 1].price);
+    }
+  }
 
   useEffect(() => {
     async function SortHandler() {
@@ -74,16 +95,9 @@ export default function ShopeSection({ products }) {
     }
     SortHandler();
   }, [productSort]);
-  useEffect(() => {
-    if (products.length !== 0) {
-      let sortedProduct = products.sort((a, b) => a.price - b.price);
 
-      setFirstMin(sortedProduct[0].price);
-      setFirstMax(sortedProduct[sortedProduct.length - 1].price);
-    }
-  }, []);
   return (
-    <main className="grid lg:grid-cols-[2fr_10fr] grid-cols-[1fr] lg:gap-4 gap-0 xl:px-20 sm:px-6 px-3 moraba-regular md:mt-10 mt-3">
+    <main className="grid lg:grid-cols-[2fr_10fr] grid-cols-[1fr] lg:gap-4 gap-0 xl:px-20 sm:px-6 px-3 moraba-regular md:my-10 my-3">
       <button
         onClick={() => {
           setIsFilterSectionOpen(!isFilterSectionOpen);
@@ -231,10 +245,14 @@ export default function ShopeSection({ products }) {
           ))}
           {loading &&
             Array.from({ length: 8 }).map((e, i) => (
-              <div
+              <Skeleton
                 key={i}
-                className="w-full h-[400px] rounded-lg bg-gray-300 animate-pulse"
-              ></div>
+                sx={{ bgcolor: "grey.100", borderRadius: "5px" }}
+                variant="rectangular"
+                width={"100%"}
+                animation="wave"
+                height={"400px"}
+              />
             ))}
         </div>
         {!loading && allProduct.length === 0 && (

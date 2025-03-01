@@ -2,13 +2,12 @@ import { IoLocationSharp } from "react-icons/io5";
 import { MdPhoneIphone } from "react-icons/md";
 import { AiOutlineMail } from "react-icons/ai";
 import Image from "next/image";
-import FooterArticle from "../template/footerarticle";
 import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-zinc-900 mt-10">
-      <div className="grid xl:grid-cols-[3fr_3fr_3fr_3fr] md:grid-cols-[6fr_6fr] grid-cols-[1fr] gap-6 lg:px-32 sm:px-16 px-8 py-14">
+    <footer className="bg-zinc-900 sm:mb-0 mb-[58px]">
+      <div className="grid xl:grid-cols-[4fr_4fr_4fr] md:grid-cols-[6fr_6fr] grid-cols-[1fr] gap-6 lg:px-32 sm:px-16 px-8 py-14">
         <div className="text-zinc-300 text-sm flex flex-col gap-6 shabnam">
           <img src="/img/logo/logo_light.png" className="w-[200px]" />
           <h3 className="moraba-bold">فروشگاه اینترنتی قهوه ست</h3>
@@ -38,20 +37,11 @@ export default function Footer() {
             لینک سایت اصلی ست کافی
           </a>
         </div>
-        <div className="w-full">
-          <h2 className="text-white moraba-bold text-lg">اخرین نوشته ها</h2>
-          <div className="w-full mt-6 flex flex-col gap-4">
-            <FooterArticle />
-            <hr className="border-zinc-800 border" />
-            <FooterArticle />
-            <hr className="border-zinc-800 border" />
-            <FooterArticle />
-          </div>
-        </div>
-        <div className="flex gap-10">
-          <div className="w-full">
+
+        <div className="flex">
+          <div className="w-full flex flex-col items-center">
             <h2 className="text-white moraba-bold text-lg">دسترسی سریع</h2>
-            <div className="w-full mt-6 flex flex-col gap-4 shabnam text-sm">
+            <div className="w-full mt-6 flex flex-col items-center gap-4 shabnam text-sm">
               <Link
                 href="/"
                 className="text-zinc-300 hover:text-white transition cursor-pointer"
@@ -72,9 +62,9 @@ export default function Footer() {
               </Link>
             </div>
           </div>
-          <div className="w-full">
+          <div className="w-full flex flex-col items-center">
             <h2 className="text-white moraba-bold text-lg">منوی فوتر</h2>
-            <div className="w-full mt-6 flex flex-col gap-4 shabnam text-sm">
+            <div className="w-full mt-6 flex flex-col items-center gap-4  shabnam text-sm">
               <Link
                 href="/"
                 className="text-zinc-300 hover:text-white transition cursor-pointer"

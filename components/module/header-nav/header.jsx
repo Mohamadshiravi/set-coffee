@@ -11,7 +11,7 @@ import MobileMenu from "./mobile-menu";
 import ProfileSection from "./profile-section";
 import { UserContext } from "@/context/context";
 
-export default function Header({ children }) {
+export default function Header() {
   const pathName = usePathname();
 
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -26,20 +26,24 @@ export default function Header({ children }) {
   }, []);
 
   useEffect(() => {
-    function HandleNavBar() {
-      const currentScrolled = window.pageYOffset;
-      if (currentScrolled > 100) {
-        setIsNavTop(true);
-        setIsProfileOpen(false);
-      } else {
-        setIsNavTop(false);
-      }
-    }
+    if (innerWidth > 640) {
+      function HandleNavBar() {
+        console.log("moz");
 
-    window.addEventListener("scroll", HandleNavBar);
-    return () => {
-      window.removeEventListener("scroll", HandleNavBar);
-    };
+        const currentScrolled = window.pageYOffset;
+        if (currentScrolled > 100) {
+          setIsNavTop(true);
+          setIsProfileOpen(false);
+        } else {
+          setIsNavTop(false);
+        }
+      }
+
+      window.addEventListener("scroll", HandleNavBar);
+      return () => {
+        window.removeEventListener("scroll", HandleNavBar);
+      };
+    }
   });
 
   return (
@@ -48,15 +52,15 @@ export default function Header({ children }) {
         id={isNavTop ? "animate-fade" : "no-id"}
         className={` select-none  ${
           isNavTop
-            ? "sm:h-[70px] h-[65px] sm:w-[98%] w-full fixed sm:rounded-xl bg-white/80 sm:top-2 top-0 sm:left-[1%] left-0"
+            ? "sm:h-[70px] h-[65px] sm:w-[98%] w-full sm:fixed absolute sm:rounded-xl bg-white/80 sm:top-2 top-0 sm:left-[1%] left-0"
             : " sm:py-4 absolute py-3 bg-white w-full top-0 left-0"
         } ${
           isNavTop ? "lg:px-20" : "lg:px-18"
-        } sm:px-8 px-3  flex border-zinc-200 items-center border justify-center backdrop-blur-xl z-40 transition-all transition`}
+        } sm:px-8 px-3  flex border-zinc-200 items-center border justify-center backdrop-blur-xl z-40 transition-all`}
       >
         <div className="flex items-center w-full justify-between">
           <button
-            onClick={OpenMenu}
+            onClick={() => setIsNavOpen(true)}
             className="lg:hidden shadow-md shadow-zinc-500 block hover:bg-zinc-900 transition bg-zinc-800 text-white sm:h-[50px] h-[40px] aspect-square flex items-center justify-center sm:text-3xl text-2xl rounded-lg"
           >
             <RxHamburgerMenu />
@@ -103,22 +107,12 @@ export default function Header({ children }) {
             >
               درباره ما
             </Link>
-            <Link
-              href={"/about-site"}
-              className={`after:content-[''] hover:after:bg-brown-500 after:absolute hover:after:h-[3px] hover:after:w-full hover:after:left-0 after:rounded-xl cursor-pointer after:transition-all after:-bottom-3 relative ${
-                pathName === "/about-site"
-                  ? "after:bg-brown-500 after:h-[3px] after:left-0 after:w-full"
-                  : "after:bg-gray-200 after:h-[5px] after:left-[50%] after:w-[5px]"
-              }`}
-            >
-              درباره سایت
-            </Link>
           </div>
           {loading ? (
             <div className="flex items-center gap-3 sm:h-[50px] h-[40px]">
               <span className="bg-gray-200 h-full aspect-square rounded-lg animate-pulse sm:block hidden"></span>
               <span className="bg-gray-200 h-full aspect-square rounded-lg animate-pulse"></span>
-              <span className="bg-gray-200 w-[150px] h-full rounded-lg bg-zinc-800 animate-pulse lg:block hidden"></span>
+              <span className="w-[150px] h-full rounded-lg bg-zinc-800 animate-pulse lg:block hidden"></span>
             </div>
           ) : (
             <div className="flex items-center text-sm gap-3 sm:h-[50px] h-[40px]">
@@ -147,7 +141,7 @@ export default function Header({ children }) {
                   href={"/auth/login"}
                   className={`bg-zinc-800 relative text-white moraba-bold shadow-xl shadow-zinc-600 ${
                     isNavTop ? "px-0 aspect-square" : "px-4"
-                  } items-center justify-center rounded-lg h-full lg:flex hidden items-center gap-2 hover:bg-zinc-900 transition`}
+                  } items-center justify-center rounded-lg h-full lg:flex hidden gap-2 hover:bg-zinc-900 transition`}
                 >
                   <span className={`${isNavTop ? "hidden" : "block"}`}>
                     ورود | عضویت
@@ -169,17 +163,11 @@ export default function Header({ children }) {
         </div>
       </nav>
       <MobileMenu
-        CloseMenu={CloseMenu}
+        CloseMenu={() => setIsNavOpen(false)}
         isNavOpen={isNavOpen}
         pathName={pathName}
         theUser={user}
       />
     </>
   );
-  function OpenMenu() {
-    setIsNavOpen(true);
-  }
-  function CloseMenu() {
-    setIsNavOpen(false);
-  }
 }

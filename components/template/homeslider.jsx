@@ -1,16 +1,20 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
-import { Autoplay } from "swiper/modules";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 export default function HomeSlider() {
   return (
-    <section className="w-full sm:mt-[90px] mt-[65px] lg:h-[600px] md:h-[500px] sm:h-[400px] h-[200px]">
+    <section className="w-full sm:mt-[90px] mt-[65px] md:h-[500px] sm:h-[400px] h-[200px] relative">
       <Swiper
         className="w-full h-full"
+        navigation={true}
+        pagination={true}
         loop={true}
-        modules={[Autoplay]}
+        modules={[Autoplay, Navigation, Pagination]}
         autoplay={{ delay: "5000", disableOnInteraction: false }}
         grabCursor
       >

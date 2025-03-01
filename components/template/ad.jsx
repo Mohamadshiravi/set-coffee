@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function AdSectionOne() {
+export default function AdSection() {
   return (
-    <section className="container-bg mt-20 w-full overflow-hidden">
+    <section className="container-bg sm:mt-16 mt-4 overflow-hidden w-full">
       <div className="flex xl:flex-row flex-col pt-14 sm:w-[90%] w-full m-auto">
         <div className="flex flex-col justify-between xl:gap-0 gap-10 items-center xl:m-0 m-auto xl:w-[850px] w-full">
           <div className="flex flex-col gap-2 items-center mt-14">
-            <h2 className="text-headcolor moraba-bold xl:text-3xl sm:text-4xl text-2xl">
+            <h2 className="text-brown-700 moraba-bold xl:text-3xl sm:text-4xl text-2xl">
               خرید قهوه ، به سبک حرفه ای ها
             </h2>
             <h3 className="moraba-regular sm:text-base text-sm text-zinc-400">
@@ -37,7 +37,7 @@ export default function AdSectionOne() {
             alt="cofee pack img"
           />
           <div className="flex flex-col sm:items-end items-start gap-4 bg-[#f3f3f3] absolute bottom-0 left-0 sm:p-8 px-4 py-3 sm:w-[400px] w-[300px]">
-            <h2 className="text-headcolor moraba-bold sm:text-3xl text-2xl">
+            <h2 className="text-brown-700 moraba-bold sm:text-3xl text-2xl">
               باشگاه مشتریان ست
             </h2>
             <h3 className="moraba-regular text-zinc-400 sm:text-base text-xs">
@@ -49,7 +49,7 @@ export default function AdSectionOne() {
           </div>
         </div>
       </div>
-      <div className="flex xl:flex-row flex-col pb-10 gap-4 sm:w-[90%] w-full m-auto xl:mt-40 mt-10">
+      <div className="flex xl:flex-row flex-col pb-10 gap-4 sm:w-[90%] w-full m-auto xl:mt-40 mt-0">
         <Image
           src={"/img/ad/Home32.jpg"}
           width={1440}
@@ -71,7 +71,7 @@ export default function AdSectionOne() {
               <h2 className="moraba-bold sm:text-5xl text-3xl text-[#711D1C]">
                 چرا قهوه سِت
               </h2>
-              <p className="shabnam text-zinc-500 sm:text-base text-sm pl-6 text-justify">
+              <p className="moraba-regular text-zinc-500 sm:text-base text-sm pl-6 text-justify">
                 برخورداری از تجربه و قدمت کافی و آگاهی از ذایقه مصرف کنندگان
                 راهنمای ما در برآورده ساختن نیاز مشتریان قهوه تخصصی (موج سوم)
                 است .تجربه ای به قدمت چهار نسل و ارتباط مستمر با مصرف کنندگان
