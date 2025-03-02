@@ -69,7 +69,9 @@ export async function GET() {
   await ConnectTODb();
 
   try {
-    const allProduct = await productModel.find({}, null, { sort: "-_id" });
+    const allProduct = await productModel.find({}, "images title price score", {
+      sort: "-_id",
+    });
     return Response.json({ data: allProduct });
   } catch (error) {
     return Response.json({ data: "error" }, { status: 500 });

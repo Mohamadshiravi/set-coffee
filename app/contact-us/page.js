@@ -58,7 +58,9 @@ export default function ContactUsPage() {
         <section className="grid lg:grid-cols-[6fr_6fr] md:gap-2 gap-20 mt-28 rounded-md bg-white sm:p-10 p-4">
           <div className="w-full">
             <div className="lg:h-[150px] h-[100px]">
-              <h4 className="sm:text-base text-sm text-zinc-500">تماس با ما</h4>
+              <h4 className="sm:text-base text-sm text-zinc-500 moraba-regular">
+                تماس با ما
+              </h4>
               <h2 className="sm:text-3xl text-2xl moraba-bold mt-3 text-zinc-800">
                 اطلاعات تماس
               </h2>
@@ -101,7 +103,7 @@ export default function ContactUsPage() {
           </div>
           <div>
             <div className="h-[150px]">
-              <h4 className="sm:text-base text-sm text-zinc-500">
+              <h4 className="sm:text-base text-sm text-zinc-500 moraba-regular">
                 فرم تماس با ما / ثبت شکایات
               </h4>
               <h2 className="sm:text-3xl text-2xl moraba-bold mt-3 text-zinc-800">

@@ -202,7 +202,7 @@ export default function CartSection() {
         </>
       )}
       {!loading && userCart.length === 0 && (
-        <div className="flex flex-col items-center justify-center w-full h-[80vh] px-6">
+        <div className="flex flex-col items-center justify-center w-full h-[80vh] px-6 bg-white rounded-lg">
           <TbShoppingCartX className="text-9xl text-zinc-300" />
           <h1 className="moraba-bold sm:text-4xl text-3xl mt-3 text-center">
             سبد خرید شما خالی میباشد

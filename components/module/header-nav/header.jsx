@@ -22,14 +22,14 @@ export default function Header() {
     useContext(UserContext);
 
   useEffect(() => {
-    FetchUserData();
+    if (!user) {
+      FetchUserData();
+    }
   }, []);
 
   useEffect(() => {
     if (innerWidth > 640) {
       function HandleNavBar() {
-        console.log("moz");
-
         const currentScrolled = window.pageYOffset;
         if (currentScrolled > 100) {
           setIsNavTop(true);

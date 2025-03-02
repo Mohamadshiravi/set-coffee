@@ -12,7 +12,7 @@ export default function AboutUS() {
   const p4Ref = useRef(null);
 
   const timeoutRef = useRef(null);
-  let isComponentMounted = true;
+  let isComponentMounted = false;
 
   const text = {
     p1: "تجربه‌ای به قدمت چهار نسل و ارتباط مستمر با مصرف کنندگان ضامن این ویژگی‌هاست. از ویژگی‌های بارز مجموعه قهوه ست واردات مواد اولیه راسا به وسیله مدیریت مجموعه و انتخاب بهترین مواد اولیه جهت تولید قهوه است.",

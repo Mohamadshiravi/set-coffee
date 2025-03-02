@@ -37,7 +37,7 @@ export default function Navbar() {
             } flex flex-col items-center gap-1`}
           >
             <BsBasket />
-            <span className="text-xs moraba-regular font-bold">فرشگاه</span>
+            <span className="text-xs moraba-regular font-bold">فروشگاه</span>
           </Link>
         </li>
         <li>

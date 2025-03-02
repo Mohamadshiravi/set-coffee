@@ -1,11 +1,20 @@
+"use client";
+
 import React, { useCallback, useEffect, useState, useRef } from "react";
 
-const MultiRangeSlider = ({ min, max, onChange }) => {
-  const [minVal, setMinVal] = useState(min);
-  const [maxVal, setMaxVal] = useState(max);
+const MultiRangeSlider = React.memo(({ min, max, onChange }) => {
+  const [minVal, setMinVal] = useState(null);
+  const [maxVal, setMaxVal] = useState(null);
   const minValRef = useRef(null);
   const maxValRef = useRef(null);
   const range = useRef(null);
+
+  useEffect(() => {
+    if (min && max) {
+      setMinVal(min);
+      setMaxVal(max);
+    }
+  }, [min, max]);
 
   // Convert to percentage
   const getPercent = useCallback(
@@ -40,50 +49,57 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
 
   // Get min and max values when their state changes
   useEffect(() => {
-    onChange({ min: minVal, max: maxVal });
+    const timeOut = setTimeout(() => {
+      onChange({ min: minVal, max: maxVal });
+    }, 200);
+
+    return () => clearTimeout(timeOut);
   }, [minVal, maxVal, onChange]);
 
   return (
-    <>
-      <div className="relative">
-        <input
-          className="range"
-          type="range"
-          min={min}
-          max={max}
-          value={minVal}
-          ref={minValRef}
-          onChange={(event) => {
-            const value = Math.min(+event.target.value, maxVal - 1);
-            setMinVal(value);
-            event.target.value = value.toString();
-          }}
-        />
-        <input
-          className="range"
-          type="range"
-          min={min}
-          max={max}
-          value={maxVal}
-          ref={maxValRef}
-          onChange={(event) => {
-            const value = Math.max(+event.target.value, minVal + 1);
-            setMaxVal(value);
-            event.target.value = value.toString();
-          }}
-        />
-      </div>
-      <section className="flex flex-col gap-1">
-        <span>قیمت</span>
-        <p className="font-bold text-zinc-800">
-          از {minVal.toLocaleString()} تومان
-        </p>
-        <p className="font-bold text-zinc-800">
-          تا {maxVal.toLocaleString()} تومان
-        </p>
-      </section>
-    </>
+    minVal !== null &&
+    maxVal !== null && (
+      <>
+        <div className="relative">
+          <input
+            className="range"
+            type="range"
+            min={min}
+            max={max}
+            value={minVal}
+            ref={minValRef}
+            onChange={(event) => {
+              const value = Math.min(+event.target.value, maxVal - 1);
+              setMinVal(value);
+              event.target.value = value.toString();
+            }}
+          />
+          <input
+            className="range"
+            type="range"
+            min={min}
+            max={max}
+            value={maxVal}
+            ref={maxValRef}
+            onChange={(event) => {
+              const value = Math.max(+event.target.value, minVal + 1);
+              setMaxVal(value);
+              event.target.value = value.toString();
+            }}
+          />
+        </div>
+        <section className="flex flex-col gap-1">
+          <span>قیمت</span>
+          <p className="font-bold text-zinc-800">
+            از {minVal.toLocaleString()} تومان
+          </p>
+          <p className="font-bold text-zinc-800">
+            تا {maxVal.toLocaleString()} تومان
+          </p>
+        </section>
+      </>
+    )
   );
-};
+});
 
 export default MultiRangeSlider;

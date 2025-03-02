@@ -1,4 +1,4 @@
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import swal from "sweetalert";
 
 export function ShowSwal(icon, title, buttons) {

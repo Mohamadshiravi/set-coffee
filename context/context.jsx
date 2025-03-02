@@ -1,34 +1,67 @@
 "use client";
 
-import { createContext, useState, useEffect } from "react";
+import { createContext, useReducer } from "react";
 import axios from "axios";
+
+const FETCH_USER_DATA = "SET_USER_DATA";
+
+function UserReducer(state, action) {
+  switch (action.type) {
+    case FETCH_USER_DATA: {
+      console.log("moz");
+
+      return { ...action.payload };
+    }
+
+    default:
+      return state;
+  }
+}
+
+const initialState = {
+  user: null,
+  wishLength: 0,
+  userCart: [],
+  loading: true,
+};
 
 export const UserContext = createContext();
 
 export function UserProvider({ children }) {
-  const [user, setUser] = useState(null);
-  const [wishLength, setWishLength] = useState(0);
-  const [userCart, setUserCart] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [state, dispatch] = useReducer(UserReducer, initialState);
 
   async function FetchUserData() {
     try {
-      setLoading(true);
+      const userData = {};
 
-      setUserCart(JSON.parse(localStorage.getItem("cart")) || []);
-      const userDetails = await axios.get("/api/auth/me");
-      setUser(userDetails.data.theUser);
-      setWishLength(userDetails.data.wishLength);
+      const res = await axios.get("/api/auth/me");
 
-      setLoading(false);
+      userData.loading = false;
+      userData.userCart = JSON.parse(localStorage.getItem("cart")) || [];
+      userData.user = res.data.theUser;
+      userData.wishLength = res.data.wishLength;
+
+      dispatch({ type: FETCH_USER_DATA, payload: userData });
     } catch (error) {
-      setLoading(false);
+      const userData = {
+        user: null,
+        wishLength: 0,
+        userCart: [],
+        loading: false,
+      };
+      dispatch({ type: FETCH_USER_DATA, payload: userData });
     }
   }
 
   return (
     <UserContext.Provider
-      value={{ user, wishLength, userCart, loading, FetchUserData }}
+      value={{
+        user: state.user,
+        wishLength: state.wishLength,
+        userCart: state.userCart,
+        loading: state.loading,
+        FetchUserData,
+      }}
     >
       {children}
     </UserContext.Provider>

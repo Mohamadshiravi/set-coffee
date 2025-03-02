@@ -19,7 +19,6 @@ export default function LastestProduct() {
     setLoading(true);
     const res = await axios.get("/api/product");
     const product = res.data.data;
-    console.log(product);
 
     const filteredProduct = product.filter((e) => e.score > 0);
 

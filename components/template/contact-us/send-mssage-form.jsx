@@ -1,9 +1,14 @@
 "use client";
 
 import { newErrorToast, newToast } from "@/utils/helper-function";
+import { Box, Button, Input, TextField } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
 import * as yup from "yup";
+import { CacheProvider } from "@emotion/react";
+import rtlPlugin from "stylis-plugin-rtl";
+import createCache from "@emotion/cache";
+import { prefixer } from "stylis";
 
 export default function SendMessageForm() {
   const [name, setName] = useState("");
@@ -11,6 +16,8 @@ export default function SendMessageForm() {
   const [phone, setPhone] = useState("");
   const [company, setCompany] = useState("");
   const [body, setBody] = useState("");
+
+  const [loading, setLoading] = useState(false);
 
   const schema = yup.object({
     nameAndLastName: yup
@@ -24,103 +31,84 @@ export default function SendMessageForm() {
     phone: yup.string().required("لطفا شماره تماس خود را وارد کنید"),
     body: yup.string().required("لطفا پیغام خود را بنویسید"),
   });
+
+  const rtlCache = createCache({
+    key: "muirtl",
+    stylisPlugins: [prefixer, rtlPlugin],
+  });
   return (
-    <form>
-      <div className="flex gap-2">
-        <div className="w-full">
-          <label
-            htmlFor="name-lastname"
-            className="after:content-['*'] after:text-red-500 after:text-2xl"
-          >
-            نام و نام خانوادگی
-          </label>
-          <input
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-            id="name-lastname"
-            type="text"
-            className="text-base mt-1 p-2 outline-hidden border border-zinc-600 focus:border-2 rounded-md w-full"
-          ></input>
+    <CacheProvider value={rtlCache}>
+      <form>
+        <div className="flex sm:flex-row flex-col gap-2">
+          <div className="w-full">
+            <TextField
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+              fullWidth
+              label=" نام و نام خانوادگی"
+            />
+          </div>
+          <div className="w-full">
+            <TextField
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              fullWidth
+              label=" آدرس ایمیل"
+            />
+          </div>
         </div>
-        <div className="w-full">
-          <label
-            htmlFor="email-input"
-            className="after:content-['*'] after:text-red-500 after:text-2xl"
-          >
-            آدرس ایمیل
-          </label>
-          <input
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            id="email-input"
-            type="email"
-            className="text-base mt-1 p-2 outline-hidden border border-zinc-600 focus:border-2 rounded-md w-full"
-          ></input>
+        <div className="flex sm:flex-row flex-col gap-2 mt-4">
+          <div className="w-full">
+            <TextField
+              value={phone}
+              onChange={(e) => {
+                setPhone(e.target.value);
+              }}
+              fullWidth
+              label="  شماره تماس"
+            />
+          </div>
+          <div className="w-full">
+            <TextField
+              value={company}
+              onChange={(e) => {
+                setCompany(e.target.value);
+              }}
+              fullWidth
+              label=" نام شرکت"
+            />
+          </div>
         </div>
-      </div>
-      <div className="flex gap-2 mt-4">
-        <div className="w-full">
-          <label
-            htmlFor="phone-number"
-            className="after:content-['*'] after:text-red-500 after:text-2xl"
-          >
-            شماره تماس
-          </label>
-          <input
-            value={phone}
+        <div className="my-4 w-full">
+          <TextField
+            multiline
+            value={body}
             onChange={(e) => {
-              setPhone(e.target.value);
+              setBody(e.target.value);
             }}
-            id="phone-number"
-            type="text"
-            className="text-base mt-1 p-2 outline-hidden border border-zinc-600 focus:border-2 rounded-md w-full"
-          ></input>
+            fullWidth
+            label=" متن پیام"
+          />
         </div>
-        <div className="w-full">
-          <label
-            htmlFor="company-name"
-            className="after:content-['*'] after:text-zinc-200 after:text-2xl"
-          >
-            نام شرکت
-          </label>
-          <input
-            value={company}
-            onChange={(e) => {
-              setCompany(e.target.value);
-            }}
-            id="company-name"
-            type="text"
-            className="text-base mt-1 p-2 outline-hidden border border-zinc-600 focus:border-2 rounded-md w-full"
-          ></input>
-        </div>
-      </div>
-      <label
-        htmlFor="message-body"
-        className="mt-4 block after:content-['*'] after:text-red-500 after:text-2xl"
-      >
-        متن پیام
-      </label>
-      <textarea
-        id="message-body"
-        value={body}
-        onChange={(e) => {
-          setBody(e.target.value);
-        }}
-        className="w-full mt-1 rounded-md border border-zinc-600 outline-hidden focus:border-2 text-base p-2 h-[200px] max-h-[500px] min-h-[100px]"
-      ></textarea>
-      <button
-        onClick={SendMessageHndler}
-        className="w-full bg-brown-700 text-white moraba-bold py-3 rounded-md text-lg hover:bg-headcolor transition"
-      >
-        ارسال
-      </button>
-    </form>
+        <Button
+          sx={{ height: "50px", fontSize: "15px", fontFamily: "moraba-bold" }}
+          loading={loading}
+          fullWidth
+          onClick={SendMessageHndler}
+          variant="contained"
+          size="large"
+        >
+          ارسال
+        </Button>
+      </form>
+    </CacheProvider>
   );
   async function SendMessageHndler(e) {
+    setLoading(true);
     e.preventDefault();
 
     const message = await Validator();
@@ -133,6 +121,7 @@ export default function SendMessageForm() {
         setPhone("");
         setBody("");
         newToast("پیام شما با موفقیت ارسال شد");
+        setLoading(false);
       }
     }
   }
@@ -148,6 +137,7 @@ export default function SendMessageForm() {
       const res = await schema.validate(message);
       return res;
     } catch (e) {
+      setLoading(false);
       newErrorToast(`${e.errors}`);
     }
   }
