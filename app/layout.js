@@ -1,6 +1,4 @@
 import ScrollToTopBtn from "@/components/module/scrolltotop";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { UserProvider } from "@/context/context";
 import "@/style/globals.css";
 import Navbar from "@/components/module/header-nav/navbar";
