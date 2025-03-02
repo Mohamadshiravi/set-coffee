@@ -1,14 +1,10 @@
 "use client";
 
 import { newErrorToast, newToast } from "@/utils/helper-function";
-import { Box, Button, Input, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
 import * as yup from "yup";
-import { CacheProvider } from "@emotion/react";
-import rtlPlugin from "stylis-plugin-rtl";
-import createCache from "@emotion/cache";
-import { prefixer } from "stylis";
 
 export default function SendMessageForm() {
   const [name, setName] = useState("");
@@ -32,80 +28,74 @@ export default function SendMessageForm() {
     body: yup.string().required("لطفا پیغام خود را بنویسید"),
   });
 
-  const rtlCache = createCache({
-    key: "muirtl",
-    stylisPlugins: [prefixer, rtlPlugin],
-  });
   return (
-    <CacheProvider value={rtlCache}>
-      <form>
-        <div className="flex sm:flex-row flex-col gap-2">
-          <div className="w-full">
-            <TextField
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-              fullWidth
-              label=" نام و نام خانوادگی"
-            />
-          </div>
-          <div className="w-full">
-            <TextField
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-              fullWidth
-              label=" آدرس ایمیل"
-            />
-          </div>
-        </div>
-        <div className="flex sm:flex-row flex-col gap-2 mt-4">
-          <div className="w-full">
-            <TextField
-              value={phone}
-              onChange={(e) => {
-                setPhone(e.target.value);
-              }}
-              fullWidth
-              label="  شماره تماس"
-            />
-          </div>
-          <div className="w-full">
-            <TextField
-              value={company}
-              onChange={(e) => {
-                setCompany(e.target.value);
-              }}
-              fullWidth
-              label=" نام شرکت"
-            />
-          </div>
-        </div>
-        <div className="my-4 w-full">
+    <form>
+      <div className="flex sm:flex-row flex-col gap-2">
+        <div className="w-full">
           <TextField
-            multiline
-            value={body}
+            value={name}
             onChange={(e) => {
-              setBody(e.target.value);
+              setName(e.target.value);
             }}
             fullWidth
-            label=" متن پیام"
+            label=" نام و نام خانوادگی"
           />
         </div>
-        <Button
-          sx={{ height: "50px", fontSize: "15px", fontFamily: "moraba-bold" }}
-          loading={loading}
+        <div className="w-full">
+          <TextField
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            fullWidth
+            label=" آدرس ایمیل"
+          />
+        </div>
+      </div>
+      <div className="flex sm:flex-row flex-col gap-2 mt-4">
+        <div className="w-full">
+          <TextField
+            value={phone}
+            onChange={(e) => {
+              setPhone(e.target.value);
+            }}
+            fullWidth
+            label="  شماره تماس"
+          />
+        </div>
+        <div className="w-full">
+          <TextField
+            value={company}
+            onChange={(e) => {
+              setCompany(e.target.value);
+            }}
+            fullWidth
+            label=" نام شرکت"
+          />
+        </div>
+      </div>
+      <div className="my-4 w-full">
+        <TextField
+          multiline
+          value={body}
+          onChange={(e) => {
+            setBody(e.target.value);
+          }}
           fullWidth
-          onClick={SendMessageHndler}
-          variant="contained"
-          size="large"
-        >
-          ارسال
-        </Button>
-      </form>
-    </CacheProvider>
+          label=" متن پیام"
+        />
+      </div>
+      <Button
+        sx={{ height: "50px", fontSize: "15px", fontFamily: "moraba-bold" }}
+        loading={loading}
+        fullWidth
+        onClick={SendMessageHndler}
+        variant="contained"
+        size="large"
+      >
+        ارسال
+      </Button>
+    </form>
   );
   async function SendMessageHndler(e) {
     setLoading(true);

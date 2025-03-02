@@ -8,24 +8,18 @@ import axios from "axios";
 import { newErrorToast, newToast, ShowSwal } from "@/utils/helper-function";
 import { TbShoppingCartX } from "react-icons/tb";
 import Link from "next/link";
+import { Button, TextField } from "@mui/material";
 
 export default function CartSection() {
   const [userCart, setUserCart] = useState([]);
 
   const [postOption, setPostOption] = useState("41000");
 
-  const [isAddressOpen, setIsAddresOpen] = useState(false);
-
   const [discountInp, setDiscountInp] = useState("");
-
-  const [country, setCountry] = useState([]);
-  const [city, setCity] = useState("تهران");
 
   const [allPriceState, setAllPriceState] = useState(0);
 
   const [discount, setDiscount] = useState(0);
-
-  const stateOptions = stateData();
 
   const [loading, setLoading] = useState(true);
 
@@ -43,14 +37,7 @@ export default function CartSection() {
     <>
       {!loading && userCart.length !== 0 && (
         <>
-          <section className="flex relative flex-col bg-white rounded-lg p-3">
-            <div className="lg:flex hidden w-full xl:justify-strat justify-center moraba-bold text-zinc-700 text-lg border-b pb-3">
-              <span className="w-[300px] text-center">محصول</span>
-              <span className="w-[150px] text-center">قیمت</span>
-              <span className="w-[150px] text-center">تعداد</span>
-              <span className="w-[150px] text-center">جمع جزء</span>
-            </div>
-
+          <section className="flex relative flex-col gap-4 rounded-lg w-full">
             {userCart?.map((e, i) => (
               <CartItem
                 key={i}
@@ -66,138 +53,52 @@ export default function CartSection() {
           </section>
 
           <section
-            className={`w-full sticky top-[100px] left-0 mb-20 ${
-              !isAddressOpen ? "xl:h-[520px]" : "h-auto"
-            } bg-gray-200 bg-white py-4 px-6 rounded-lg`}
+            className={`w-full sticky top-[100px] left-0 sm:h-[600px] h-[350px] bg-white py-4 px-6 rounded-lg flex flex-col justify-between`}
           >
-            <h2 className="moraba-bold text-2xl text-zinc-700">
-              جمع کل سبد خرید
-            </h2>
-            <div className="border-b py-5 flex items-center justify-between">
-              <span className="font-bold text-lg">جمع کل محصولات</span>
-              <span className="text-base font-bold">
-                {allPriceState.toLocaleString()} تومان
-              </span>
-            </div>
-            <div className="border-b flex items-center py-5 justify-between">
-              <span className="font-bold">حمل و نقل</span>
-              <div className="flex flex-col items-end gap-4">
-                <div className="flex flex-col items-center">
-                  <div className="flex items-center gap-2">
-                    <label>ارسال با پست پیشتاز</label>
-                    <input
-                      checked={postOption === "41000" && true}
-                      onChange={() => {
-                        setPostOption("41000");
-                      }}
-                      type="radio"
-                    />
-                  </div>
-                  <span className="font-bold">41,000 تومان</span>
-                </div>
-                <div className="flex flex-col items-center">
-                  <div className="flex items-center gap-2">
-                    <label>ارسال سریع ( چاپار )</label>
-                    <input
-                      checked={postOption === "80000" && true}
-                      onChange={() => {
-                        setPostOption("80000");
-                      }}
-                      type="radio"
-                    />
-                  </div>
-                  <span className="font-bold">80,000 تومان</span>
-                </div>
-                <h3 className="text-lg">
-                  حمل و نقل به {country.label}, {city}
-                </h3>
-                <button
-                  onClick={() => {
-                    setIsAddresOpen(!isAddressOpen);
-                  }}
-                  className="border px-6 py-1 border-zinc-400 text-zinc-400 rounded-md hover:bg-zinc-400 hover:text-white transition"
-                >
-                  تغییر ادرس
-                </button>
-                {isAddressOpen && (
-                  <div className="flex  flex-col gap-5 mt-4">
-                    <Select
-                      onChange={setCountry}
-                      options={stateOptions}
-                      placeholder={"استان"}
-                      isClearable={true}
-                      isRtl={true}
-                      isSearchable={true}
-                      defaultValue={null}
-                    />
-                    <select
-                      value={city}
-                      onChange={(e) => {
-                        setCity(e.target.value);
-                      }}
-                      className="border border-gray-300 text-zinc-500 py-2 rounded-[4px] px-2 outline-hidden focus:ring-2 ring-blue-500 transition"
-                    >
-                      <option value={null}>شهر را انتخاب کنید</option>
-                      {country.value?.map((e, i) => (
-                        <option key={i} value={e}>
-                          {e}
-                        </option>
-                      ))}
-                    </select>
-                    <input
-                      placeholder="کد پستی"
-                      type="text"
-                      className="border border-gray-300 outline-hidden text-zinc-500 py-2 rounded-[4px] px-2 w-[280px] py-2 focus:ring-2 ring-blue-500 transition"
-                    />
-                    <button
-                      onClick={() => {
-                        setIsAddresOpen(false);
-                      }}
-                      className="bg-headcolor text-white py-2 hover:bg-green-950 transition rounded-md"
-                    >
-                      به روزرسانی
-                    </button>
-                  </div>
-                )}
+            <div className="flex flex-col gap-4">
+              <div className="border-b py-5 flex items-center justify-between">
+                <span className="font-bold text-lg">مجموع کل</span>
+                <span className="moraba-bold text-xl text-zinc-700">
+                  {(
+                    allPriceState -
+                    ((allPriceState + Number(postOption)) * discount) / 100
+                  ).toLocaleString()}
+                  <span className="pr-2 text-sm"> تومان</span>
+                </span>
               </div>
+              {discount === 0 && (
+                <div className="flex flex-col gap-2 w-full xl:text-base text-lg">
+                  <TextField
+                    value={discountInp}
+                    onChange={(e) => {
+                      setDiscountInp(e.target.value);
+                    }}
+                    type="text"
+                    label="کد تخفیف"
+                    size="small"
+                  />
+                  <Button
+                    fullWidth
+                    variant="outlined"
+                    size="large"
+                    disabled={loading}
+                    onClick={UseDiscountHandler}
+                    className="border bg-headcolor text-white px-4 xl:w-full sm:py-3 py-2 w-[300px] rounded-md hover:bg-green-950 transition"
+                  >
+                    اعمال کد
+                  </Button>
+                </div>
+              )}
             </div>
-            <div className="border-b py-5 flex items-center justify-between">
-              <span className="font-bold text-lg">مجموع کل</span>
-              <span className="text-sm moraba-bold text-xl text-zinc-700">
-                {(
-                  allPriceState +
-                  Number(postOption) -
-                  ((allPriceState + Number(postOption)) * discount) / 100
-                ).toLocaleString()}
-                تومان
-              </span>
-            </div>
-            <button
+
+            <Button
               onClick={BuyHandler}
-              className="bg-headcolor shadow-xl shadow-green-950/50 hover:bg-green-950 transition text-white w-full py-3 rounded-md mt-6"
+              variant="contained"
+              size="large"
+              fullWidth
             >
               ادامه جهت تسویه حساب
-            </button>
-            {discount === 0 && (
-              <div className="flex gap-2 absolute xl:-bottom-16 -bottom-20 right-0 w-full xl:text-base text-lg">
-                <input
-                  value={discountInp}
-                  onChange={(e) => {
-                    setDiscountInp(e.target.value);
-                  }}
-                  type="text"
-                  placeholder="کد تخفیف"
-                  className="border-2 border-headcolor px-6 sm:py-3 py-2 rounded-md xl:w-auto w-full"
-                />
-                <button
-                  disabled={loading}
-                  onClick={UseDiscountHandler}
-                  className="border bg-headcolor text-white px-4 xl:w-full sm:py-3 py-2 w-[300px] rounded-md hover:bg-green-950 transition"
-                >
-                  اعمال کد
-                </button>
-              </div>
-            )}
+            </Button>
           </section>
         </>
       )}

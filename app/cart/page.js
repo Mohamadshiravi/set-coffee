@@ -8,7 +8,7 @@ export default async function CartPage() {
     <>
       <Header />
       <BreadCrumb path={"سبد خرید"} />
-      <main className="xl:px-10 sm:px-10 px-4 flex xl:flex-row flex-col gap-10 sm:my-10 my-4 moraba-regular">
+      <main className="sm:p-10 p-4 grid lg:grid-cols-[8fr_4fr] sm:grid-cols-[6fr_6fr] sm:gap-10 gap-4 moraba-regular">
         <CartSection />
       </main>
       <Footer />

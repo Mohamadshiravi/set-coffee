@@ -2,6 +2,10 @@
 
 import { ThemeProvider } from "@emotion/react";
 import { createTheme } from "@mui/material";
+import { CacheProvider } from "@emotion/react";
+import rtlPlugin from "stylis-plugin-rtl";
+import createCache from "@emotion/cache";
+import { prefixer } from "stylis";
 
 export default function MuiThemeProvider({ children }) {
   const theme = createTheme({
@@ -16,5 +20,13 @@ export default function MuiThemeProvider({ children }) {
     },
     direction: "rtl",
   });
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+  const rtlCache = createCache({
+    key: "muirtl",
+    stylisPlugins: [prefixer, rtlPlugin],
+  });
+  return (
+    <ThemeProvider theme={theme}>
+      <CacheProvider value={rtlCache}>{children}</CacheProvider>
+    </ThemeProvider>
+  );
 }
