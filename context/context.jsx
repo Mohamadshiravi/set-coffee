@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import axios from "axios";
 
 const FETCH_USER_DATA = "SET_USER_DATA";
@@ -8,9 +8,7 @@ const FETCH_USER_DATA = "SET_USER_DATA";
 function UserReducer(state, action) {
   switch (action.type) {
     case FETCH_USER_DATA: {
-      console.log("moz");
-
-      return { ...action.payload };
+      return { ...state, ...action.payload };
     }
 
     default:
@@ -23,6 +21,7 @@ const initialState = {
   wishLength: 0,
   userCart: [],
   loading: true,
+  error: null,
 };
 
 export const UserContext = createContext();
@@ -48,6 +47,7 @@ export function UserProvider({ children }) {
         wishLength: 0,
         userCart: [],
         loading: false,
+        error: "unAuth",
       };
       dispatch({ type: FETCH_USER_DATA, payload: userData });
     }
@@ -60,6 +60,7 @@ export function UserProvider({ children }) {
         wishLength: state.wishLength,
         userCart: state.userCart,
         loading: state.loading,
+        error: state.error,
         FetchUserData,
       }}
     >
