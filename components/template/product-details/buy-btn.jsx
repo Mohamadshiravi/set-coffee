@@ -14,7 +14,7 @@ export default function AddToCartBtn({ img, title, price, count, id }) {
     }
   }, [productNumber]);
 
-  const { FetchUserData } = useContext(UserContext);
+  const { FetchUserCart } = useContext(UserContext);
   return (
     <div className="bg-red-500 flex relative items-center justify-center select-none hover:shadow-lg hover:translate-y-2 transition-all duration-500 hover:shadow-red-400 rounded-lg moraba-bold sm:text-3xl text-2xl text-white w-full sm:h-[100px] h-[80px] sm:w-[550px] shadow-xl shadow-red-400">
       <div className="flex flex-col items-center justify-center text-xl border-l-2 border-red-600 h-full w-[100px]">
@@ -70,6 +70,6 @@ export default function AddToCartBtn({ img, title, price, count, id }) {
     localStorage.setItem("cart", JSON.stringify(cartArray));
     setProductNumber(1);
     newToast("محصول به سبد خرید شما اضافه شد !!!");
-    FetchUserData();
+    FetchUserCart();
   }
 }

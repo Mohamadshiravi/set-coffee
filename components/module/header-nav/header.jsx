@@ -18,10 +18,20 @@ export default function Header() {
   const [isNavTop, setIsNavTop] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
-  const { user, wishLength, userCart, loading, error, FetchUserData } =
-    useContext(UserContext);
+  const {
+    user,
+    wishLength,
+    userCart,
+    loading,
+    error,
+    FetchUserData,
+    FetchUserCart,
+  } = useContext(UserContext);
 
   useEffect(() => {
+    if (!userCart) {
+      FetchUserCart();
+    }
     if (!user && error !== "unAuth") {
       FetchUserData();
     }

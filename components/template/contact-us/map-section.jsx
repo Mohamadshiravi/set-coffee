@@ -17,7 +17,7 @@ export default function MapSection({ position, title, des, phone }) {
   return (
     <div className="relative">
       <MapContainer
-        className="border w-full h-full rounded-lg shadow-xl z-10"
+        className="w-full h-full rounded-lg shadow-xl z-10"
         center={position}
         zoom={20}
         scrollWheelZoom={true}

@@ -31,7 +31,7 @@ export default function ScrollToTopBtn() {
       onClick={GoTopFunction}
       className={`${
         !isScrolled ? "-translate-x-10 opacity-0" : "translate-x-0 opacity-100"
-      } fixed sm:bottom-6 bottom-16 sm:left-6 left-4 bg-white transition-all rounded-full sm:text-2xl text-lg text-zinc-500 sm:p-3 p-2 z-50 shadow-3xl hover:bg-zinc-300`}
+      } fixed sm:bottom-6 bottom-16 sm:left-6 left-2 bg-white transition-all rounded-full sm:text-2xl text-lg text-zinc-500 sm:p-3 p-2 z-50 shadow-3xl hover:bg-zinc-300`}
     >
       <IoIosArrowUp />
     </button>

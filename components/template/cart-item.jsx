@@ -33,7 +33,7 @@ export default function CartItem({
   useEffect(() => {
     setProductCount(count);
   }, []);
-  const { FetchUserData } = useContext(UserContext);
+  const { FetchUserCart } = useContext(UserContext);
   return (
     <div className="flex w-full relative lg:flex-row flex-col bg-white rounded-lg p-3 lg:gap-0 gap-4 items-center xl:justify-start justify-center">
       <div className="lg:border-l lg:pl-3 lg:h-full lg:items-center flex lg:static absolute top-2 right-2">
@@ -99,6 +99,6 @@ export default function CartItem({
     localStorage.setItem("cart", JSON.stringify(newUserCart));
     newToast("محصول حذف شد");
     GetCart();
-    FetchUserData();
+    FetchUserCart();
   }
 }

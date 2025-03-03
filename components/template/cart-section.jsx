@@ -1,19 +1,16 @@
 "use client";
 
-import stateData from "@/utils/all-country";
 import { useEffect, useState } from "react";
-import Select from "react-select";
 import CartItem from "./cart-item";
 import axios from "axios";
 import { newErrorToast, newToast, ShowSwal } from "@/utils/helper-function";
 import { TbShoppingCartX } from "react-icons/tb";
 import Link from "next/link";
 import { Button, TextField } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 export default function CartSection() {
   const [userCart, setUserCart] = useState([]);
-
-  const [postOption, setPostOption] = useState("41000");
 
   const [discountInp, setDiscountInp] = useState("");
 
@@ -23,9 +20,12 @@ export default function CartSection() {
 
   const [loading, setLoading] = useState(true);
 
+  const router = useRouter();
+
   useEffect(() => {
     GetCart();
   }, []);
+
   async function GetCart() {
     setLoading(true);
     setUserCart(JSON.parse(localStorage.getItem("cart")) || []);
@@ -34,7 +34,7 @@ export default function CartSection() {
     setLoading(false);
   }
   return (
-    <>
+    <main className="sm:p-10 p-4 flex md:flex-row flex-col sm:gap-10 gap-4 moraba-regular">
       {!loading && userCart.length !== 0 && (
         <>
           <section className="flex relative flex-col gap-4 rounded-lg w-full">
@@ -53,7 +53,7 @@ export default function CartSection() {
           </section>
 
           <section
-            className={`w-full sticky top-[100px] left-0 sm:h-[600px] h-[350px] bg-white py-4 px-6 rounded-lg flex flex-col justify-between`}
+            className={`md:w-[500px] w-full sticky top-[100px] left-0 sm:h-[600px] h-[350px] bg-white py-4 px-6 rounded-lg flex flex-col justify-between`}
           >
             <div className="flex flex-col gap-4">
               <div className="border-b py-5 flex items-center justify-between">
@@ -61,7 +61,7 @@ export default function CartSection() {
                 <span className="moraba-bold text-xl text-zinc-700">
                   {(
                     allPriceState -
-                    ((allPriceState + Number(postOption)) * discount) / 100
+                    (allPriceState * discount) / 100
                   ).toLocaleString()}
                   <span className="pr-2 text-sm"> تومان</span>
                 </span>
@@ -97,7 +97,7 @@ export default function CartSection() {
               size="large"
               fullWidth
             >
-              ادامه جهت تسویه حساب
+              تکمیل سفارش
             </Button>
           </section>
         </>
@@ -133,7 +133,7 @@ export default function CartSection() {
           <div className="w-[600px] h-[500px] bg-gray-300 animate-pulse rounded-lg"></div>
         </>
       )}
-    </>
+    </main>
   );
   function getAllPrice() {
     let allPrice = 0;
@@ -162,10 +162,6 @@ export default function CartSection() {
     }
   }
   async function BuyHandler() {
-    ShowSwal(
-      "info",
-      "این وبسایت صرفا نمونه کار است و خدماتی ارائه نمیکند",
-      "اوکی"
-    );
+    router.push("checkout");
   }
 }

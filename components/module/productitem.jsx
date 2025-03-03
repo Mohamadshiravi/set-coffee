@@ -22,7 +22,7 @@ export default function ProductItem({
   image,
   reRenderWish,
 }) {
-  const { FetchUserData } = useContext(UserContext);
+  const { FetchUserData, FetchUserCart } = useContext(UserContext);
   return (
     <>
       <div>
@@ -108,7 +108,7 @@ export default function ProductItem({
               ))}
             </div>
             <div className="moraba-bold flex gap-1 items-center justify-center h-[30px] mb-2 text-zinc-800">
-              <h4>{TidyNumber(price)}</h4>
+              <h4>{price.toLocaleString()}</h4>
               <h4 className="text-sm text-zinc-600">تومان</h4>
             </div>
           </Link>
@@ -144,16 +144,6 @@ export default function ProductItem({
       }
     }
   }
-  function TidyNumber(Number) {
-    Number += "";
-    Number = Number.replace(",", "");
-    let x = Number.split(".");
-    let y = x[0];
-    let z = x.length > 1 ? "." + x[1] : "";
-    var rgx = /(\d+)(\d{3})/;
-    while (rgx.test(y)) y = y.replace(rgx, "$1" + "," + "$2");
-    return y + z;
-  }
 
   async function AddToCartHandler() {
     let cartArray = JSON.parse(localStorage.getItem("cart")) || [];
@@ -168,6 +158,7 @@ export default function ProductItem({
 
     if (cartArray.length === 0) {
       cartArray.push(cartItem);
+      newToast("محصول به سبد خرید شما اضافه شد !!!");
     } else {
       const isProductInCart = cartArray.some((e) => e.id === id);
       if (!isProductInCart) {
@@ -179,6 +170,6 @@ export default function ProductItem({
       }
     }
     localStorage.setItem("cart", JSON.stringify(cartArray));
-    FetchUserData();
+    FetchUserCart();
   }
 }

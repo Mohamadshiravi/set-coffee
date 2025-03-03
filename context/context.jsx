@@ -4,10 +4,14 @@ import { createContext, useEffect, useReducer } from "react";
 import axios from "axios";
 
 const FETCH_USER_DATA = "SET_USER_DATA";
+const FETCH_USER_CART = "SET_USER_CART";
 
 function UserReducer(state, action) {
   switch (action.type) {
     case FETCH_USER_DATA: {
+      return { ...state, ...action.payload };
+    }
+    case FETCH_USER_CART: {
       return { ...state, ...action.payload };
     }
 
@@ -19,7 +23,7 @@ function UserReducer(state, action) {
 const initialState = {
   user: null,
   wishLength: 0,
-  userCart: [],
+  userCart: null,
   loading: true,
   error: null,
 };
@@ -36,7 +40,6 @@ export function UserProvider({ children }) {
       const res = await axios.get("/api/auth/me");
 
       userData.loading = false;
-      userData.userCart = JSON.parse(localStorage.getItem("cart")) || [];
       userData.user = res.data.theUser;
       userData.wishLength = res.data.wishLength;
 
@@ -45,12 +48,17 @@ export function UserProvider({ children }) {
       const userData = {
         user: null,
         wishLength: 0,
-        userCart: [],
         loading: false,
         error: "unAuth",
       };
       dispatch({ type: FETCH_USER_DATA, payload: userData });
     }
+  }
+  function FetchUserCart() {
+    const userData = {};
+    userData.userCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    dispatch({ type: FETCH_USER_CART, payload: userData });
   }
 
   return (
@@ -62,6 +70,7 @@ export function UserProvider({ children }) {
         loading: state.loading,
         error: state.error,
         FetchUserData,
+        FetchUserCart,
       }}
     >
       {children}
