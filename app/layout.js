@@ -16,7 +16,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" dir="rtl">
-      <body className="select-none overflow-x-hidden moraba-regular bg-stone-200 max-w-[2000px]">
+      <body className="select-none overflow-x-hidden moraba-regular text-zinc-800 bg-stone-200 max-w-[2000px]">
         <MuiThemeProvider>
           <ScrollToTopBtn />
           <UserProvider>
