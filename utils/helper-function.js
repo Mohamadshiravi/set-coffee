@@ -15,6 +15,13 @@ export function newErrorToast(text) {
     autoClose: 2000,
   });
 }
+export function newSucToast(text) {
+  return toast.success(text, {
+    theme: "colored",
+    position: "top-center",
+    autoClose: 2000,
+  });
+}
 export function newToast(text) {
   return toast(text, {
     theme: "colored",

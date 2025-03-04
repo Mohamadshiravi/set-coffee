@@ -5,6 +5,8 @@ import axios from "axios";
 
 const FETCH_USER_DATA = "SET_USER_DATA";
 const FETCH_USER_CART = "SET_USER_CART";
+const INC_USER_WISH = "INCREMENT_USER_WISH";
+const DEC_USER_WISH = "DECREMENT_USER_WISH";
 
 function UserReducer(state, action) {
   switch (action.type) {
@@ -13,6 +15,12 @@ function UserReducer(state, action) {
     }
     case FETCH_USER_CART: {
       return { ...state, ...action.payload };
+    }
+    case INC_USER_WISH: {
+      return { ...state, wishLength: state.wishLength++ };
+    }
+    case DEC_USER_WISH: {
+      return { ...state, wishLength: state.wishLength-- };
     }
 
     default:
@@ -61,6 +69,15 @@ export function UserProvider({ children }) {
     dispatch({ type: FETCH_USER_CART, payload: userData });
   }
 
+  function IncrementUserWish() {
+    console.log("hi");
+
+    dispatch({ type: INC_USER_WISH });
+  }
+  function DecrementUserWish() {
+    dispatch({ type: DEC_USER_WISH });
+  }
+
   return (
     <UserContext.Provider
       value={{
@@ -71,6 +88,8 @@ export function UserProvider({ children }) {
         error: state.error,
         FetchUserData,
         FetchUserCart,
+        IncrementUserWish,
+        DecrementUserWish,
       }}
     >
       {children}

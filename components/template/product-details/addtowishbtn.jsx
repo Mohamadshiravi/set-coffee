@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { UserContext } from "@/context/context";
 
 export default function AddToWishBtn({ id }) {
-  const { FetchUserData } = useContext(UserContext);
+  const { IncrementUserWish } = useContext(UserContext);
   return (
     <button
       onClick={AddToWishHandler}
@@ -22,7 +22,7 @@ export default function AddToWishBtn({ id }) {
       const res = await axios.post("/api/wishlist", { productID: id });
       if (res.status === 201) {
         newToast("با موفقیت به لیست علاقه مندی ها اضافه شد");
-        FetchUserData();
+        IncrementUserWish();
       } else if (res.status === 207) {
         newToast("محصول در علاقه مندی ها شما موجود میباشد");
       }

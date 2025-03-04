@@ -10,7 +10,7 @@ export default async function DashboardLayout({ children }) {
   return (
     <main className="relative grid lg:grid-cols-[2.5fr_9.5fr] grid-cols-[1fr]">
       <DashboardMenu theUser={JSON.parse(JSON.stringify(theUser))} />
-      <section className="w-full bg-white">{children}</section>
+      <section className="w-full bg-white sm:mb-0 mb-12">{children}</section>
     </main>
   );
 }

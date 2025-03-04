@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CartItem from "./cart-item";
 import axios from "axios";
 import { newErrorToast, newToast, ShowSwal } from "@/utils/helper-function";
@@ -8,19 +8,17 @@ import { TbShoppingCartX } from "react-icons/tb";
 import Link from "next/link";
 import { Button, TextField } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { UserContext } from "@/context/context";
 
 export default function CartSection() {
   const [userCart, setUserCart] = useState([]);
-
   const [discountInp, setDiscountInp] = useState("");
-
   const [allPriceState, setAllPriceState] = useState(0);
-
   const [discount, setDiscount] = useState(0);
-
   const [loading, setLoading] = useState(true);
 
   const router = useRouter();
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     GetCart();
@@ -162,6 +160,10 @@ export default function CartSection() {
     }
   }
   async function BuyHandler() {
-    router.push("checkout");
+    if (user === null) {
+      newErrorToast("لطفا ابتدا یک اکانت بسازید  یا وارد اکانت خود شوید");
+    } else {
+      router.push("checkout");
+    }
   }
 }

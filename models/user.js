@@ -24,6 +24,9 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  imageId: {
+    type: String,
+  },
   refreshToken: String,
 });
 

@@ -86,7 +86,7 @@ export default function SendMessageForm() {
         />
       </div>
       <Button
-        sx={{ height: "50px", fontSize: "15px", fontFamily: "moraba-bold" }}
+        sx={{ fontSize: "15px", fontFamily: "moraba-bold" }}
         loading={loading}
         fullWidth
         onClick={SendMessageHndler}

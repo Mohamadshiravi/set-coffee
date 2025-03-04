@@ -6,9 +6,13 @@ import { useContext, useEffect } from "react";
 export default function CheckoutReceipt() {
   const { userCart } = useContext(UserContext);
 
-  useEffect(() => {
-    console.log(userCart);
-  }, [userCart]);
+  function calculateVAT(price, taxRate = 10) {
+    const tax = (price * taxRate) / 100;
+    const finalPrice = price + tax;
+    return { tax, finalPrice };
+  }
+
+  const { tax, finalPrice } = calculateVAT(getAllPrice());
 
   return (
     <section className="flex flex-col items-center bg-stone-300 rounded-xs p-4 relative">
@@ -58,11 +62,11 @@ export default function CheckoutReceipt() {
           <span className="moraba-bold">مجموع</span>
           <span className="flex flex-col items-end gap-1 text-2xl">
             <span>
-              {getAllPrice(100000).toLocaleString()}
+              {(finalPrice + 50000).toLocaleString()}
               <span className="text-xs pr-1">تومان</span>
             </span>
             <span className="text-xs px-1 text-zinc-800 font-normal">
-              شامل {(21364).toLocaleString()} تومان مالیات بر ارزش افزوده
+              شامل {tax.toLocaleString()} تومان مالیات بر ارزش افزوده
             </span>
           </span>
         </div>
@@ -73,12 +77,10 @@ export default function CheckoutReceipt() {
       </div> */}
     </section>
   );
-  function getAllPrice(addedValue = 0) {
+  function getAllPrice() {
     let allPrice = 0;
 
     userCart?.map((e) => (allPrice = allPrice + e.price * e.count));
-
-    allPrice = allPrice + addedValue;
 
     return allPrice;
   }

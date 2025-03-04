@@ -22,7 +22,8 @@ export default function ProductItem({
   image,
   reRenderWish,
 }) {
-  const { FetchUserData, FetchUserCart } = useContext(UserContext);
+  const { IncrementUserWish, FetchUserCart, DecrementUserWish } =
+    useContext(UserContext);
   return (
     <>
       <div>
@@ -38,7 +39,7 @@ export default function ProductItem({
             ) : (
               <button
                 onClick={DeleteFromWish}
-                className="bg-red-700 text-white hover:bg-red-800 transition cursor-pointer lg:hidden block absolute shadow-3xl p-2 rounded-full text-xl top-3 left-3"
+                className="transition text-zinc-700 hover:bg-zinc-100 cursor-pointer lg:hidden block absolute p-2 rounded-full text-2xl top-1 left-1"
               >
                 <MdOutlineClose />
               </button>
@@ -123,6 +124,7 @@ export default function ProductItem({
         newToast("با موفقیت از لیست علاقه مندی ها حذف شد");
         if (reRenderWish) {
           reRenderWish();
+          DecrementUserWish();
         }
       }
     } catch (error) {
@@ -134,7 +136,7 @@ export default function ProductItem({
       const res = await axios.post("/api/wishlist", { productID: id });
       if (res.status === 201) {
         newToast("با موفقیت به لیست علاقه مندی ها اضافه شد");
-        FetchUserData();
+        IncrementUserWish();
       } else if (res.status === 207) {
         newToast("محصول در علاقه مندی ها شما موجود میباشد");
       }

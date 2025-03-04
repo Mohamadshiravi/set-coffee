@@ -2,6 +2,7 @@
 
 import ProductItem from "@/components/module/productitem";
 import { newErrorToast } from "@/utils/helper-function";
+import { Skeleton } from "@mui/material";
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -16,7 +17,6 @@ export default function WishlistPage() {
   }, []);
 
   async function FetchWishList() {
-    setLoading(true);
     try {
       const res = await axios.get("/api/wishlist");
       setWishList(res.data.data);
@@ -54,10 +54,14 @@ export default function WishlistPage() {
                       />
                     ))
                   : Array.from({ length: 4 }).map((e, i) => (
-                      <div
+                      <Skeleton
                         key={i}
-                        className="border flex gap-2 flex-col itemsc-enter animate-pulse w-full sm:h-[400px] h-[350px] bg-gray-300 rounded-md"
-                      ></div>
+                        sx={{ bgcolor: "grey.300", borderRadius: "5px" }}
+                        variant="rectangular"
+                        width={"100%"}
+                        animation="wave"
+                        height={"400px"}
+                      />
                     ))}
               </div>
             </div>
