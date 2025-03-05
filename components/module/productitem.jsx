@@ -93,7 +93,7 @@ export default function ProductItem({
             </button>
           </div>
           <Link href={`/products/${id}`}>
-            <h3 className="text-center py-4 px-3 sm:text-base text-sm moraba-bold truncate-2 text-zinc-700 h-[48px]">
+            <h3 className="text-center py-4 px-3 sm:text-base text-sm moraba-bold truncate-2 text-zinc-700 h-[62px]">
               {title}
             </h3>
             <div className="flex items-center justify-center text-lg p-2">
