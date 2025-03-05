@@ -1,17 +1,11 @@
 import mongoose from "mongoose";
 import productModel from "./product";
+import userModel from "./user";
 
 const commentSchema = mongoose.Schema({
-  avatar: {
-    type: String,
-  },
-  username: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
+  user: {
+    type: mongoose.Types.ObjectId,
+    ref: "User",
   },
   body: {
     type: String,

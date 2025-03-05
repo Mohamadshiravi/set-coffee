@@ -15,16 +15,7 @@ export default function MuiThemeProvider({ children }) {
         contrastText: "#ffffff",
       },
     },
-    components: {
-      MuiButton: {
-        styleOverrides: {
-          root: {
-            height: "50px",
-            fontSize: "1.2rem",
-          },
-        },
-      },
-    },
+
     typography: {
       fontFamily: "moraba-regular",
     },

@@ -7,13 +7,13 @@ export default async function TiketDetails(props) {
   await ConnectTODb();
   const userTiket = await tiketModel
     .findOne({ _id: params.id }, "title isClosed body createdAt department")
-    .populate("user", "role username");
+    .populate("user", "role username avatar");
   const tiketAnswer = await tiketModel
     .findOne(
       { answerFor: params.id },
       "title isClosed body createdAt department"
     )
-    .populate("user", "role username");
+    .populate("user", "role username avatar");
   return (
     <section className="p-8">
       <div className="w-full rounded-lg grid grid-cols-[1fr] gap-4 px-10 pb-16 bg-gray-100">
@@ -27,8 +27,8 @@ export default async function TiketDetails(props) {
         <div className="rounded-lg bg-white sm:w-[400px] w-[240px] p-4 justify-self-start shadow-lg">
           <div className="flex sm:flex-row flex-col sm:gap-2 gap-6">
             <Image
-              alt="guest"
-              src={"/img/bg-photo/guest.jpg"}
+              alt="user avatar"
+              src={userTiket.user.avatar || "/img/bg-photo/guest.jpg"}
               width={500}
               height={500}
               className="rounded-full object-cover w-[90px] h-[90px] sm:mx-0 mx-auto"
@@ -63,7 +63,8 @@ export default async function TiketDetails(props) {
           >
             <div className="flex sm:flex-row flex-col sm:gap-2 gap-6">
               <Image
-                src={"/img/bg-photo/guest.jpg"}
+                alt="user avatar"
+                src={tiketAnswer.user.avatar || "/img/bg-photo/guest.jpg"}
                 width={500}
                 height={500}
                 className="rounded-full object-cover w-[90px] h-[90px] sm:mx-0 mx-auto"

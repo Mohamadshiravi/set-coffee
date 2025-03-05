@@ -79,6 +79,7 @@ export default function ChangeUserDetailsForm({ theUser }) {
           }}
         />
         <Button
+          size="large"
           loading={loading}
           onClick={ChangeDetailsHandler}
           fullWidth

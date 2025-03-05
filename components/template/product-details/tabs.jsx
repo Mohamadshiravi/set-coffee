@@ -88,10 +88,7 @@ export default function Tabs({
           />
         )}
         {tab === "comments" && (
-          <CommentSection
-            comments={JSON.parse(JSON.stringify(comments))}
-            productID={productID}
-          />
+          <CommentSection comments={comments} productID={productID} />
         )}
       </div>
     </section>

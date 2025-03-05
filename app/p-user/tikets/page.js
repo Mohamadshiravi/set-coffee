@@ -30,9 +30,6 @@ export default async function TiketsPage() {
   return (
     <>
       <section>
-        <h2 className="lg:text-center text-left lg:border-none w-full lg:text-3xl text-xl text-headcolor mt-3 pl-4 moraba-bold py-8 border-b-2 border-zinc-300">
-          تیکت های شما
-        </h2>
         <section className="p-6">
           <div className="flex w-full flex-wrap gap-6">
             <div className="sm:w-[200px] w-[150px] grow flex flex-col trasnition duration-300 cursor-pointer items-center text-zinc-600 font-bold moraba-bold hover:bg-zinc-100 shadow-4xl gap-3 rounded-md sm:py-10 py-4 group sm:text-base text-sm">

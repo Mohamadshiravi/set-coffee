@@ -36,10 +36,10 @@ const orderSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
-    products: {
+    order: {
       type: [
         {
-          _id: {
+          product: {
             type: mongoose.Types.ObjectId,
             ref: "Product",
             required: true,

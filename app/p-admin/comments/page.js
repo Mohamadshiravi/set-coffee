@@ -7,7 +7,8 @@ export default async function CommentsPage() {
   await ConnectTODb();
   const allComments = await commentModel
     .find({}, "-__V")
-    .populate("product", "title");
+    .populate("product", "title")
+    .populate("user", "username avatar");
   return (
     <section className="px-6">
       <div className="bg-white px-6 py-10 w-full m-auto mt-6 rounded-lg flex sm:flex-row flex-col-reverse sm:gap-20 gap-10 items-center justify-center moraba-regular text-zinc-700">
@@ -31,13 +32,13 @@ export default async function CommentsPage() {
                 key={i}
                 id={JSON.parse(JSON.stringify(e._id))}
                 body={JSON.parse(JSON.stringify(e.body))}
-                username={JSON.parse(JSON.stringify(e.username))}
+                username={JSON.parse(JSON.stringify(e.user.username))}
                 queued={JSON.parse(JSON.stringify(e.queued))}
                 date={JSON.parse(JSON.stringify(e.date))}
                 productTitle={JSON.parse(JSON.stringify(e.product.title))}
                 productID={JSON.parse(JSON.stringify(e.product._id))}
                 score={JSON.parse(JSON.stringify(e.score))}
-                avatar={JSON.parse(JSON.stringify(e.avatar || ""))}
+                avatar={JSON.parse(JSON.stringify(e.user.avatar || ""))}
               />
             ))}
           {allComments.filter((e) => e.queued === true).length === 0 && (
@@ -57,13 +58,13 @@ export default async function CommentsPage() {
                 key={i}
                 id={JSON.parse(JSON.stringify(e._id))}
                 body={JSON.parse(JSON.stringify(e.body))}
-                username={JSON.parse(JSON.stringify(e.username))}
+                username={JSON.parse(JSON.stringify(e.user.username))}
                 queued={JSON.parse(JSON.stringify(e.queued))}
                 date={JSON.parse(JSON.stringify(e.date))}
                 productTitle={JSON.parse(JSON.stringify(e.product.title))}
                 productID={JSON.parse(JSON.stringify(e.product._id))}
                 score={JSON.parse(JSON.stringify(e.score))}
-                avatar={JSON.parse(JSON.stringify(e.avatar || ""))}
+                avatar={JSON.parse(JSON.stringify(e.user.avatar || ""))}
               />
             ))}
         </div>

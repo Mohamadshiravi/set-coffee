@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { IoIosStarOutline } from "react-icons/io";
 import { IoStar } from "react-icons/io5";
 
@@ -12,9 +13,12 @@ export default function Comment({ body, username, score, date, avatar }) {
         </div>
       ) : (
         <div className="sm:w-auto w-full">
-          <img
+          <Image
+            width={800}
+            height={800}
+            alt="user avatar"
             src={avatar}
-            className="sm:w-[150px] sm:shadow-none shadow-xl w-[120px] sm:static absolute -top-16 left-[25%] sm:m-0 m-auto aspect-square rounded-full"
+            className="sm:w-[150px] object-cover sm:shadow-none shadow-xl w-[120px] sm:static absolute -top-16 left-[25%] sm:m-0 m-auto aspect-square rounded-full"
           />
         </div>
       )}

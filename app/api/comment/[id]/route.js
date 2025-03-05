@@ -1,4 +1,5 @@
 import commentModel from "@/models/comment";
+import productModel from "@/models/product";
 import IsUserAdmin from "@/utils/auth-utill/is-user-admin";
 import ConnectTODb from "@/utils/connecttodb";
 
@@ -12,7 +13,40 @@ export async function PUT(req, props) {
   }
 
   try {
-    await commentModel.findOneAndUpdate({ _id: params.id }, { queued: false });
+    const comment = await commentModel.findOne(
+      { _id: params.id },
+      "score product"
+    );
+    const product = await productModel.findOne(
+      { _id: comment.product },
+      "comments score"
+    );
+
+    const totalReviews = product.comments.length;
+    let newProductScore = 0;
+
+    if (totalReviews !== 0) {
+      newProductScore =
+        (product.score * (totalReviews - 1) + comment.score) / totalReviews;
+    } else {
+      newProductScore = comment.score;
+    }
+
+    console.log(totalReviews, product.score, newProductScore);
+
+    await productModel.findOneAndUpdate(
+      { _id: product._id },
+      {
+        score: newProductScore,
+        $push: { comments: comment._id },
+      }
+    );
+    await commentModel.findOneAndUpdate(
+      { _id: comment._id },
+      {
+        queued: false,
+      }
+    );
     return Response.json({ message: "comment added" }, { status: 200 });
   } catch (e) {
     return Response.json({ message: "error" }, { status: 500 });

@@ -18,6 +18,7 @@ import LastestProductSlider from "@/components/template/product-details/lastest-
 import ConnectTODb from "@/utils/connecttodb";
 import productModel from "@/models/product";
 import AddToWishBtn from "@/components/template/product-details/addtowishbtn";
+import { notFound } from "next/navigation";
 
 export default async function ProductDetails(props) {
   const params = await props.params;
@@ -25,7 +26,18 @@ export default async function ProductDetails(props) {
 
   const product = await productModel
     .findOne({ _id: params.id }, "-__v")
-    .populate("comments", "-__v");
+    .populate({
+      path: "comments",
+      select: "-__v",
+      populate: {
+        path: "user",
+        select: "avatar username",
+      },
+    });
+
+  if (!product) {
+    return notFound();
+  }
 
   const lastestProduct = await productModel.find(
     { smell: product.smell },
@@ -36,7 +48,7 @@ export default async function ProductDetails(props) {
   return (
     <>
       <Header />
-      <main className="mt-[150px] lg:px-20 md:px-10 sm:px-4 px-2 text-zinc-700">
+      <main className="pt-[150px] lg:pb-20 md:pb-10 sm:pb-4 pb-2 lg:px-20 md:px-10 sm:px-4 px-2 text-zinc-700 bg-zinc-100">
         <section className="w-full overflow-hidden flex xl:flex-row pb-2 flex-col gap-3">
           <div className="xl:w-[500px] w-full select-none bg-gray-100">
             <ProductSlider images={product.images} alt={product.title} />
@@ -112,18 +124,6 @@ export default async function ProductDetails(props) {
                 </span>
               </h3>
               <PageTags tags={JSON.parse(JSON.stringify(product.tags))} />
-              <h3 className="gap-4 flex">
-                <span className="font-bold text-zinc-800">
-                  به اشتراک گذاری :
-                </span>
-                <div className="flex gap-2 text-2xl">
-                  <FaFacebook className="text-zinc-600 hover:text-zinc-900 transition-all cursor-pointer" />
-                  <FaLinkedin className="text-zinc-600 hover:text-zinc-900 transition-all cursor-pointer" />
-                  <FaPinterest className="text-zinc-600 hover:text-zinc-900 transition-all cursor-pointer" />
-                  <FaSquareXTwitter className="text-zinc-600 hover:text-zinc-900 transition-all cursor-pointer" />
-                  <FaTelegram className="text-zinc-600 hover:text-zinc-900 transition-all cursor-pointer" />
-                </div>
-              </h3>
             </div>
           </div>
         </section>

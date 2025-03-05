@@ -8,22 +8,21 @@ export default async function UserCommentpage() {
 
   await ConnectTODb();
   const userComments = await commentModel
-    .find({ email: theUser.email }, "-__v")
-    .populate("product", "title");
+    .find({ user: theUser._id }, "-__v")
+    .populate("product", "title")
+    .populate("user", "username avatar");
 
   return (
     <>
-      <h2 className="lg:text-center text-left lg:border-none w-full lg:text-3xl text-xl text-headcolor mt-3 pl-4 moraba-bold py-8 border-b-2 border-zinc-300">
-        کامنت های شما
-      </h2>
       <div className="p-6">
-        <div className="bg-gray-100 flex flex-col sm:gap-4 gap-20 shabnam p-4 rounded-lg">
+        <div className="flex flex-col sm:gap-4 gap-20 shabnam p-4 sm:pt-4 pt-20 rounded-lg ">
           {userComments.map((e, i) => (
             <DashboardComment
               key={i}
               body={e.body}
               score={e.score}
-              username={e.username}
+              username={e.user.username}
+              avatar={e.user.avatar}
               date={e.date}
               queued={e.queued}
               productID={e.product._id}

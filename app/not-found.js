@@ -23,7 +23,7 @@ const page = () => {
         </p>
         <Link
           href="/"
-          className="bg-brown-500 text-white rounded-lg py-4 font-bold mt-4 block text-center shabnam shadow-xl shadow-brown-500"
+          className="bg-brown-500 text-white rounded-lg py-4 mt-4 block text-center shabnam"
         >
           برگشت به صفحه اصلی
         </Link>

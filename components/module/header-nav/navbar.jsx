@@ -11,7 +11,7 @@ import { PiShoppingCartSimpleLight } from "react-icons/pi";
 export default function Navbar() {
   const path = usePathname();
   return (
-    <nav className="bg-white fixed left-0 bottom-0 w-full shadow-3xl sm:hidden block">
+    <nav className="bg-white fixed left-0 bottom-0 w-full shadow-3xl sm:hidden block z-40">
       <ul className="flex items-center justify-between px-6 py-2 text-[22px]">
         <li>
           <Link

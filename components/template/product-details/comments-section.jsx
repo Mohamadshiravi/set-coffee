@@ -1,31 +1,28 @@
 "use client";
 
-import { IoIosStarOutline } from "react-icons/io";
 import Comment from "../../module/comment";
-import { IoStar } from "react-icons/io5";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import { newErrorToast, newToast, ShowSwal } from "@/utils/helper-function";
-import LoadingSwg from "@/components/module/loading-swg";
+import { Button, Rating } from "@mui/material";
+import { UserContext } from "@/context/context";
 
 export default function CommentSection({ comments, productID }) {
   const [score, setScore] = useState(null);
   const [body, setBody] = useState("");
 
   const [loading, setLoading] = useState(false);
+
+  const { user } = useContext(UserContext);
   return (
     <>
       <section>
-        <h2 className="moraba-bold text-xl text-zinc-600">
-          {comments.filter((e) => e.queued === false).length} دیدگاه برای پودر
-          قهوه ترک بسته 2 عددی
-        </h2>
         {comments.filter((e) => e.queued === false).length === 0 ? (
           <div className="mt-6 flex items-center justify-center h-[200px] text-3xl font-bold">
             <h2>): دیدگاهی موجود نیست</h2>
           </div>
         ) : (
-          <div className="flex flex-col sm:py-8 py-20 sm:gap-6 gap-24 mt-6">
+          <div className="flex flex-col sm:py-8 py-20 sm:gap-6 gap-24">
             {comments
               .filter((e) => e.queued === false)
               .map((e, i) => (
@@ -33,8 +30,8 @@ export default function CommentSection({ comments, productID }) {
                   key={i}
                   body={e.body}
                   score={e.score}
-                  username={e.username}
-                  avatar={e.avatar}
+                  username={e.user.username}
+                  avatar={e.user.avatar}
                   date={e.date}
                 />
               ))}
@@ -49,61 +46,36 @@ export default function CommentSection({ comments, productID }) {
           </h4>
           <div className="flex gap-4 mt-4">
             {!score ? (
-              <>
+              <div className="flex items-center gap-2">
                 <span className="font-bold">امتیاز شما :</span>
                 <span className="text-red-500 text-2xl">*</span>
-                <div className="flex text-gray-500 text-xl" id="rating">
-                  <IoIosStarOutline
-                    className="cursor-pointer"
-                    onClick={() => {
-                      setScore(5);
+                <div dir="ltr">
+                  <Rating
+                    value={score}
+                    onChange={(e) => {
+                      setScore(e.target.value);
                     }}
-                  />
-                  <IoIosStarOutline
-                    className="cursor-pointer"
-                    onClick={() => {
-                      setScore(4);
-                    }}
-                  />
-                  <IoIosStarOutline
-                    className="cursor-pointer"
-                    onClick={() => {
-                      setScore(3);
-                    }}
-                  />
-                  <IoIosStarOutline
-                    className="cursor-pointer"
-                    onClick={() => {
-                      setScore(2);
-                    }}
-                  />
-                  <IoIosStarOutline
-                    className="cursor-pointer"
-                    onClick={() => {
-                      setScore(1);
-                    }}
+                    precision={1}
+                    size="large"
                   />
                 </div>
-              </>
+              </div>
             ) : (
               <div className="flex items-center text-gray-500 text-xl">
-                {Array.from({ length: score }).map((e, i) => (
-                  <IoStar key={i} className="text-yellow-500" />
-                ))}
-                {Array.from({ length: 5 - score }).map((e, i) => (
-                  <IoIosStarOutline key={i} className="" />
-                ))}
+                <Rating value={score} readOnly />
+
                 <span className="text-base mx-4 text-zinc-600">
                   امتیاز : ({score})
                 </span>
-                <button
-                  className="bg-gray-300 border border-gray-500 px-2 py-1 text-sm text-zinc-800 hover:bg-gray-400"
+                <Button
+                  variant="outlined"
+                  size="small"
                   onClick={() => {
                     setScore(null);
                   }}
                 >
                   امتیاز مجدد
-                </button>
+                </Button>
               </div>
             )}
           </div>
@@ -120,22 +92,36 @@ export default function CommentSection({ comments, productID }) {
           <span className="block text-sm mt-2 text-zinc-600">
             ایمیل و نام کاربری از توکن شما استخراخ خواهد شد .
           </span>
-          <button
-            onClick={AddCommenthandler}
-            className="bg-teal-600 text-white moraba-bold rounded-lg px-20 py-2 mt-4 text-xl hover:bg-teal-700 transition"
-          >
-            {loading ? <LoadingSwg /> : "ثبت"}
-          </button>
+          <div className="sm:w-[250px] w-full mt-6">
+            <Button
+              loading={loading}
+              variant="contained"
+              fullWidth
+              size="large"
+              onClick={AddCommenthandler}
+              className="bg-teal-600 text-white moraba-bold rounded-lg px-20 py-2 mt-4 text-xl hover:bg-teal-700 transition"
+            >
+              ثبت
+            </Button>
+          </div>
         </div>
       </section>
     </>
   );
   async function AddCommenthandler() {
-    setLoading(true);
+    if (!user) {
+      ShowSwal("error", "لطفا ابتدا وارد حساب کاربری خود شوید", "باشه");
+      return;
+    }
+
     if (score === null) {
-      setLoading(false);
       return newErrorToast("لطفا امتیاز خود را ثبت کنید");
     }
+    if (body === "") {
+      return newErrorToast("لطفا نظر خود را  بنویسید");
+    }
+
+    setLoading(true);
     const comment = {
       body,
       score,
@@ -155,8 +141,8 @@ export default function CommentSection({ comments, productID }) {
         setLoading(false);
       }
     } catch (error) {
+      newToast("کامنت شما ثبت نمیشود");
       setLoading(false);
-      ShowSwal("error", "لطفا ابتدا وارد حساب کاربری خود شوید", "باشه");
     }
   }
 }

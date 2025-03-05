@@ -29,15 +29,11 @@ export default function WishlistPage() {
   return (
     <div>
       <>
-        <h2 className="lg:text-center text-left lg:border-none w-full lg:text-3xl text-xl text-headcolor mt-3 pl-4 moraba-bold py-8 border-b-2 border-zinc-300">
-          محصولات مورد علاقه شما
-        </h2>
-
         {!loading && wishList.length === 0 ? (
           <div></div>
         ) : (
           <>
-            <div className="p-6">
+            <div className="sm:p-6">
               <div className="w-full rounded-lg bg-gray-100 p-4 grid gap-4 lg:grid-cols-[3fr_3fr_3fr_3fr] md:grid-cols-[4fr_4fr_4fr]  grid-cols-[1fr]">
                 {!loading
                   ? wishList.map((e, i) => (

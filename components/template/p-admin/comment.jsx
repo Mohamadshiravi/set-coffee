@@ -2,6 +2,7 @@
 
 import { newToast } from "@/utils/helper-function";
 import axios from "axios";
+import Image from "next/image";
 import Link from "next/link";
 import { IoIosStarOutline } from "react-icons/io";
 import { IoStar } from "react-icons/io5";
@@ -28,9 +29,12 @@ export default function PAdminComment({
           </div>
         ) : (
           <div className="sm:w-auto w-full">
-            <img
+            <Image
+              width={800}
+              height={800}
+              alt="user-avatar"
               src={avatar}
-              className="sm:w-[150px] sm:shadow-none shadow-xl w-[120px] sm:static absolute -top-16 left-[25%] sm:m-0 m-auto aspect-square rounded-full"
+              className="sm:w-[150px] object-cover sm:shadow-none shadow-xl w-[120px] sm:static absolute -top-16 left-[25%] sm:m-0 m-auto aspect-square rounded-full"
             />
           </div>
         )}
@@ -73,7 +77,7 @@ export default function PAdminComment({
           <span>برای محصول :</span>
           <Link
             href={`/products/${productID}`}
-            className="block sm:w-[200px] w-[140px] truncate underline underline-offset-8 text-brown-500"
+            className="block truncate underline underline-offset-8 text-brown-500"
           >
             {productTitle}
           </Link>

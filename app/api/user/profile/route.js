@@ -1,4 +1,3 @@
-import commentModel from "@/models/comment";
 import userModel from "@/models/user";
 import isUserLogedIn from "@/utils/auth-utill/is-user-login";
 import ImageKit from "imagekit";
@@ -42,16 +41,6 @@ export async function POST(req) {
         imageId: response.fileId,
       }
     );
-
-    const allComment = await commentModel.find({});
-    allComment.map(async (e, i) => {
-      if (e.email === theUser.email) {
-        await commentModel.findOneAndUpdate(
-          { _id: e._id },
-          { avatar: response.url }
-        );
-      }
-    });
 
     return Response.json(
       { message: "user updated", url: response.url },

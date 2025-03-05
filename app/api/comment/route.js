@@ -12,39 +12,25 @@ export async function POST(req) {
   if (!theUser) {
     return Response.json({ message: "User not login" }, { status: 401 });
   }
+
   try {
-    const theComment = await commentModel.create({
-      avatar: theUser.avatar,
-      username: theUser.username,
-      email: theUser.email,
+    // یافتن محصول قبل از افزودن کامنت
+    const currentProduct = await productModel.findOne({ _id: product });
+    console.log(currentProduct, product);
+
+    if (!currentProduct) {
+      return Response.json({ message: "Product not found" }, { status: 404 });
+    }
+
+    // ایجاد کامنت جدید
+    await commentModel.create({
+      user: theUser._id,
       body,
       score,
       product,
       queued: true,
     });
 
-    const currentProduct = await productModel.findOne({ _id: product });
-
-    //product score
-    const productScore =
-      currentProduct.score === 0
-        ? score
-        : (currentProduct.score * currentProduct.comments.length + score) /
-          (currentProduct.comments.length + 1);
-
-    await productModel.findOneAndUpdate(
-      { _id: product },
-      {
-        score: Math.floor(productScore),
-      }
-    );
-
-    await productModel.findOneAndUpdate(
-      { _id: product },
-      {
-        $push: { comments: theComment._id },
-      }
-    );
     return Response.json({ message: "comment added" }, { status: 201 });
   } catch (error) {
     return Response.json({ message: "comment not added" }, { status: 500 });

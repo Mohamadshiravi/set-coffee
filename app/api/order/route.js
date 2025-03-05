@@ -23,7 +23,7 @@ export async function POST(req) {
     let serverCart = await Promise.all(
       cart.map(async (e) => {
         const product = await productModel.findOne({ _id: e.id }, "price");
-        return { ...product.toObject(), count: e.count };
+        return { product: product._id, price: product.price, count: e.count };
       })
     );
 
@@ -44,14 +44,12 @@ export async function POST(req) {
       postCode,
       details,
       allPrice,
-      products: serverCart,
+      order: serverCart,
       user: theUser._id,
     });
 
     return Response.json({ message: "order added" }, { status: 201 });
   } catch (error) {
-    console.log(error);
-
     return Response.json({ message: "server error" }, { status: 500 });
   }
 }
