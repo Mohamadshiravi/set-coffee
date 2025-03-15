@@ -8,7 +8,7 @@ import swal from "sweetalert";
 import axios from "axios";
 import { newToast } from "@/utils/helper-function";
 
-export default function UserField({ name, email, username, role, id }) {
+export default function UserField({ name, phone, username, role, id }) {
   const [roleModal, setRoleModal] = useState(false);
   const [detailsModal, setDetailsModal] = useState(false);
   return (
@@ -23,7 +23,7 @@ export default function UserField({ name, email, username, role, id }) {
             className="rounded-full object-cover aspect-square w-[100px]"
           />
           <div className="flex flex-col lg:items-start items-center gap-2 lg:border-l-2 lg:border-b-0 border-b-2 lg:pl-8 pb-4 text-zinc-700">
-            <span className="text-lg">{email}</span>
+            <span className="text-lg">{phone}</span>
             <span className="text-base text-zinc-600 font-mono">
               {username}
             </span>
