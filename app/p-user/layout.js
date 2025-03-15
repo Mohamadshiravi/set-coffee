@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 export default async function DashboardLayout({ children }) {
   const theUser = await isUserLogedIn();
   if (!theUser) {
-    return redirect("/");
+    return redirect("/auth/login");
   }
   return (
     <main className="relative grid lg:grid-cols-[2.5fr_9.5fr] grid-cols-[1fr]">

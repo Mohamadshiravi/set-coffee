@@ -1,6 +1,5 @@
 "use client";
 
-import ValidateUserObj from "@/utils/auth-utill/userObjectValidator";
 import { newErrorToast, newSucToast, ShowSwal } from "@/utils/helper-function";
 import axios from "axios";
 import Image from "next/image";

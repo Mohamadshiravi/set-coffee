@@ -1,94 +1,98 @@
 "use client";
 
+import VerifyCodeForm from "@/components/template/register/verifyCodeForm";
 import ValidateUserObj from "@/utils/auth-utill/userObjectValidator";
-import { newErrorToast, ShowSwal } from "@/utils/helper-function";
+import { newErrorToast, newSucToast } from "@/utils/helper-function";
+import { Button, TextField } from "@mui/material";
 import axios from "axios";
-import Link from "next/link";
-import { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function RegisterPage() {
-  const nameInpRef = useRef();
-  const usernameInpRef = useRef();
-  const emailInpRef = useRef();
-  const passInpRef = useRef();
-  const rePassInpRef = useRef();
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [phone, setPhone] = useState("");
 
+  const [isCodeSent, setIsCodeSent] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const router = useRouter();
 
   return (
     <>
       <div className="sm:w-[350px] w-[300px] bg-white shadow-lg rounded-md p-6 select-none">
-        <form className="shabnam flex flex-col items-start gap-4">
-          <input
-            ref={nameInpRef}
-            type="text"
-            className="w-full border-2 outline-hidden py-3 px-4 text-sm rounded-xs border-zinc-300 focus:border-brown-700 transition-all"
-            placeholder="نام"
-          />
-          <input
-            ref={usernameInpRef}
-            type="text"
-            className="w-full border-2 outline-hidden py-3 px-4 text-sm rounded-xs border-zinc-300 focus:border-brown-700 transition-all"
-            placeholder="نام کاربری"
-          />
-          <input
-            ref={emailInpRef}
-            type="email"
-            className="w-full border-2 outline-hidden py-3 px-4 text-sm rounded-xs border-zinc-300 focus:border-brown-700 transition-all"
-            placeholder="ایمیل"
-          />
-          <hr className="border w-full my-4 border-zinc-200" />
-          <input
-            ref={passInpRef}
-            type="password"
-            className="w-full border-2 outline-hidden py-3 px-4 text-sm rounded-xs border-zinc-300 focus:border-brown-700 transition-all"
-            placeholder="رمز عبور"
-          />
-          <input
-            ref={rePassInpRef}
-            type="password"
-            className="w-full border-2 outline-hidden py-3 px-4 text-sm rounded-xs border-zinc-300 focus:border-brown-700 transition-all"
-            placeholder="تکرار رمز عبور"
-          />
-          {isLoading ? (
-            <div className="w-full flex items-center justify-center">
-              <img src="/img/loading/Walk.gif" className="w-[50px]"></img>
-            </div>
-          ) : (
-            <button
-              onClick={RegisterHandler}
-              className="moraba-bold w-full bg-brown-700 hover:bg-headcolor transition-all text-white py-3 rounded-xs"
+        {!isCodeSent ? (
+          <form className="shabnam flex flex-col items-start gap-4">
+            <TextField
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              type="text"
+              label="نام"
+              fullWidth
+            />
+            <TextField
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              type="text"
+              label="نام کاربری"
+              fullWidth
+            />
+
+            <hr className="border-0.5 w-full my-2 border-zinc-300" />
+            <TextField
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              label="شماره موبایل"
+              fullWidth
+            />
+
+            <Button
+              variant="contained"
+              loading={isLoading}
+              onClick={SendCodeHandler}
+              size="lg"
+              fullWidth
+              sx={{ height: "50px", fontSize: "16px", fontWeight: "800" }}
             >
-              ثبتنام
-            </button>
-          )}
-          <span className="w-full text-center text-xs text-zinc-600">
-            ثبتنام شما در سایت به این معنی است که تمامی قوانین را پذیرفته اید.
-          </span>
-        </form>
+              ارسال کد
+            </Button>
+          </form>
+        ) : (
+          <VerifyCodeForm
+            reSend={SendCodeHandler}
+            user={{
+              name,
+              username,
+              phone,
+            }}
+          />
+        )}
         <div className="mt-20">
-          <Link
-            href={"/auth/login"}
+          <Button
+            onClick={() => router.push("/auth/login")}
+            variant="outlined"
+            size="lg"
+            fullWidth
+            sx={{ height: "50px", fontSize: "16px" }}
             className="moraba-bold mt-4 w-full block text-center hover:bg-zinc-300 transition bg-zinc-200 border-zinc-500 border text-zinc-800 py-3 rounded-xs"
           >
             بازگشت به ورود
-          </Link>
+          </Button>
         </div>
       </div>
     </>
   );
-  async function RegisterHandler(e) {
-    e.preventDefault();
-    setIsLoading(true);
-    if (passInpRef.current.value !== rePassInpRef.current.value) {
-      setIsLoading(false);
-      return newErrorToast("رمز های عبور یکسان نیستند");
+
+  async function SendCodeHandler(e) {
+    if (e) {
+      e.preventDefault();
     }
+    setIsLoading(true);
+
     const user = {
-      name: nameInpRef.current.value,
-      username: usernameInpRef.current.value,
-      email: emailInpRef.current.value,
-      password: passInpRef.current.value,
+      name,
+      username,
+      phone,
     };
 
     const validator = await ValidateUserObj(user);
@@ -98,31 +102,25 @@ export default function RegisterPage() {
     }
 
     try {
-      const response = await axios.post("/api/auth/register", validator);
-      if (response.status === 201) {
+      await axios.post("/api/auth/register/send", {
+        phone: user.phone,
+      });
+      if (true) {
         setIsLoading(false);
-        const isClicked = await ShowSwal(
-          "success",
-          "با موفقیت ثبتنام شدید",
-          "رفتن به داشبورد"
-        );
-        if (isClicked) {
-          location.href = "/p-user";
-        } else {
-          location.href = "/";
-        }
+        newSucToast("کد به شماره موبایل شما ارسال شد !");
+        setIsCodeSent(true);
       }
     } catch (error) {
+      setIsLoading(false);
       if (error.response.status === 403) {
-        setIsLoading(false);
         newErrorToast("شما بن شده اید");
       }
       if (error.response.status === 409) {
-        setIsLoading(false);
-        return newErrorToast("نام کاربری یا ایمیل قبلا استفاده شده است");
+        return newErrorToast("این شماره تلفن قبلا ثبت شده است !");
       } else if (error.response.status === 422) {
-        setIsLoading(false);
         return newErrorToast("داده های نامعتبر");
+      } else {
+        return newErrorToast("مشکلی پیش امده");
       }
     }
   }

@@ -124,7 +124,7 @@ const ProfileSection = React.memo(
               <hr className="border w-full border-zinc-100 my-2" />
               <li
                 onClick={logOutHandler}
-                className="flex bg-red-300 hover:bg-red-400 transition-all cursor-pointer items-center justify-center w-full text-zinc-700 p-2 rounded-lg"
+                className="flex bg-stone-500 hover:bg-stone-600 transition-all cursor-pointer items-center justify-center w-full text-white p-2 rounded-lg"
               >
                 <h3>خروج</h3>
               </li>
