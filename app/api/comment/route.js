@@ -1,5 +1,6 @@
 import commentModel from "@/models/comment";
 import productModel from "@/models/product";
+import IsUserAdmin from "@/utils/auth-utill/is-user-admin";
 import isUserLogedIn from "@/utils/auth-utill/is-user-login";
 import ConnectTODb from "@/utils/connecttodb";
 
@@ -16,7 +17,6 @@ export async function POST(req) {
   try {
     // یافتن محصول قبل از افزودن کامنت
     const currentProduct = await productModel.findOne({ _id: product });
-    console.log(currentProduct, product);
 
     if (!currentProduct) {
       return Response.json({ message: "Product not found" }, { status: 404 });
@@ -34,5 +34,22 @@ export async function POST(req) {
     return Response.json({ message: "comment added" }, { status: 201 });
   } catch (error) {
     return Response.json({ message: "comment not added" }, { status: 500 });
+  }
+}
+export async function GET(req) {
+  try {
+    const isUserAdmin = await IsUserAdmin();
+    if (!isUserAdmin) {
+      return Response.json({ message: "You have not access" }, { status: 403 });
+    }
+
+    const comments = await commentModel
+      .find({}, "-__V")
+      .populate("product", "title")
+      .populate("user", "username avatar");
+
+    return Response.json({ message: "all comments", comments });
+  } catch (error) {
+    return Response.json({ message: "server error" }, { status: 500 });
   }
 }

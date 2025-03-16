@@ -8,14 +8,27 @@ export async function POST(req) {
     return Response.json({ message: "You have not access" }, { status: 403 });
   }
 
-  const { email, id } = await req.json();
+  const { phone, id } = await req.json();
 
   try {
-    await BanUserModel.create({ email });
+    await BanUserModel.create({ phone });
     await userModel.findOneAndDelete({ _id: id });
 
     return Response.json({ message: "user banned" }, { status: 200 });
   } catch (e) {
     return Response.json({ message: "Error" }, { status: 500 });
+  }
+}
+export async function GET(req) {
+  try {
+    const isUserAdmin = await IsUserAdmin();
+    if (!isUserAdmin) {
+      return Response.json({ message: "You have not access" }, { status: 403 });
+    }
+
+    const banUsers = await BanUserModel.find({}, "-__v");
+    return Response.json({ message: "all ban users", banUsers });
+  } catch (error) {
+    return Response.json({ message: "server error" }, { status: 500 });
   }
 }

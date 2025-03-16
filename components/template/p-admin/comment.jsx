@@ -1,9 +1,11 @@
 "use client";
 
 import { newToast } from "@/utils/helper-function";
+import { Button } from "@mui/material";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { IoIosStarOutline } from "react-icons/io";
 import { IoStar } from "react-icons/io5";
 
@@ -17,7 +19,9 @@ export default function PAdminComment({
   productID,
   id,
   avatar,
+  reRender,
 }) {
+  const [loading, setLoading] = useState(false);
   return (
     <div className="moraba-regular">
       <div className="flex sm:flex-row flex-col gap-6 p-4 bg-gray-100 relative rounded-t-xl">
@@ -67,7 +71,6 @@ export default function PAdminComment({
               </i>
             ) : (
               <i className="bg-red-500 text-white px-2 py-1 text-sm rounded-md">
-                {" "}
                 هنوز تایید نشده
               </i>
             )}
@@ -84,42 +87,61 @@ export default function PAdminComment({
         </div>
       </div>
       {queued ? (
-        <div className="flex items-center justify-between px-2">
-          <button
+        <div className="flex items-center justify-between mt-2">
+          <Button
+            loading={loading}
+            size="large"
+            color="success"
+            variant="contained"
             onClick={AccpetCommentHandler}
-            className="bg-green-600 hover:bg-green-700 transition text-white px-8 py-2 rounded-lg mt-2"
           >
             تایید
-          </button>
-          <button
+          </Button>
+          <Button
+            loading={loading}
+            size="large"
+            color="error"
+            variant="contained"
             onClick={RejectCommentHandler}
-            className="bg-red-500 hover:bg-red-600 transition text-white px-8 py-2 rounded-lg mt-2"
           >
             رد
-          </button>
+          </Button>
         </div>
       ) : (
-        <button
-          onClick={RejectCommentHandler}
-          className="bg-red-500 hover:bg-red-600 transition text-white px-8 py-2 rounded-lg mt-2"
-        >
-          حذف
-        </button>
+        <div className="mt-2">
+          <Button
+            loading={loading}
+            size="large"
+            color="error"
+            variant="contained"
+            onClick={RejectCommentHandler}
+          >
+            حذف
+          </Button>
+        </div>
       )}
     </div>
   );
   async function AccpetCommentHandler() {
+    setLoading(true);
     const res = await axios.put(`/api/comment/${id}`);
     if (res.status === 200) {
+      setLoading(false);
       newToast("کامنت تایید شد");
-      setInterval(() => location.reload(), 1500);
+      reRender();
+    } else {
+      setLoading(false);
     }
   }
   async function RejectCommentHandler() {
+    setLoading(true);
     const res = await axios.delete(`/api/comment/${id}`);
     if (res.status === 200) {
+      setLoading(false);
       newToast("کامنت حذف شد");
-      setInterval(() => location.reload(), 1500);
+      reRender();
+    } else {
+      setLoading(false);
     }
   }
 }

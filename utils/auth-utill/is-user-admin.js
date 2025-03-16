@@ -5,7 +5,7 @@ export default async function IsUserAdmin() {
   const theuserDetails = await isUserLogedIn();
   if (theuserDetails) {
     const theUser = await userModel.findOne(
-      { email: theuserDetails.email },
+      { phone: theuserDetails.phone },
       "-_id role"
     );
     if (theUser.role === "USER") {

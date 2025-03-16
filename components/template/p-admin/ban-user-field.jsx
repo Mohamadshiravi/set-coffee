@@ -1,26 +1,34 @@
 "use client";
 
 import { newToast } from "@/utils/helper-function";
+import { Button } from "@mui/material";
 import axios from "axios";
+import { useState } from "react";
 
-export default function BanUserField({ email, id }) {
+export default function BanUserField({ phone, id, reRenderBanUsers }) {
+  const [loading, setLoading] = useState(false);
   return (
     <div className="text-zinc-600 font-bold text-xl flex sm:flex-row flex-col gap-4 items-center justify-between bg-gray-100 rounded-lg px-3 py-2">
-      <span>{email}</span>
-      <button
+      <span>{phone}</span>
+      <Button
+        loading={loading}
+        size="large"
+        color="info"
+        variant="contained"
         onClick={UnBanUserhandler}
-        className="bg-blue-500 text-white moraba-bold px-10 py-2 rounded-lg hover:bg-blue-600 transition"
       >
         رفع بن
-      </button>
+      </Button>
     </div>
   );
   async function UnBanUserhandler() {
+    setLoading(true);
     const res = await axios.delete(`/api/user/banuser/${id}`);
 
     if (res.status === 200) {
+      setLoading(false);
       newToast("کاربر با موفقیت از بن خارج شد");
-      setInterval(() => location.reload(), 1000);
+      reRenderBanUsers();
     }
   }
 }

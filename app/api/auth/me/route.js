@@ -11,7 +11,7 @@ export async function GET(req) {
     if (IsTokenValid) {
       await ConnectTODb();
       const theUser = await userModel.findOne(
-        { email: IsTokenValid.email },
+        { phone: IsTokenValid.phone },
         "-__v"
       );
 

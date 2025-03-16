@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const banuserSchema = mongoose.Schema({
-  email: {
+  phone: {
     type: String,
     required: true,
   },

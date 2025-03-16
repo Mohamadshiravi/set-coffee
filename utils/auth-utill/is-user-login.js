@@ -6,11 +6,11 @@ import ConnectTODb from "../connecttodb";
 export default async function isUserLogedIn() {
   const userToken = (await cookies()).get("token");
   if (userToken) {
-    const IsTokenValid = await ValidateToken(userToken.value);
+    const IsTokenValid = ValidateToken(userToken.value);
     if (IsTokenValid) {
       await ConnectTODb();
       const theUser = await userModel.findOne(
-        { email: IsTokenValid.email },
+        { phone: IsTokenValid.phone },
         "-__v"
       );
       return theUser;

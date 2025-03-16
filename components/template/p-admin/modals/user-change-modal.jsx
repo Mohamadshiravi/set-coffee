@@ -1,6 +1,7 @@
 "use client";
 
-import { newToast } from "@/utils/helper-function";
+import { newErrorToast, newToast } from "@/utils/helper-function";
+import { Button, TextField } from "@mui/material";
 import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -10,11 +11,14 @@ export default function ChangeUserDetails({
   role,
   CloseModal,
   id,
-  email,
+  phone,
+  avatar,
   username,
+  reRenderUsers,
 }) {
   const [nameInput, setNameInput] = useState("");
   const [userNameInput, setUserNameInput] = useState("");
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     setNameInput(name);
     setUserNameInput(username);
@@ -28,66 +32,81 @@ export default function ChangeUserDetails({
       <div className="bg-white z-52 p-4 shadow-lg moraba-regular rounded-lg flex flex-col items-center gap-4">
         <div className="flex lg:flex-row flex-col items-center gap-6">
           <Image
-            alt={username}
-            src={"/img/bg-photo/guest.jpg"}
+            alt={"user avatar"}
+            src={avatar || "/img/bg-photo/guest.jpg"}
             width={500}
             height={500}
             className="rounded-full object-cover aspect-square w-[100px]"
           />
           <div className="flex flex-col lg:items-start items-center gap-2 lg:border-l-2 lg:border-b-0 border-b-2 lg:pl-8 pb-4 text-zinc-700">
-            <span className="text-lg">{email}</span>
+            <span className="text-lg">{phone}</span>
             <h3>{role === "ADMIN" ? "ادمین" : "کاربر عادی"}</h3>
           </div>
-          <div className="flex flex-col lg:items-start items-center moraba-bold gap-2 lg:border-l-2 lg:border-b-0 border-b-2 lg:pl-8 pb-4 text-zinc-600">
-            <input
+          <div className="flex flex-col lg:items-start items-center moraba-bold gap-4 lg:border-l-2 lg:border-b-0 border-b-2 lg:pl-8 pb-4 text-zinc-600">
+            <TextField
+              size="small"
+              label="نام"
               type="text"
               value={nameInput}
               onChange={(e) => {
                 setNameInput(e.target.value);
               }}
-              className="text-lg outline-hidden border w-full border-zinc-500 rounded-md px-3 py-1"
             />
-            <input
+            <TextField
+              size="small"
+              label="نام کاربری"
               type="text"
               value={userNameInput}
               onChange={(e) => {
                 setUserNameInput(e.target.value);
               }}
-              className="text-base text-zinc-600 font-mono outline-hidden border w-full border-zinc-500 rounded-md px-3 py-1"
             />
           </div>
-          <div className="lg:border-l-2 lg:border-b-0 border-b-2 lg:pl-8 pb-4 lg:mb-0 mb-4 text-zinc-800">
+          <div className="lg:border-b-0 border-b-2 lg:pl-8 pb-4 lg:mb-0 mb-4 text-zinc-800">
             <span className="text-sm font-mono font-black">{id}</span>
           </div>
         </div>
         <p>شما فقط میتوانید نام و نام کاربری کاربران را تغییر دهید !!!</p>
         <div className="w-full flex items-center justify-between">
-          <button
+          <Button
+            loading={loading}
+            size="large"
+            variant="outlined"
+            color="info"
             onClick={ChangeUserRoleHandler}
-            className="text-lg text-white px-8 py-1 rounded-lg text-zinc-400 border-zinc-400 border-2"
+            className="text-lg px-8 py-1 rounded-lg text-zinc-400 border-zinc-400 border-2"
           >
             تغییر
-          </button>
-          <button
+          </Button>
+          <Button
+            size="large"
+            variant="contained"
+            color="info"
             onClick={CloseModal}
             className="bg-blue-500 text-lg text-white px-8 py-1 rounded-lg"
           >
             لغو
-          </button>
+          </Button>
         </div>
       </div>
     </section>
   );
   async function ChangeUserRoleHandler() {
-    const res = await axios.put("/api/user/username-name", {
-      user: id,
-      name: nameInput,
-      username: userNameInput,
-    });
-    if (res.status === 200) {
-      CloseModal();
+    setLoading(true);
+    try {
+      await axios.put("/api/user/username-name", {
+        user: id,
+        name: nameInput,
+        username: userNameInput,
+      });
+
+      setLoading(false);
+      reRenderUsers();
       newToast("اطلاعات کاربر تغییر کرد");
-      setInterval(() => location.reload(), 1000);
+      CloseModal();
+    } catch (error) {
+      setLoading(false);
+      newErrorToast("مشکلی پیش امد");
     }
   }
 }

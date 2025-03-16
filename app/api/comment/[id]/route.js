@@ -32,8 +32,6 @@ export async function PUT(req, props) {
       newProductScore = comment.score;
     }
 
-    console.log(totalReviews, product.score, newProductScore);
-
     await productModel.findOneAndUpdate(
       { _id: product._id },
       {
@@ -63,7 +61,17 @@ export async function DELETE(req, props) {
   }
 
   try {
+    const comment = await commentModel.findOne({ _id: params.id }, "product");
+    const product = await productModel.findOne({ _id: comment.product }, "");
+
+    await productModel.findOneAndUpdate(
+      { _id: product._id },
+      {
+        $pull: { comments: comment._id },
+      }
+    );
     await commentModel.findOneAndDelete({ _id: params.id });
+
     return Response.json({ message: "comment deleted" }, { status: 200 });
   } catch (e) {
     return Response.json({ message: "error" }, { status: 500 });

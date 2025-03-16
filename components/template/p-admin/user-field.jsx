@@ -7,17 +7,28 @@ import ChangeUserDetails from "./modals/user-change-modal";
 import swal from "sweetalert";
 import axios from "axios";
 import { newToast } from "@/utils/helper-function";
+import { Button } from "@mui/material";
 
-export default function UserField({ name, phone, username, role, id }) {
+export default function UserField({
+  name,
+  phone,
+  username,
+  avatar,
+  role,
+  id,
+  reRenderUsers,
+  reRenderBanUsers,
+}) {
   const [roleModal, setRoleModal] = useState(false);
   const [detailsModal, setDetailsModal] = useState(false);
+  const [loading, setLoading] = useState(false);
   return (
     <>
       <div className="bg-white rounded-lg p-4 flex xl:flex-row flex-col items-center justify-between">
         <div className="flex lg:flex-row flex-col items-center gap-6">
           <Image
             alt={username}
-            src={"/img/bg-photo/guest.jpg"}
+            src={avatar || "/img/bg-photo/guest.jpg"}
             width={500}
             height={500}
             className="rounded-full object-cover aspect-square w-[100px]"
@@ -37,38 +48,53 @@ export default function UserField({ name, phone, username, role, id }) {
           </div>
         </div>
         <div className="grid grid-cols-[6fr_6fr] gap-2">
-          <button
+          <Button
+            loading={loading}
+            size="large"
+            color="info"
+            variant="contained"
             onClick={() => {
               setDetailsModal(true);
             }}
-            className="moraba-regular bg-blue-500 hover:bg-blue-600 transition rounded-lg px-8 py-3 text-white text-lg"
           >
             ویرایش
-          </button>
-          <button
+          </Button>
+          <Button
+            loading={loading}
+            size="large"
+            color="secondary"
+            variant="contained"
             onClick={() => {
               setRoleModal(true);
             }}
-            className="moraba-regular bg-indigo-500 hover:bg-indigo-600 transition rounded-lg px-8 py-3 text-white text-lg"
           >
             تغییر نقش
-          </button>
-          <button
+          </Button>
+          <Button
+            loading={loading}
+            size="large"
+            color="error"
+            variant="contained"
             onClick={DeleteUserHandler}
             className="moraba-regular bg-red-500 hover:bg-red-600 transition rounded-lg px-8 py-3 text-white text-lg"
           >
             حذف
-          </button>
-          <button
+          </Button>
+          <Button
+            loading={loading}
+            sx={{ backgroundColor: "black" }}
+            size="large"
+            variant="contained"
             onClick={HandleBanUser}
             className="moraba-regular bg-zinc-900 hover:bg-zinc-950 transition rounded-lg px-8 py-3 text-white text-lg"
           >
             بن
-          </button>
+          </Button>
         </div>
       </div>
       {roleModal && (
         <ChangeUserRole
+          reRenderUsers={reRenderUsers}
           name={name}
           role={role}
           CloseModal={CloseModal}
@@ -77,12 +103,14 @@ export default function UserField({ name, phone, username, role, id }) {
       )}
       {detailsModal && (
         <ChangeUserDetails
+          reRenderUsers={reRenderUsers}
           name={name}
           role={role}
-          email={email}
+          phone={phone}
           username={username}
           CloseModal={CloseModal}
           id={id}
+          avatar={avatar}
         />
       )}
     </>
@@ -98,10 +126,14 @@ export default function UserField({ name, phone, username, role, id }) {
       buttons: ["خیر", "بله"],
     });
     if (isOk) {
+      setLoading(true);
       const res = await axios.delete(`/api/user/${id}`);
       if (res.status === 200) {
+        setLoading(false);
         newToast("کاربر حذف شد !");
-        setInterval(() => location.reload(), 1000);
+        reRenderUsers();
+      } else {
+        setLoading(false);
       }
     }
   }
@@ -112,10 +144,15 @@ export default function UserField({ name, phone, username, role, id }) {
       buttons: ["خیر", "بله"],
     });
     if (isOk) {
-      const res = await axios.post("/api/user/banuser", { email, id });
+      setLoading(true);
+      const res = await axios.post("/api/user/banuser", { phone, id });
       if (res.status === 200) {
+        setLoading(false);
         newToast("کاربر بن شد !");
-        setInterval(() => location.reload(), 1000);
+        reRenderUsers();
+        reRenderBanUsers();
+      } else {
+        setLoading(false);
       }
     }
   }

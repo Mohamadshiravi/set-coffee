@@ -12,6 +12,7 @@ import AreaGrowthChart from "@/components/template/p-admin/area-chart";
 import messageModel from "@/models/message";
 import PAdminMessage from "@/components/template/p-admin/p-admin-message";
 import ConnectTODb from "@/utils/connecttodb";
+import orderModel from "@/models/order";
 
 export default async function AdminDashboard() {
   await ConnectTODb();
@@ -20,8 +21,10 @@ export default async function AdminDashboard() {
   const allUser = await userModel.find({}, "_id");
   const allProduct = await productModel.find({}, "_id");
   const allTiket = await tiketModel.find({}, "_id");
+  const allOrder = await orderModel.find({}, "_id");
 
   const allMessage = await messageModel.find({}, "-__v");
+
   return (
     <div className="sm:px-8 px-4">
       <section className="mt-10 flex gap-8 flex-wrap">
@@ -47,7 +50,7 @@ export default async function AdminDashboard() {
           <div className="flex flex-col items-center gap-2 text-lg">
             <span>مجموع سفارشات</span>
             <span className="font-mono font-bold text-3xl text-blue-500">
-              2
+              {allOrder.length}
             </span>
           </div>
           <LuDollarSign className="text-7xl" />

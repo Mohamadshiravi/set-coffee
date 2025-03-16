@@ -3,11 +3,12 @@
 import { newErrorToast, newSucToast, ShowSwal } from "@/utils/helper-function";
 import axios from "axios";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { Button, TextField } from "@mui/material";
 import toast from "react-hot-toast";
 import * as yup from "yup";
+import { UserContext } from "@/context/context";
 
 const schema = yup.object({
   name: yup
@@ -35,6 +36,8 @@ export default function ChangeUserDetailsForm({ theUser }) {
 
     setImgSrc(theUser.avatar);
   }, []);
+
+  const { FetchUserData } = useContext(UserContext);
   return (
     <section className="flex flex-col items-cneter gap-20 p-6 bg-stone-200 rounded-lg lg:w-[700px] w-full m-auto">
       <div className="flex items-center justify-center w-full">
@@ -101,6 +104,7 @@ export default function ChangeUserDetailsForm({ theUser }) {
         toast.success("عکس پروفایل شما تغییر کرد", {
           id: toastId,
         });
+        FetchUserData();
         setImgSrc(res.data.url);
       } catch (error) {
         toast.error("عکس پروفایل شما تغییر نکرد", {

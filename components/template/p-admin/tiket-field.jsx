@@ -1,10 +1,13 @@
 "use client";
 
 import { newToast, ShowSwal } from "@/utils/helper-function";
+import { Button } from "@mui/material";
 import axios from "axios";
+import { useState } from "react";
 import swal from "sweetalert";
 
 export default function TiketField({
+  reRenderTiket,
   title,
   department,
   createdAt,
@@ -15,6 +18,7 @@ export default function TiketField({
   id,
   answer,
 }) {
+  const [loading, setLoading] = useState(false);
   return (
     <div className="bg-gray-100 w-full py-3 px-4 text-zinc-700 rounded-lg flex flex-col shabnam">
       <div className="flex transition-all items-center justify-between">
@@ -62,38 +66,53 @@ export default function TiketField({
           </span>
         </div>
       </div>
-      <div className="w-full flex sm:flex-row flex-col gap-4 mt-4 items-center justify-end">
-        <button
-          onClick={() => {
-            ShowSwal("", body, "خواندم");
-          }}
-          className="bg-blue-500 sm:w-auto w-full hover:bg-blue-600 transition moraba-regular text-lg text-white px-6 py-2 rounded-lg"
-        >
-          مشاهده
-        </button>
-        <button
-          onClick={DeleteTiketHandler}
-          className="bg-red-500 sm:w-auto w-full hover:bg-red-600 transition moraba-regular text-lg text-white px-6 py-2 rounded-lg"
-        >
-          حذف
-        </button>
-        {!isClosed ? (
-          <button
-            onClick={TiketResponseHandler}
-            className="bg-yellow-400 sm:w-auto w-full hover:bg-yellow-500 transition moraba-regular text-lg text-white px-6 py-2 rounded-lg"
-          >
-            پاسخ
-          </button>
-        ) : (
-          <button
+      <div className="flex justify-end w-full mt-4 ">
+        <div className="flex sm:flex-row flex-col gap-2 sm:w-[400px] w-full items-center">
+          <Button
+            fullWidth
+            color="info"
+            variant="contained"
+            size="large"
             onClick={() => {
-              ShowSwal("", answer.body, "خواندم");
+              ShowSwal("", body, "خواندم");
             }}
-            className="bg-yellow-400 sm:w-auto w-full hover:bg-yellow-500 transition moraba-regular text-lg text-white px-6 py-2 rounded-lg"
           >
-            مشاهده پاسخ
-          </button>
-        )}
+            مشاهده
+          </Button>
+          <Button
+            loading={loading}
+            fullWidth
+            color="error"
+            variant="contained"
+            size="large"
+            onClick={DeleteTiketHandler}
+          >
+            حذف
+          </Button>
+          {!isClosed ? (
+            <Button
+              fullWidth
+              color="success"
+              variant="contained"
+              size="large"
+              onClick={TiketResponseHandler}
+            >
+              پاسخ
+            </Button>
+          ) : (
+            <Button
+              fullWidth
+              color="success"
+              variant="contained"
+              size="large"
+              onClick={() => {
+                ShowSwal("", answer.body, "خواندم");
+              }}
+            >
+              مشاهده پاسخ
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -103,10 +122,14 @@ export default function TiketField({
       "بله",
     ]);
     if (isOk) {
+      setLoading(true);
       const res = await axios.delete(`/api/tiket/${id}`);
       if (res.status === 200) {
+        setLoading(false);
         newToast("تیکت پاک شد");
-        setInterval(() => location.reload(), 1500);
+        reRenderTiket();
+      } else {
+        setLoading(false);
       }
     }
   }
@@ -128,7 +151,7 @@ export default function TiketField({
       });
       if (res.status === 201) {
         newToast("تیکت پاسخ داده شد");
-        setInterval(() => location.reload(), 1500);
+        reRenderTiket();
       }
     }
   }

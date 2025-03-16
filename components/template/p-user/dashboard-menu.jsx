@@ -13,11 +13,20 @@ import { ShowSwal } from "@/utils/helper-function";
 import axios from "axios";
 import Image from "next/image";
 import { IoMenu } from "react-icons/io5";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "@/context/context";
 
-export default function DashboardMenu({ theUser }) {
+export default function DashboardMenu() {
   const pathName = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const { user, error, FetchUserData, loading } = useContext(UserContext);
+
+  useEffect(() => {
+    if (!user && error !== "unAuth") {
+      FetchUserData();
+    }
+  }, []);
   return (
     <>
       <div
@@ -43,25 +52,35 @@ export default function DashboardMenu({ theUser }) {
             : "opacity-0 translate-x-[350px]"
         } bg-zinc-100 lg:sticky fixed lg:opacity-100 lg:overflow-y-auto overflow-y-scroll lg:translate-x-0 top-0 z-50 right-0 lg:w-auto w-[270px] h-screen transition-all duration-500`}
       >
-        <div className="flex gap-3 items-center border-b border-stone-300 px-3 py-4">
-          <div className="w-full">
-            <h2 className="text-zinc-700 text-base font-bold truncate w-full text-left">
-              {theUser.name}
-            </h2>
-            <h3 className="text-zinc-600 text-xs truncate w-full text-left">
-              {theUser.email}
-            </h3>
+        {loading ? (
+          <div className="flex gap-3 items-center border-b border-stone-300 px-3 py-4">
+            <div className="w-full flex flex-col gap-2 items-end">
+              <div className="bg-zinc-200 w-[150px] h-[30px] animate-pulse"></div>
+              <div className="bg-zinc-200 w-[100px] h-[20px] animate-pulse"></div>
+            </div>
+            <div className="w-[90px] aspect-square overflow-hidden rounded-full bg-zinc-200 animate-pulse"></div>
           </div>
-          <div className="w-[90px] aspect-square overflow-hidden rounded-full bg-gray-200">
-            <Image
-              className="w-full h-full object-cover rounded-full"
-              src={theUser.avatar || "/img/bg-photo/guest.jpg"}
-              width={800}
-              height={800}
-              alt={theUser.name}
-            />
+        ) : (
+          <div className="flex gap-3 items-center border-b border-stone-300 px-3 py-4">
+            <div className="w-full">
+              <h2 className="text-zinc-700 text-base font-bold truncate w-full text-left">
+                {user?.name}
+              </h2>
+              <h3 className="text-zinc-600 text-xs truncate w-full text-left">
+                {user?.phone}
+              </h3>
+            </div>
+            <div className="w-[90px] aspect-square overflow-hidden rounded-full bg-gray-200">
+              <Image
+                className="w-full h-full object-cover rounded-full"
+                src={user?.avatar || "/img/bg-photo/guest.jpg"}
+                width={800}
+                height={800}
+                alt={"user avatar"}
+              />
+            </div>
           </div>
-        </div>
+        )}
         <ul className="flex flex-col gap-4 moraba-bold px-4 py-4 text-sm font-bold items-center">
           <Link
             onClick={() => {

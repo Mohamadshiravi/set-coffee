@@ -11,6 +11,7 @@ import axios from "axios";
 import { ShowSwal } from "@/utils/helper-function";
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
 
 const ProfileSection = React.memo(
   ({ isProfileOpen, isNavTop, theUser, setIsProfileOpen }) => {
@@ -31,7 +32,7 @@ const ProfileSection = React.memo(
             }}
             className={`bg-zinc-800 relative text-white moraba-bold shadow-xl shadow-zinc-600 ${
               isNavTop ? "px-0 aspect-square" : "px-4"
-            } items-center justify-center rounded-lg h-[50px] lg:flex hidden items-center gap-2 hover:bg-zinc-900 transition`}
+            } items-center justify-center rounded-lg h-[50px] lg:flex hidden gap-2 hover:bg-zinc-900 transition`}
           >
             <span
               className={`${
@@ -46,28 +47,28 @@ const ProfileSection = React.memo(
             id={`${isProfileOpen ? "animate-proile" : "animate-proile-close"}`}
             className={`${
               isProfileOpen ? "block" : "hidden"
-            } absolute top-14 left-0 rounded-lg shadow-lg w-[400px] bg-white p-3`}
+            } absolute top-14 left-0 rounded-lg shadow-lg w-[350px] bg-white p-3`}
           >
             <div className="flex gap-3 items-center border-b border-zinc-100 pb-3">
               <div className="w-full">
-                <h2 className="text-zinc-800 font-bold text-2xl truncate w-full text-left">
+                <h2 className="text-zinc-800 font-bold text-xl truncate w-full text-left">
                   {theUser.name}
                 </h2>
-                <h3 className="text-zinc-600 text-base truncate w-full text-left">
-                  {theUser.email}
+                <h3 className="text-zinc-600 text-sm truncate w-full text-left">
+                  {theUser.phone}
                 </h3>
               </div>
-              <div className="w-[90px] aspect-square overflow-hidden rounded-full bg-gray-200">
-                <img
+              <div className="w-[80px] aspect-square overflow-hidden rounded-full bg-gray-200">
+                <Image
                   className="w-full h-full object-cover rounded-full"
                   src={theUser.avatar || "/img/bg-photo/guest.jpg"}
                   width={800}
                   height={800}
-                  alt={theUser.name}
+                  alt={"user avatar"}
                 />
               </div>
             </div>
-            <ul className="flex flex-col gap-3 moraba-bold text-lg font-bold items-center mt-4">
+            <ul className="flex flex-col gap-3 moraba-bold text-base font-bold items-center mt-4">
               {theUser.role === "ADMIN" && (
                 <Link
                   href={"/p-admin"}

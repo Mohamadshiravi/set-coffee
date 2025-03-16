@@ -14,6 +14,10 @@ export default function MuiThemeProvider({ children }) {
         main: "#755f56",
         contrastText: "#ffffff",
       },
+      info: {
+        main: "#2b7fff",
+        contrastText: "#ffffff",
+      },
     },
 
     typography: {

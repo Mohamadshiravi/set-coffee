@@ -2,7 +2,7 @@ import userModel from "@/models/user";
 import IsUserAdmin from "@/utils/auth-utill/is-user-admin";
 import ConnectTODb from "@/utils/connecttodb";
 
-export async function POST(req) {
+export async function PUT(req) {
   await ConnectTODb();
 
   const isUser = await IsUserAdmin();

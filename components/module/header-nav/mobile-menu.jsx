@@ -48,7 +48,7 @@ const MobileMenu = React.memo(({ isNavOpen, CloseMenu, pathName, theUser }) => {
                   {theUser.name}
                 </h2>
                 <h3 className="text-zinc-600 text-sm truncate w-full text-left">
-                  {theUser.email}
+                  {theUser.phone}
                 </h3>
               </div>
               <div className="w-[90px] aspect-square overflow-hidden rounded-full bg-gray-200">

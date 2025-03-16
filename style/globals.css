@@ -152,10 +152,10 @@
 }
 .swal-button--confirm {
   transition: all 0.2s;
-  background-color: rgb(0, 104, 67) !important;
+  background-color: #755f56 !important;
 }
 .swal-button--confirm:hover {
-  background-color: rgb(0, 53, 34) !important;
+  background-color: #4c3b35 !important;
 }
 #animate-proile {
   animation: fade-in 0.3s ease-in-out;

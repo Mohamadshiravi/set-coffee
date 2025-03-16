@@ -26,3 +26,17 @@ export async function POST(req) {
     return Response.json({ message: "Error" }, { status: 500 });
   }
 }
+
+export async function GET(req) {
+  try {
+    const isUserAdmin = await IsUserAdmin();
+    if (!isUserAdmin) {
+      return Response.json({ message: "You have not access" }, { status: 403 });
+    }
+
+    const allDiscount = await discountModel.find({});
+    return Response.json({ message: "allDiscount", allDiscount });
+  } catch (error) {
+    return Response.json({ message: "server error" }, { status: 500 });
+  }
+}

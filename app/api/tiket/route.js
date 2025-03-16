@@ -1,4 +1,5 @@
 import tiketModel from "@/models/tiket";
+import IsUserAdmin from "@/utils/auth-utill/is-user-admin";
 import isUserLogedIn from "@/utils/auth-utill/is-user-login";
 import ConnectTODb from "@/utils/connecttodb";
 
@@ -36,5 +37,25 @@ export async function POST(req) {
     return Response.json({ message: "tiket created" }, { status: 201 });
   } catch (e) {
     return Response.json({ message: "tiket not created" }, { status: 500 });
+  }
+}
+
+export async function GET(req) {
+  try {
+    const isUserAdmin = await IsUserAdmin();
+    if (!isUserAdmin) {
+      return Response.json({ message: "You have not access" }, { status: 403 });
+    }
+
+    const allTikets = await tiketModel
+      .find({})
+      .sort("-_id")
+      .populate("department", "name")
+      .populate("user", "username")
+      .populate("answer", "body")
+      .lean();
+    return Response.json({ message: "all tiket", allTikets });
+  } catch (error) {
+    return Response.json({ message: "server error" }, { status: 500 });
   }
 }

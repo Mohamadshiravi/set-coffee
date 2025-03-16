@@ -12,9 +12,10 @@ export default async function AdminPanelLayout({ children }) {
   }
   return (
     <>
-      {/* <AdminHeader theUser={JSON.parse(JSON.stringify(theUser))} />
-      <main className="w-full bg-zinc-100 border">{children}</main> */}
-      <h1>rebuilding website</h1>
+      <AdminHeader theUser={JSON.parse(JSON.stringify(theUser))} />
+      <main className="w-full bg-zinc-100 border min-h-[100dvh] sm:pb-0 pb-10">
+        {children}
+      </main>
     </>
   );
 }
