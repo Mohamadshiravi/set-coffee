@@ -75,8 +75,6 @@ export async function POST(req) {
       });
     }
   } catch (error) {
-    console.log(error);
-
     return new Response(JSON.stringify({ message: "Code not send" }), {
       status: 500,
     });

@@ -75,8 +75,6 @@ export default function ChangeUserRole({
       reRenderUsers();
       CloseModal();
     } catch (error) {
-      console.log(error);
-
       setLoading(false);
       newErrorToast("مشکلی پیش امد");
     }

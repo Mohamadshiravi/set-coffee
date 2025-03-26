@@ -18,7 +18,6 @@ export default function DiscountPage() {
     try {
       const res = await axios.get("/api/discount");
       setAllDiscounts(res.data.allDiscount);
-      console.log(res);
       setLoading(false);
     } catch (error) {
       setLoading(false);

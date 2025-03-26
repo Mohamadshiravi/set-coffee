@@ -7,6 +7,7 @@ import axios from "axios";
 import { newErrorToast, newSucToast, newToast } from "@/utils/helper-function";
 import { Button, MenuItem, Select, TextField } from "@mui/material";
 import { useFormik } from "formik";
+import ValidateProductObj from "@/utils/productValidator";
 
 export default function AddProductForm({ reRender }) {
   const [tagInp, setTagInp] = useState("");
@@ -33,6 +34,9 @@ export default function AddProductForm({ reRender }) {
     onSubmit: async (values) => {
       try {
         setLoading(true);
+
+        const isDataVaild = await ValidateProductObj(values);
+
         const res = await axios.post("/api/product", { ...values, productId });
         if (res.status === 201) {
           newSucToast("محصول جدید اضافه شد");
@@ -41,11 +45,13 @@ export default function AddProductForm({ reRender }) {
           setImgInpLength(1);
           setLoading(false);
         }
-      } catch (error) {
-        newErrorToast(
-          "لطفا تمام فیلد ها را پر کنید و یک عکس برای محصول انتخاب کنید"
-        );
+      } catch (e) {
         setLoading(false);
+        if (e.errors[0]) {
+          newErrorToast(e.errors[0]);
+        } else {
+          newErrorToast("مشکلی پیش امد");
+        }
       }
     },
   });

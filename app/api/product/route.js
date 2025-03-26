@@ -59,8 +59,6 @@ export async function POST(req) {
   try {
     return Response.json({ message: "product created" }, { status: 201 });
   } catch (error) {
-    console.log(error);
-
     return Response.json(
       { message: "product not created", error },
       { status: 500 }
@@ -71,7 +69,7 @@ export async function GET() {
   await ConnectTODb();
 
   try {
-    const allProduct = await productModel.find({}, "images title price score", {
+    const allProduct = await productModel.find({}, "-__v", {
       sort: "-_id",
     });
     return Response.json({ data: allProduct });

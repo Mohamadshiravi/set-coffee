@@ -70,8 +70,6 @@ export function UserProvider({ children }) {
   }
 
   function IncrementUserWish() {
-    console.log("hi");
-
     dispatch({ type: INC_USER_WISH });
   }
   function DecrementUserWish() {

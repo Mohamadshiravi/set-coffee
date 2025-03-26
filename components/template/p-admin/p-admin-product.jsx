@@ -79,7 +79,11 @@ export default function PAdminProduct({ product, reRender }) {
         </div>
       </div>
       {isEditModalOpen && (
-        <EditAdminProduct CloseModal={CloseModal} product={product} />
+        <EditAdminProduct
+          CloseModal={() => setIsModalOpen(false)}
+          product={product}
+          reRender={reRender}
+        />
       )}
     </>
   );
@@ -99,8 +103,5 @@ export default function PAdminProduct({ product, reRender }) {
         setLoading(false);
       }
     }
-  }
-  function CloseModal() {
-    setIsModalOpen(false);
   }
 }
