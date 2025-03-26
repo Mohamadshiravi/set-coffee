@@ -146,7 +146,7 @@ const MobileMenu = React.memo(({ isNavOpen, CloseMenu, pathName, theUser }) => {
                 <hr className="border w-full border-zinc-700" />
                 <button
                   onClick={logOutHandler}
-                  className="flex bg-red-500 hover:bg-red-600 transition-all cursor-pointer items-center justify-center w-full text-zinc-700 p-2 rounded-lg"
+                  className="flex bg-stone-500 hover:bg-stone-600 transition-all cursor-pointer items-center justify-center w-full text-white p-2 rounded-lg"
                 >
                   <h3>خروج</h3>
                 </button>

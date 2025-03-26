@@ -19,11 +19,16 @@ import ConnectTODb from "@/utils/connecttodb";
 import productModel from "@/models/product";
 import AddToWishBtn from "@/components/template/product-details/addtowishbtn";
 import { notFound } from "next/navigation";
+import mongoose from "mongoose";
 
 export default async function ProductDetails(props) {
   const params = await props.params;
-  await ConnectTODb();
 
+  if (!mongoose.Types.ObjectId.isValid(params.id)) {
+    return notFound();
+  }
+
+  await ConnectTODb();
   const product = await productModel
     .findOne({ _id: params.id }, "-__v")
     .populate({
@@ -39,11 +44,9 @@ export default async function ProductDetails(props) {
     return notFound();
   }
 
-  const lastestProduct = await productModel.find(
-    { smell: product.smell },
-    "title price score images",
-    { limit: 4 }
-  );
+  const lastestProduct = await productModel
+    .find({ smell: product.smell }, "title price score images")
+    .limit(4);
 
   return (
     <>
@@ -51,7 +54,10 @@ export default async function ProductDetails(props) {
       <main className="pt-[150px] lg:pb-20 md:pb-10 sm:pb-4 pb-2 lg:px-20 md:px-10 sm:px-4 px-2 text-zinc-700 bg-zinc-100">
         <section className="w-full overflow-hidden flex xl:flex-row pb-2 flex-col gap-3">
           <div className="xl:w-[500px] w-full select-none bg-gray-100">
-            <ProductSlider images={product.images} alt={product.title} />
+            <ProductSlider
+              images={JSON.parse(JSON.stringify(product.images))}
+              alt={JSON.parse(JSON.stringify(product.title))}
+            />
           </div>
           <div className="flex flex-col gap-2 w-full p-4">
             <div className="flex gap-3 shabnam text-zinc-700 text-sm">
@@ -92,7 +98,7 @@ export default async function ProductDetails(props) {
                 </span>
               </div>
               <div className="moraba-bold flex items-center text-2xl gap-2 mt-3">
-                <span>{TidyNumber(product.price)}</span>
+                <span>{product.price.toLocaleString()}</span>
                 <span className="text-xl">تومان</span>
               </div>
               <p className="moraba-regular mt-3 text-justify text-zinc-500">
@@ -144,24 +150,24 @@ export default async function ProductDetails(props) {
       <Footer />
     </>
   );
-  function TidyNumber(Number) {
-    Number += "";
-    Number = Number.replace(",", "");
-    let x = Number.split(".");
-    let y = x[0];
-    let z = x.length > 1 ? "." + x[1] : "";
-    var rgx = /(\d+)(\d{3})/;
-    while (rgx.test(y)) y = y.replace(rgx, "$1" + "," + "$2");
-    return y + z;
-  }
 }
 
 export async function generateMetadata(props) {
   const params = await props.params;
+
+  if (!mongoose.Types.ObjectId.isValid(params.id)) {
+    return;
+  }
+
   const product = await productModel.findOne(
     { _id: params.id },
     "title shortDes -_id"
   );
+
+  if (!product) {
+    return;
+  }
+
   return {
     title: product.title,
     description: product.shortDes,

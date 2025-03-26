@@ -5,6 +5,13 @@ import IsUserAdmin from "@/utils/auth-utill/is-user-admin";
 import ConnectTODb from "@/utils/connecttodb";
 import DeletePhoto from "@/utils/delete-photo";
 import UploadImage from "@/utils/upload-image";
+import ImageKit from "imagekit";
+
+const imagekit = new ImageKit({
+  publicKey: process.env.NEXT_PUBLIC_PUBLIC_KEY,
+  privateKey: process.env.CLOUD_PRIVATE_KEY,
+  urlEndpoint: process.env.NEXT_PUBLIC_URL_ENDPOINT,
+});
 
 export async function PUT(req, props) {
   const params = await props.params;
@@ -97,18 +104,17 @@ export async function DELETE(req, props) {
 
   await ConnectTODb();
 
-  const currentProduct = await productModel.findOne({
-    _id: params.id,
-  });
+  const currentProduct = await productModel.findOne(
+    {
+      _id: params.id,
+    },
+    "imagesID"
+  );
 
   try {
-    if (currentProduct.images.length !== 0) {
-      const oldImages = await productModel.findOne(
-        { _id: params.id },
-        "images -_id"
-      );
-      oldImages.images.map(async (e) => {
-        await DeletePhoto(e);
+    if (currentProduct.imagesID.length !== 0) {
+      currentProduct.imagesID.map(async (e) => {
+        await imagekit.deleteFile(e);
       });
     }
 

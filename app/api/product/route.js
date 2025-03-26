@@ -12,53 +12,55 @@ export async function POST(req) {
     );
   }
 
-  await ConnectTODb();
+  const {
+    title,
+    price,
+    shortDes,
+    longDes,
+    weight,
+    smell,
+    tags,
+    suitableFor,
+    productId,
+  } = await req.json();
 
-  const formData = await req.formData();
+  const isProductCreated = await productModel.findOne(
+    { _id: productId },
+    "_id"
+  );
 
-  const title = formData.get("title");
-  const price = formData.get("price");
-  const shortDes = formData.get("shortDes");
-  const longDes = formData.get("longDes");
-  const weight = formData.get("weight");
-  const smell = formData.get("smell");
-  const tags = formData.get("tags");
-  const suitableFor = formData.get("suitableFor");
-
-  const imagesLength = formData.get("imagesLength");
-
-  let imagesArray = [];
-
-  const imgRandomName = crypto.randomUUID();
-
-  if (title && price && shortDes) {
-    Array.from({ length: imagesLength }).map(async (e, i) => {
-      const img = formData.get(`img${i}`);
-      await UploadImage(img, `${imgRandomName}${i}`, "product-photo");
-    });
-  }
-
-  Array.from({ length: imagesLength }).map((e, i) => {
-    const img = formData.get(`img${i}`);
-
-    const imgName = `${imgRandomName}${i}` + "-" + img.name;
-    imagesArray.push("/uploads/product-photo/" + imgName);
-  });
-
-  try {
+  if (isProductCreated) {
+    await productModel.findOneAndUpdate(
+      { _id: isProductCreated._id },
+      {
+        title,
+        price,
+        shortDes,
+        longDes,
+        tags: tags.join(","),
+        weight,
+        smell,
+        suitableFor,
+      }
+    );
+  } else {
     await productModel.create({
-      images: imagesArray,
       title,
       price,
       shortDes,
       longDes,
-      tags,
+      tags: tags.join(","),
       weight,
       smell,
       suitableFor,
     });
+  }
+
+  try {
     return Response.json({ message: "product created" }, { status: 201 });
   } catch (error) {
+    console.log(error);
+
     return Response.json(
       { message: "product not created", error },
       { status: 500 }

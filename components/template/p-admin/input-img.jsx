@@ -1,16 +1,23 @@
+import { newErrorToast, newSucToast } from "@/utils/helper-function";
+import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { FaRegImage } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 
-export default function ImgInputRealTime({ GetValueHandler }) {
+export default function ImgInputRealTime({
+  GetLengthHandler,
+  setProductId,
+  productId,
+}) {
   const imgPreview = useRef();
   const [imgSrc, setImgSrc] = useState("");
+  const [loading, setLoading] = useState(false);
   return (
     <>
       {imgSrc === "" ? (
         <label className="bg-gray-200 w-[200px] aspect-square border-2 cursor-pointer border-dashed border-zinc-600 py-10 rounded-lg flex items-center justify-center flex-col gap-3 text-xl">
           <input
-            onChange={ShowImgUserSelected}
+            onChange={UploadImg}
             type="file"
             className="w-0 h-0"
             accept=".jpg, .jpeg, .webp, .png"
@@ -25,28 +32,45 @@ export default function ImgInputRealTime({ GetValueHandler }) {
             src={imgSrc}
             className="w-[200px] aspect-square rounded-lg object-cover"
           />
-          <div className="w-full flex flex-col gap-2 items-center justify-center h-full absolute top-0 left-0 rounded-lg z-10 bg-black/50 transition-all opacity-0 group-hover:opacity-100">
-            <button
-              onClick={(e) => {
-                imgPreview.current.requestFullscreen() ||
-                  imgPreview.current.webkitRequestFullscreen();
-              }}
-              className="bg-blue-500 text-white rounded-md p-2 text-3xl hover:bg-blue-600 transition"
-            >
-              <FaEye />
-            </button>
-          </div>
+          {loading && (
+            <div className="w-full flex flex-col gap-2 items-center justify-center text-white h-full absolute top-0 left-0 rounded-lg z-10 bg-black/80 transition-all">
+              در حال اپلود
+              <span className="block border-t-2 w-[30px] aspect-square rounded-full animate-spin"></span>
+            </div>
+          )}
         </div>
       )}
     </>
   );
-  function ShowImgUserSelected(e) {
-    GetValueHandler(e.target.files[0]);
+  async function UploadImg(e) {
+    const img = e.target.files[0];
 
-    const imgReader = new FileReader();
-    imgReader.readAsDataURL(e.target.files[0]);
-    imgReader.onload = (e) => {
-      setImgSrc(e.target.result);
-    };
+    if (img) {
+      try {
+        setLoading(true);
+
+        //show preview
+        const imgReader = new FileReader();
+        imgReader.readAsDataURL(img);
+        imgReader.onload = (e) => {
+          setImgSrc(e.target.result);
+        };
+
+        //upload photo
+        const formdata = new FormData();
+        formdata.append("img", img);
+        formdata.append("productId", productId);
+        const res = await axios.post("/api/product/photo", formdata);
+
+        setProductId(res.data.productId);
+        GetLengthHandler();
+        setLoading(false);
+        newSucToast("عکس اپلود شد");
+      } catch (error) {
+        newErrorToast("عکس اپلود نشد");
+        setLoading(false);
+        setImgSrc("");
+      }
+    }
   }
 }

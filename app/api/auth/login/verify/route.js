@@ -30,7 +30,7 @@ export async function POST(req) {
 
     const userToken = await JenerateAccessToken({ phone });
 
-    cookies().set({
+    await cookies().set({
       name: "token",
       value: userToken,
       httpOnly: true,

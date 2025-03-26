@@ -1,13 +1,17 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import EditAdminProduct from "./modals/edit-product-modal";
 import axios from "axios";
-import { newToast, ShowSwal } from "@/utils/helper-function";
+import { newSucToast, newToast, ShowSwal } from "@/utils/helper-function";
+import Image from "next/image";
+import { Button } from "@mui/material";
+import { useRouter } from "next/navigation";
 
-export default function PAdminProduct({ product }) {
+export default function PAdminProduct({ product, reRender }) {
   const [isEditModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     if (isEditModalOpen) {
       document.documentElement.style.overflow = "hidden";
@@ -15,53 +19,63 @@ export default function PAdminProduct({ product }) {
       document.documentElement.style.overflow = "auto";
     }
   }, [isEditModalOpen]);
+
+  const router = useRouter();
+
   return (
     <>
-      <div className="flex flex-col border-b-2">
+      <div className="flex flex-col border rounded-lg p-2">
         <div className="flex lg:flex-row flex-col items-center gap-2 moraba-regular py-2">
-          <img
+          <Image
             src={product.images[0] || "/img/product-photo/product-1.png"}
-            width={800}
-            height={800}
+            width={1000}
+            height={1000}
             className="lg:w-[150px] w-[250px] aspect-square object-cover rounded-md"
-            alt={product.title}
+            alt={"product photo"}
           />
           <h3 className="lg:w-[250px] lg:text-base text-2xl w-full lg:text-right text-center">
-            {product.title}
+            {product?.title}
           </h3>
 
           <h3 className="lg:w-[250px] lg:text-xs text-base w-full text-zinc-700 text-justify">
-            {product.shortDes}
+            {product?.shortDes}
           </h3>
           <h3 className="w-[100px] moraba-bold text-center">
-            امتیاز : {product.score}
+            امتیاز : {product?.score}
           </h3>
           <h4 className="text-center w-[150px] lg:text-base text-xl font-bold text-red-600">
-            {product.price.toLocaleString()} تومان
+            {product?.price?.toLocaleString()} تومان
           </h4>
           <h4 className="text-center w-[150px] lg:text-base text-xl font-bold text-green-600">
             موجود
           </h4>
         </div>
-        <div className="moraba-regular flex sm:flex-row flex-col items-center lg:justify-end justify-center gap-3 py-2">
-          <button
+        <div className="moraba-regular flex sm:flex-row flex-col items-center lg:justify-end justify-center gap-3 mt-2">
+          <Button
+            color="info"
+            variant="contained"
+            size="large"
             onClick={() => [setIsModalOpen(true)]}
-            className="bg-blue-500 hover:bg-blue-600 sm:w-auto w-full transition px-6 py-2 text-white rounded-lg"
           >
             ویرایش
-          </button>
-          <button
+          </Button>
+          <Button
+            loading={loading}
+            color="error"
+            variant="contained"
+            size="large"
             onClick={DeleteProductHandler}
-            className="bg-red-500 hover:bg-red-600 sm:w-auto w-full transition px-6 py-2 text-white rounded-lg"
           >
             حذف
-          </button>
-          <Link
-            href={`/products/${product._id}`}
-            className="bg-yellow-500 hover:bg-yellow-600 sm:w-auto w-full text-center transition px-6 py-2 text-white rounded-lg"
+          </Button>
+          <Button
+            color="warning"
+            variant="contained"
+            size="large"
+            onClick={() => router.push(`/products/${product._id}`)}
           >
             مشاهده محصول
-          </Link>
+          </Button>
         </div>
       </div>
       {isEditModalOpen && (
@@ -75,10 +89,14 @@ export default function PAdminProduct({ product }) {
       "بله",
     ]);
     if (isOk) {
+      setLoading(true);
       const res = await axios.delete(`/api/product/${product._id}`);
       if (res.status === 200) {
-        newToast("محصول حذف شد");
-        setInterval((e) => location.reload(), 1500);
+        newSucToast("محصول حذف شد");
+        reRender();
+        setLoading(false);
+      } else {
+        setLoading(false);
       }
     }
   }

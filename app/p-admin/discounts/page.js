@@ -43,7 +43,7 @@ export default function DiscountPage() {
             ? Array.from({ length: 3 }).map((e, i) => (
                 <div
                   key={i}
-                  className="w-[400px] h-[500px] bg-blue-300 animate-pulse rounded-lg"
+                  className="w-[400px] h-[440px] bg-blue-300 animate-pulse rounded-lg"
                 ></div>
               ))
             : allDiscounts.map((e, i) => (
@@ -57,7 +57,7 @@ export default function DiscountPage() {
                   id={e._id}
                 />
               ))}
-          {allDiscounts.length === 0 && (
+          {allDiscounts.length === 0 && !loading && (
             <div className="text-center mt-3">کد تخفیفی موجود نیست</div>
           )}
         </div>

@@ -1,12 +1,11 @@
-import AddProductForm from "@/components/template/p-admin/add-product-form";
-import PAdminProduct from "@/components/template/p-admin/p-admin-product";
+import RenderProductsSection from "@/components/template/p-admin/products/renderProductsSection";
 import productModel from "@/models/product";
 import ConnectTODb from "@/utils/connecttodb";
 import { SlBag } from "react-icons/sl";
 
 export default async function ProductsAdminPage() {
   await ConnectTODb();
-  const allProduct = await productModel.find({}, "-__v", { sort: "-_id" });
+  const allProduct = await productModel.find({}, "_id");
 
   return (
     <section className="px-6">
@@ -19,28 +18,7 @@ export default async function ProductsAdminPage() {
         </div>
         <SlBag className="text-8xl" />
       </div>
-      <section className="flex flex-col items-center bg-white my-8 rounded-lg p-4">
-        <div className="lg:flex hidden gap-2 w-full justify-center moraba-bold text-zinc-700 text-lg border-b pb-3">
-          <span className="w-[150px] text-center">عکس</span>
-          <span className="w-[250px] text-center">عنوان</span>
-          <span className="w-[250px] text-center">توضیحات کوتاه</span>
-          <span className="w-[100px] text-center">امتیاز</span>
-          <span className="w-[150px] text-center">قیمت</span>
-          <span className="w-[150px] text-center">وضعیت</span>
-        </div>
-
-        <div className="flex flex-col gap-2">
-          {allProduct.map((e, i) => (
-            <PAdminProduct key={i} product={JSON.parse(JSON.stringify(e))} />
-          ))}
-        </div>
-      </section>
-      <section className="rounded-lg bg-white my-10 p-4 moraba-regular">
-        <h2 className="moraba-bold text-2xl text-zinc-700">
-          افزودن محصول جدید
-        </h2>
-        <AddProductForm />
-      </section>
+      <RenderProductsSection />
     </section>
   );
 }
