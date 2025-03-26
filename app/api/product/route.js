@@ -1,7 +1,6 @@
 import productModel from "@/models/product";
 import IsUserAdmin from "@/utils/auth-utill/is-user-admin";
 import ConnectTODb from "@/utils/connecttodb";
-import UploadImage from "@/utils/upload-image";
 
 export async function POST(req) {
   const isUserAdmin = await IsUserAdmin();
