@@ -9,7 +9,9 @@ export default function Footer() {
     <footer className="bg-zinc-900 sm:mb-0 mb-[58px]">
       <div className="grid xl:grid-cols-[4fr_4fr_4fr] md:grid-cols-[6fr_6fr] grid-cols-[1fr] gap-6 lg:px-32 sm:px-16 px-8 py-14">
         <div className="text-zinc-300 text-sm flex flex-col gap-6 shabnam">
-          <img src="/img/logo/logo_light.png" className="w-[200px]" />
+          <h4 className="font-medium sm:text-4xl text-3xl translate-y-1">
+            <span className="font-black">Set</span>Coffee
+          </h4>
           <h3 className="moraba-bold">فروشگاه اینترنتی قهوه ست</h3>
           <h3 className="flex items-center gap-3">
             <IoLocationSharp className="text-4xl" />

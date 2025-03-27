@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 
 export default function HomeSlider() {
   return (
-    <section className="w-full sm:mt-[90px] mt-[65px] md:h-[500px] sm:h-[400px] h-[200px] relative">
+    <section className="w-full sm:mt-[85px] mt-[65px] md:h-[500px] sm:h-[400px] h-[200px] relative">
       <Swiper
         className="w-full h-full"
         navigation={true}

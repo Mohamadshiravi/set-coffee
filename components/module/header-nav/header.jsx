@@ -71,11 +71,14 @@ export default function Header() {
         <div className="flex items-center w-full justify-between">
           <button
             onClick={() => setIsNavOpen(true)}
-            className="lg:hidden shadow-md shadow-zinc-500 block hover:bg-zinc-900 transition bg-zinc-800 text-white sm:h-[50px] h-[40px] aspect-square flex items-center justify-center sm:text-3xl text-2xl rounded-lg"
+            className="lg:hidden shadow-md shadow-zinc-500 hover:bg-zinc-900 transition bg-zinc-800 text-white sm:h-[50px] h-[40px] aspect-square flex items-center justify-center sm:text-3xl text-2xl rounded-lg"
           >
             <RxHamburgerMenu />
           </button>
-          <img src="/img/logo/logonew.png" className="sm:w-[180px] w-[130px]" />
+
+          <h4 className="font-medium sm:text-4xl text-3xl translate-y-1">
+            <span className="font-black">Set</span>Coffee
+          </h4>
           <div className="moraba-bold text-zinc-600 text-sm lg:flex gap-8 hidden">
             <Link
               href={"/"}
@@ -132,7 +135,7 @@ export default function Header() {
                   className="bg-gray-100 relative text-zinc-800 moraba-bold rounded-lg aspect-square items-center justify-center h-full sm:flex hidden hover:bg-zinc-200 transition"
                 >
                   <CiHeart className="text-3xl" />
-                  <span className="bg-brown-500 rounded-full text-sm text-white w-[25px] block aspect-square moraba-bold flex items-center justify-center absolute -top-2 -right-2">
+                  <span className="bg-brown-500 rounded-full text-sm text-white w-[25px] aspect-square moraba-bold flex items-center justify-center absolute -top-2 -right-2">
                     {wishLength}
                   </span>
                 </Link>
@@ -142,7 +145,7 @@ export default function Header() {
                 className="bg-zinc-100 aspect-square flex items-center justify-center relative text-zinc-800 moraba-bold rounded-lg h-full hover:bg-zinc-200 transition"
               >
                 <PiShoppingCartSimpleLight className="sm:text-3xl text-2xl" />
-                <span className="bg-brown-500 rounded-full sm:text-sm text-xs text-white sm:w-[25px] w-[20px] block aspect-square moraba-bold flex items-center justify-center absolute -top-2 -right-2">
+                <span className="bg-brown-500 rounded-full sm:text-sm text-xs text-white sm:w-[25px] w-[20px] aspect-square moraba-bold flex items-center justify-center absolute -top-2 -right-2">
                   {userCart?.length}
                 </span>
               </Link>
