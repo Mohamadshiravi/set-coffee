@@ -14,6 +14,7 @@ export default function AddProductForm({ reRender }) {
   const [loading, setLoading] = useState(false);
 
   const [imgInpLength, setImgInpLength] = useState(1);
+  const [resetImgInputs, setResetImgInputs] = useState(false);
 
   const [productId, setProductId] = useState("");
 
@@ -42,6 +43,8 @@ export default function AddProductForm({ reRender }) {
           newSucToast("محصول جدید اضافه شد");
           reRender();
           formik.resetForm();
+          setResetImgInputs(true);
+          setTimeout(() => setResetImgInputs(false), 100);
           setImgInpLength(1);
           setLoading(false);
         }
@@ -156,6 +159,7 @@ export default function AddProductForm({ reRender }) {
                 GetLengthHandler={GetLengthHandler}
                 setProductId={setProductId}
                 productId={productId}
+                resetImgInputs={resetImgInputs}
               />
             ))}
           </div>
