@@ -23,15 +23,9 @@ export async function POST(req) {
     productId,
   } = await req.json();
 
-  const isProductCreated = await productModel.findOne(
-    { _id: productId },
-    "_id"
-  );
-
-  if (isProductCreated) {
-    await productModel.findOneAndUpdate(
-      { _id: isProductCreated._id },
-      {
+  try {
+    if (productId === "") {
+      await productModel.create({
         title,
         price,
         shortDes,
@@ -40,23 +34,44 @@ export async function POST(req) {
         weight,
         smell,
         suitableFor,
-      }
-    );
-  } else {
-    await productModel.create({
-      title,
-      price,
-      shortDes,
-      longDes,
-      tags: tags.join(","),
-      weight,
-      smell,
-      suitableFor,
-    });
-  }
+      });
 
-  try {
-    return Response.json({ message: "product created" }, { status: 201 });
+      return Response.json({ message: "product created" }, { status: 201 });
+    } else {
+      const isProductCreated = await productModel.findOne(
+        { _id: productId },
+        "_id"
+      );
+      if (isProductCreated) {
+        await productModel.findOneAndUpdate(
+          { _id: isProductCreated._id },
+          {
+            title,
+            price,
+            shortDes,
+            longDes,
+            tags: tags.join(","),
+            weight,
+            smell,
+            suitableFor,
+          }
+        );
+
+        return Response.json({ message: "product created" }, { status: 201 });
+      } else {
+        await productModel.create({
+          title,
+          price,
+          shortDes,
+          longDes,
+          tags: tags.join(","),
+          weight,
+          smell,
+          suitableFor,
+        });
+        return Response.json({ message: "product created" }, { status: 201 });
+      }
+    }
   } catch (error) {
     return Response.json(
       { message: "product not created", error },

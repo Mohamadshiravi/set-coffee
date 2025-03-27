@@ -2,6 +2,8 @@ import wishlistModel from "@/models/wishlist";
 import isUserLogedIn from "@/utils/auth-utill/is-user-login";
 import ConnectTODb from "@/utils/connecttodb";
 
+export const revalidate = 0;
+
 export async function POST(req) {
   await ConnectTODb();
 
