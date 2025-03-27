@@ -43,7 +43,7 @@ export default function LastestProduct() {
           <IoIosArrowBack className="text-xl group-hover:-translate-x-2 transition-all" />
         </div>
       </div>
-      <div className="w-full sm:p-4 p-2 grid sm:gap-4 gap-2 lg:grid-cols-[2.4fr_2.4fr_2.4fr_2.4fr_2.4fr] md:grid-cols-[3fr_3fr_3fr_3fr] md:grid-cols-[4fr_4fr_4fr]  grid-cols-[6fr_6fr]">
+      <div className="w-full sm:p-4 p-2 grid sm:gap-4 gap-2 lg:grid-cols-[2.4fr_2.4fr_2.4fr_2.4fr_2.4fr] md:grid-cols-[3fr_3fr_3fr_3fr] sm:grid-cols-[4fr_4fr_4fr]  grid-cols-[6fr_6fr]">
         {products.map((e, i) => (
           <ProductItem
             key={i}

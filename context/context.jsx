@@ -17,10 +17,12 @@ function UserReducer(state, action) {
       return { ...state, ...action.payload };
     }
     case INC_USER_WISH: {
-      return { ...state, wishLength: state.wishLength++ };
+      console.log(state.wishLength);
+      return { ...state, wishLength: state.wishLength + 1 };
     }
     case DEC_USER_WISH: {
-      return { ...state, wishLength: state.wishLength-- };
+      console.log(state.wishLength);
+      return { ...state, wishLength: state.wishLength - 1 };
     }
 
     default:
@@ -40,6 +42,10 @@ export const UserContext = createContext();
 
 export function UserProvider({ children }) {
   const [state, dispatch] = useReducer(UserReducer, initialState);
+
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
 
   async function FetchUserData() {
     try {
