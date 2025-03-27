@@ -116,7 +116,7 @@ export default function AddProductForm({ reRender }) {
           onBlur={formik.handleBlur}
           displayEmpty
         >
-          <MenuItem value={""}>انتخاب کنید</MenuItem>
+          <MenuItem value={""}>میزان بو</MenuItem>
           <MenuItem value={"متوسط به بالا ( FULL CITY )"}>
             متوسط به بالا ( FULL CITY )
           </MenuItem>
