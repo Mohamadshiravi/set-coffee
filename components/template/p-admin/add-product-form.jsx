@@ -85,6 +85,7 @@ export default function AddProductForm({ reRender }) {
           onBlur={formik.handleBlur}
         />
         <TextField
+          multiline
           label="توضیحات بلند"
           name="longDes"
           value={formik.values.longDes}
