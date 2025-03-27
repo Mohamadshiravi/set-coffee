@@ -1,6 +1,6 @@
 import { sign, verify } from "jsonwebtoken";
 
-export async function JenerateAccessToken(payload) {
+export function JenerateAccessToken(payload) {
   const res = sign({ ...payload }, process.env.TOKEN_KEY, {
     expiresIn: "10d",
   });

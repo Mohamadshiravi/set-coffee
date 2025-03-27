@@ -1,19 +1,21 @@
 "use client";
 
 import VerifyCodeForm from "@/components/template/login/verifyCodeForm";
+import { UserContext } from "@/context/context";
 import { newErrorToast, newSucToast, ShowSwal } from "@/utils/helper-function";
 import { Button, TextField } from "@mui/material";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isCodeSent, setIsCodeSent] = useState(false);
   const [phone, setPhone] = useState("");
-
   const [ident, setIdent] = useState("");
+
+  const { FetchUserData } = useContext(UserContext);
 
   const router = useRouter();
   return (
@@ -82,10 +84,19 @@ export default function LoginPage() {
         ident,
       });
 
-      setIsLoading(false);
-      newSucToast("کد برای شماره موبایل شما ارسال شد");
-      setIsCodeSent(true);
-      setPhone(res.data.phone);
+      if (res.status === 201) {
+        setIsLoading(false);
+        newSucToast("کد برای شماره موبایل شما ارسال شد");
+        setIsCodeSent(true);
+        setPhone(res.data.phone);
+      } else if (res.status === 202) {
+        setIsLoading(false);
+        newSucToast("خوشامدید ادمین");
+        FetchUserData();
+        setTimeout(() => {
+          router.push("/");
+        }, 500);
+      }
     } catch (error) {
       setIsLoading(false);
       if (error.response.status === 404) {

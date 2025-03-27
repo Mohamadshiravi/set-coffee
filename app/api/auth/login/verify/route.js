@@ -28,11 +28,11 @@ export async function POST(req) {
 
     //jenerate Token and create user
 
-    const userToken = await JenerateAccessToken({ phone });
+    const token = JenerateAccessToken({ phone: ident });
 
     await cookies().set({
       name: "token",
-      value: userToken,
+      value: token,
       httpOnly: true,
       maxAge: 10 * 24 * 60 * 60 * 1000,
       path: "/",

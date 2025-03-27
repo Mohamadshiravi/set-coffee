@@ -36,7 +36,7 @@ export async function POST(req) {
       username,
       role: isAdmin ? "USER" : "ADMIN",
     });
-    const userToken = await JenerateAccessToken({ phone });
+    const userToken = JenerateAccessToken({ phone });
 
     await cookies().set({
       name: "token",

