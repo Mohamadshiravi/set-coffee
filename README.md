@@ -18,6 +18,8 @@
 
 ### Features:
 
+- **Authentication with SMS**
+- **Uploads photo on Cloud**
 - **Add-remove-Edit Product**
 - **user Authentication with no external pakage**
 - **send tiket to admin panel**
@@ -38,11 +40,10 @@ Live on [https://set-coffee-eight.vercel.app/](https://set-coffee-eight.vercel.a
 <br />
 admin panel [https://set-coffee-eight.vercel.app/p-admin](https://set-coffee-eight.vercel.app/p-admin)
 
-### Admin Panel : (login with this email and password):
+### Admin Panel : (login with this phone and you are admin !):
 
 ```bash
-email : mohamadshiravi85@gmail.com
-password : 12345678
+phone : 09011468142
 ```
 
 <h1 align="center">
@@ -60,6 +61,14 @@ add This environment variables to run project :
 ```bash
 TOKEN_KEY : randomString
 MONGODB_URI : your mongodb connection string
+
+SMS_PANEL_PASS : 'your faraz SmS account password
+SMS_PANEL_USERNAME : 'your faraz SmS account username
+SMS_PANEL_PATTERN : 'your faraz SmS pattern
+
+NEXT_PUBLIC_PUBLIC_KEY= 'get it form Imagekit'
+CLOUD_PRIVATE_KEY='get it form Imagekit'
+NEXT_PUBLIC_URL_ENDPOINT='get it form Imagekit'
 ```
 
 And, You Need build Project By :

@@ -3,12 +3,6 @@ import IsUserAdmin from "@/utils/auth-utill/is-user-admin";
 import ConnectTODb from "@/utils/connecttodb";
 
 export async function POST(req) {
-  const theUser = await IsUserAdmin();
-
-  if (!theUser) {
-    return Response.json({ message: "forbidden" }, { status: 403 });
-  }
-
   const { name } = await req.json();
 
   await ConnectTODb();
