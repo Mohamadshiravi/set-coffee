@@ -28,7 +28,7 @@ export async function POST(req) {
 
     //jenerate Token and create user
 
-    const token = JenerateAccessToken({ phone: ident });
+    const token = JenerateAccessToken({ phone });
 
     await cookies().set({
       name: "token",
@@ -40,6 +40,7 @@ export async function POST(req) {
 
     return Response.json({ message: "userCreated" }, { status: 201 });
   } catch (error) {
+    console.log(error);
     return Response.json({ message: "server error" }, { status: 500 });
   }
 }
